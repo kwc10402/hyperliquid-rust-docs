@@ -12,6 +12,8 @@ Generated from `knowledge/sources` by `tools/compile_knowledge_docs.py`.
   - Locator: `docs/obsidian/Block Lifecycle.md`
 - `source.block_lifecycle_page` - Block lifecycle reference page (`local_doc`, `local_impl`)
   - Locator: `docs/block-lifecycle/index.html`
+- `source.bridge_note` - Bridge2 note (`local_doc`, `testnet_impl`)
+  - Locator: `docs/obsidian/Bridge.md`
 - `source.gossip_protocol_note` - Gossip protocol note (`local_doc`, `testnet_impl`)
   - Locator: `docs/obsidian/Gossip Protocol.md`
 - `source.hyperbft_spec_note` - HyperBFT protocol specification note (`local_doc`, `testnet_impl`)
@@ -32,3 +34,5 @@ Generated from `knowledge/sources` by `tools/compile_knowledge_docs.py`.
   - Locator: `docs/obsidian/LtHash Serialization.md`
 - `source.outcome_solvency_review_2026_04_03` - Outcome solvency review 2026-04-03 (`generated_note`, `testnet_impl`)
   - Locator: `docs/generated/outcome_solvency_review_2026-04-03.md`
+- `source.validator_lifecycle_note` - Validator lifecycle note (`local_doc`, `testnet_impl`)
+  - Locator: `docs/obsidian/HyperBFT.md`

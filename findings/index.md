@@ -45,6 +45,7 @@ Start with:
 - broadcaster ingress, validator/sentry admission checks, and `RoundRobinTtl` proposer rotation are now first-class claims
 - the transport split on `4001` / `4002` is now part of the structured source layer
 - the lifecycle and gossip pages now have a clearer shared fact surface
+- validator lifecycle is now tracked as a separate epoch/jail/signer claim instead of being smeared across status notes
 
 Start with:
 
@@ -52,7 +53,19 @@ Start with:
 - [HyperBFT Protocol Specification](../obsidian/HyperBFT%20Protocol%20Specification.md)
 - [Gossip Protocol](../obsidian/Gossip%20Protocol.md)
 
-### 1.4 Liquidation, ADL, and BOLE
+### 1.4 Bridge Finalization and Validator Control
+
+- Bridge2 withdrawal signatures, finalized votes, and validator-set updates are now promoted into a structured control-plane claim
+- bridge signer reuse and dispute-period invalidation remain explicit risk surfaces
+- validator lifecycle and bridge control are now documented as adjacent but distinct control surfaces
+
+Start with:
+
+- [Truth Register](./truth-register.html)
+- [Bridge](../obsidian/Bridge.md)
+- [HyperBFT Protocol Specification](../obsidian/HyperBFT%20Protocol%20Specification.md)
+
+### 1.5 Liquidation, ADL, and BOLE
 
 - liquidation family boundaries are now explicit across perps, PM, BOLE, spot, and outcomes
 - BOLE is modeled as its own liquidation family, not a perp-style liquidation surface
@@ -64,7 +77,7 @@ Start with:
 - [Liquidation Engine](../obsidian/Liquidation%20Engine.md)
 - [Open Claims](../status/open-claims.html)
 
-### 1.5 Aligned Quote Token and Validator Rate Sampling
+### 1.6 Aligned Quote Token and Validator Rate Sampling
 
 - aligned quote token sampling is now promoted as a real begin-block fact
 - `hpt` is tracked as Exchange field `56`
@@ -76,7 +89,7 @@ Start with:
 - [Exchange State](../obsidian/Exchange%20State.md)
 - [Block Lifecycle](../block-lifecycle/index.html)
 
-### 1.6 Outcomes and Solvency
+### 1.7 Outcomes and Solvency
 
 - the leading current risk hypothesis is still question-level outcome reconciliation
 - fallback/named-outcome settlement interaction remains the most interesting open outcome lane

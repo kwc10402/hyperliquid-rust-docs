@@ -74,6 +74,20 @@ Current confirmed testnet-facing networking and consensus facts:
 
 Treat the exact operator deployment shape as still chain-scoped, but keep these surfaces aligned across lifecycle, gossip, and consensus notes.
 
+### 1.7 Validator Lifecycle / Jail Surface
+
+Current confirmed validator-control facts:
+
+- epochs are time-based via `epoch_duration_seconds`
+- active validators are recomputed at epoch boundaries
+- signer admission checks search `epoch_states[cur_epoch]`
+- jailed signers are excluded from normal proposer / signing flow
+- `CSignerAction` currently has `unjailSelf`, `jailSelf`, and `jailSelfIsolated`
+- manual unjail is rate-limited by `signer_to_last_manual_unjail_time`
+
+What remains open on this lane is threshold/trigger detail, not the existence of
+the lifecycle surface.
+
 ---
 
 ## 2. Exchange State (57 Fields)
@@ -219,7 +233,29 @@ Current testnet notes widen the action surface to 97 variants. The local engine 
 
 ---
 
-## 8. Aligned Quote Token (HPT)
+## 8. Bridge Finalization and Validator-Set Updates
+
+`CONFIRMED` from Bridge2 state naming, bridge action inventory, and the current
+control-plane notes.
+
+- **Bridge2 state** includes `withdrawal_signatures`,
+  `withdrawal_finalized_votes`, `finished_withdrawal_to_time`,
+  `validator_set_signatures`, and `validator_set_finalized_votes`.
+- **Withdrawal entrypoint**: `withdraw3`.
+- **Bridge signing action**: `ValidatorSignWithdrawal`.
+- **Finalize actions**: `VoteEthFinalizedWithdrawal` and
+  `VoteEthFinalizedValidatorSetUpdate`.
+- **Validator-set update signing**: `SignValidatorSetUpdate`.
+- **Signer model**: current repo truth keeps bridge signing on validator signer
+  keys, not an unrelated bridge-only signer family.
+
+What remains open is exact dispute-period closure and some Ethereum-side
+operational details, not whether bridge finalization is a first-class staged
+state machine.
+
+---
+
+## 9. Aligned Quote Token (HPT)
 
 `DISCOVERED` from Hyperliquid docs + API.
 
@@ -235,7 +271,7 @@ This is also a begin-block surface: `update_aligned_quote_token` is the current 
 
 ---
 
-## 9. Gossip Protocol
+## 10. Gossip Protocol
 
 `CONFIRMED` from binary RE.
 
@@ -246,7 +282,7 @@ This is also a begin-block surface: `update_aligned_quote_token` is the current 
 
 ---
 
-## 10. Guard System
+## 11. Guard System
 
 All rate-limited effects use `BucketGuard`:
 
@@ -270,7 +306,7 @@ struct BucketGuard {
 
 ---
 
-## 11. Implementation Status
+## 12. Implementation Status
 
 | Component | Status | Tests |
 |-----------|--------|-------|

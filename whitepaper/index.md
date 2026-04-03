@@ -83,6 +83,15 @@ The current working picture is:
 - proposer rotation is stake-weighted round-robin
 - QC/TC certificates drive the two-chain commit flow
 
+Validator control is also epoch-scoped rather than purely stake-scoped. The
+current notes support:
+
+- time-based epochs via `epoch_duration_seconds`
+- active-set recomputation at epoch boundaries
+- jailed-signer exclusion from proposer rotation
+- signer validity checks against `epoch_states[cur_epoch]`
+- explicit self-jail / self-unjail surfaces rather than a vague "disabled node" model
+
 ### 3.2 Exchange Execution
 
 The exchange execution layer is the heart of the protocol. A block generally follows this shape:
@@ -192,6 +201,18 @@ The EVM is tightly integrated but not sovereign over L1 state. The important bri
 - L1 transfers to and from HyperEVM
 - CoreWriter-delayed actions
 - bridge validator signatures and finalized withdrawal state
+
+Bridge control is now tracked as a staged control system with separate state
+for:
+
+- withdrawal signatures
+- finalized-withdrawal votes
+- validator-set signatures
+- finalized validator-set votes
+
+That distinction matters because bridge solvency and operator trust are shaped
+by finalization state, dispute-period invalidation, and signer reuse, not just
+by the user-facing `withdraw3` entrypoint.
 
 This repo now models the delayed-action queue explicitly, but the exact binary placement of matured delayed actions within the `begin_block` / execution-state wrapper is still one of the remaining ordering-closure tasks.
 

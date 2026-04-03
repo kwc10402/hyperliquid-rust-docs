@@ -2,7 +2,9 @@
 
 Generated from `knowledge/claims` by `tools/compile_knowledge_docs.py`.
 
+- `claim.bridge_finalization_and_validator_set_flow` - Bridge2 stages withdrawals and validator-set updates through signatures plus finalized-vote state (`bridge`, `confirmed`, `confirmed`, `testnet_impl`)
 - `claim.hyperbft_topology_and_rotation` - HyperBFT uses broadcaster ingress, validator/sentry admission checks, and RoundRobinTtl proposer rotation (`consensus`, `confirmed`, `confirmed`, `testnet_impl`)
+- `claim.validator_lifecycle_and_jail_flow` - Validator lifecycle is time-epoch gated, jail-aware, and signer-checked against current epoch state (`consensus`, `confirmed`, `confirmed`, `testnet_impl`)
 - `claim.aligned_quote_token_sampling` - Aligned quote token state samples validator risk-free-rate votes in begin-block effect 9 (`execution`, `confirmed`, `confirmed`, `testnet_impl`)
 - `claim.corewriter_delayed_action_surface` - CoreWriter re-enters L1 through a delayed action lane with 15 known action types (`execution`, `confirmed`, `confirmed`, `testnet_impl`)
 - `claim.action_surface_testnet` - Current widened testnet action surface is 97 variants with 126 sub-types (`execution`, `confirmed`, `confirmed`, `testnet_impl`)

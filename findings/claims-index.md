@@ -2,10 +2,17 @@
 
 Generated from `knowledge/claims` by `tools/compile_knowledge_docs.py`.
 
+## bridge
+
+- `claim.bridge_finalization_and_validator_set_flow` - Bridge2 stages withdrawals and validator-set updates through signatures plus finalized-vote state (`confirmed`, `confirmed`, `testnet_impl`, `active`)
+  - Source file: `knowledge/claims/bridge-finalization-and-validator-set-flow.md`
+
 ## consensus
 
 - `claim.hyperbft_topology_and_rotation` - HyperBFT uses broadcaster ingress, validator/sentry admission checks, and RoundRobinTtl proposer rotation (`confirmed`, `confirmed`, `testnet_impl`, `active`)
   - Source file: `knowledge/claims/hyperbft-topology-and-rotation.md`
+- `claim.validator_lifecycle_and_jail_flow` - Validator lifecycle is time-epoch gated, jail-aware, and signer-checked against current epoch state (`confirmed`, `confirmed`, `testnet_impl`, `active`)
+  - Source file: `knowledge/claims/validator-lifecycle-and-jail-flow.md`
 
 ## execution
 

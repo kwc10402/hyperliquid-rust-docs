@@ -69,7 +69,15 @@ Still-open consensus/networking questions include:
 - which transport details are protocol-stable versus deployment-specific
 - proposer / suspect / jail interaction around `RoundRobinTtl`
 
-### 3.3 Hashing and Replay
+### 3.3 Validator and Bridge Control
+
+Still-open control-plane questions include:
+
+- exact bridge dispute-period timing and finalize-vote closure
+- exact ForceIncreaseEpoch trigger semantics
+- exact governance versus self-service unjail boundaries
+
+### 3.4 Hashing and Replay
 
 Still-open parity questions include:
 
@@ -77,7 +85,7 @@ Still-open parity questions include:
 - remaining replay mismatch localization
 - complete response-hash routing coverage
 
-### 3.4 Risk and Liquidation
+### 3.5 Risk and Liquidation
 
 Still-open risk questions include:
 
@@ -85,7 +93,7 @@ Still-open risk questions include:
 - remaining liquidation edge semantics
 - full portfolio-margin and BOLE interactions
 
-### 3.5 Outcomes
+### 3.6 Outcomes
 
 Still-open outcome questions include:
 
