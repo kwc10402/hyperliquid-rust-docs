@@ -257,6 +257,8 @@ blockquote { border-left:3px solid var(--accent); padding:8px 16px; margin:12px 
 </nav>
 <div class="topbar">
 <a href="../index.html" title="Docs hub">Docs</a>
+<a href="../whitepaper/index.md" title="White Paper">White</a>
+<a href="../yellowpaper/index.md" title="Yellow Paper">Yellow</a>
 <button onclick="toggleTheme()" id="theme-btn" title="Toggle dark/light mode">Light</button>
 <button onclick="window.print()" title="Print">Print</button>
 </div>
@@ -264,6 +266,7 @@ blockquote { border-left:3px solid var(--accent); padding:8px 16px; margin:12px 
 <h1>The Hypurrliquid Paper</h1>
 <p class="subtitle">A Complete Reverse Engineering Reference for the Hyperliquid L1<br><span style="font-size:13px;color:var(--text-muted)">lastdotnet/hyperliquid-rust &middot; Binary build <code>105cb1dc</code> (2026-03-21) mainnet / <code>331bef9b</code> (2026-04-03) testnet &middot; Hardfork v81</span></p>
 <blockquote>This document is derived entirely from reverse engineering of the deployed <code>hl-node</code> binary (81MB stripped ELF), live traffic captures, on-chain observation, and ABCI state snapshot analysis. It is not official Hyperliquid documentation. Every structural claim traces to confirmed binary evidence and is cited with its source.</blockquote>
+<p style="margin-top:14px;color:var(--text-secondary);font-family:var(--font-sans)">Use the <a href="../whitepaper/index.md" style="color:var(--accent-bright)">White Paper</a> for the architectural narrative and the <a href="../yellowpaper/index.md" style="color:var(--accent-bright)">Yellow Paper</a> for protocol-truth and implementation-boundary details.</p>
 
 <section class="section" id="architecture">
 <h2>1. Architecture Overview <a href="#architecture" class="anchor-link">#</a></h2>
@@ -492,49 +495,162 @@ graph LR
 <tr><td>BOLE partial liq cooldown</td><td>30s</td></tr>
 <tr><td>VoteAppHash checkpoint</td><td>2000 blocks</td></tr>
 <tr><td>Aligned quote token vote</td><td>Daily 22:00 UTC</td></tr></table>
-<h3 id="exec-actions">4.2 Action Dispatch (97 Variants)</h3>
-<p>Main dispatcher at VA <code>0x0272a320</code> (>500KB). <span class="badge badge-confirmed">CONFIRMED</span>: <code>variant index 0 &lt;= i &lt; 90</code> (mainnet). Testnet build <code>331bef9b</code> (2026-04-03): 97 variants (+7 new).<sup><a href="#ref-8">[8]</a></sup></p>
-<details><summary>Complete Action Type Catalog</summary><div class="detail-body">
-<h4>Trading (~15)</h4>
-<table><tr><th>Action</th><th>Wire Name</th><th>Share</th></tr>
-<tr><td>Order</td><td><code>order</code></td><td>68.2%</td></tr>
-<tr><td>CancelByCloid</td><td><code>cancelByCloid</code></td><td>16.7%</td></tr>
-<tr><td>Cancel</td><td><code>cancel</code></td><td>10.5%</td></tr>
-<tr><td>BatchModify</td><td><code>batchModify</code></td><td>0.9%</td></tr>
-<tr><td>ScheduleCancel</td><td><code>scheduleCancel</code></td><td>0.3%</td></tr>
-<tr><td>Modify, TwapOrder, TwapCancel, Liquidate</td><td>--</td><td>&lt;0.1% each</td></tr></table>
-<h4>Account (~8)</h4>
-<p><code>updateLeverage</code>, <code>updateIsolatedMargin</code>, <code>topUpIsolatedOnlyMargin</code>, <code>approveAgent</code>, <code>approveBuilderFee</code>, <code>setReferrer</code>, <code>setDisplayName</code>, <code>userPortfolioMargin</code></p>
-<h4>Transfers (~5)</h4>
-<p><code>usdSend</code>, <code>usdClassTransfer</code>, <code>spotSend</code>, <code>sendAsset</code>, <code>withdraw3</code></p>
-<h4>Vaults (~4)</h4>
-<p><code>createVault</code>, <code>vaultTransfer</code>, <code>vaultDistribute</code>, <code>vaultModify</code></p>
-<h4>Staking (~3)</h4>
-<p><code>tokenDelegate</code>, <code>claimRewards</code>, <code>linkStakingUser</code></p>
-<h4>SetGlobalAction (14 sub-types)</h4>
-<table><tr><th>#</th><th>Sub-variant</th></tr>
-<tr><td>0</td><td><code>registerAsset</code></td></tr><tr><td>1</td><td><code>setOracle</code></td></tr>
-<tr><td>2</td><td><code>insertMarginTable</code></td></tr><tr><td>3</td><td><code>setFeeRecipient</code></td></tr>
-<tr><td>4</td><td><code>haltTrading</code></td></tr><tr><td>5</td><td><code>setMarginTableIds</code></td></tr>
-<tr><td>6</td><td><code>setOpenInterestCaps</code></td></tr><tr><td>7</td><td><code>setFundingMultipliers</code></td></tr>
-<tr><td>8</td><td><code>setMarginModes</code></td></tr><tr><td>9</td><td><code>setFeeScale</code></td></tr>
-<tr><td>10</td><td><code>setGrowthModes</code></td></tr><tr><td>11</td><td><code>setFundingInterestRates</code></td></tr>
-<tr><td>12</td><td><code>disableDex</code></td></tr><tr><td>13</td><td><code>setPerpAnnotation</code></td></tr></table>
-<h4>Bridge (~4)</h4>
-<p><code>VoteEthDepositAction</code>(3 fields), <code>ValidatorSignWithdrawalAction</code>(5 fields), <code>SignValidatorSetUpdateAction</code>, <code>VoteEthFinalizedWithdrawalAction</code></p>
-<h4>EVM, BOLE, Outcomes, Governance, Other</h4>
-<p><code>evmRawTx</code> (1.7%), <code>sendToEvmWithData</code>, <code>borrowLend</code> (borrow/supply/repay/defaultLiquidator/optOut), <code>systemBole</code> (Reserve(9)/Adl(2)/BackstopLiquidatorTokenParams(4)/ResetIndex(2)/RateLimit(7)/TestnetAction(2)), <code>userOutcome</code> (Split/Merge/Negate/MergeQuestion), <code>govPropose</code>(6), <code>govVote</code>(5), <code>perpDeploy</code>, <code>subAccountTransfer</code>, <code>multiSig</code>, <code>userDexAbstraction</code>, <code>noop</code>(1.1%)</p>
-<h4>New in Testnet 2026-04-03 (+7 Variants) <span class="badge badge-confirmed">CONFIRMED</span></h4>
-<table><tr><th>Action</th><th>Notes</th></tr>
-<tr><td><code>GossipPriorityBidAction</code></td><td>Priority fee bidding for gossip ordering</td></tr>
-<tr><td><code>ReserveRequestWeightAction</code></td><td>Reserve request weight management</td></tr>
-<tr><td><code>SystemAlignedQuoteSupplyDeltaAction</code></td><td>System-level aligned quote token supply adjustment</td></tr>
-<tr><td><code>DeployerSendToEvmForFrozenUserAction</code></td><td>Recovery path: deployer sends to EVM on behalf of frozen users</td></tr>
-<tr><td><code>SystemUsdClassTransferAction</code></td><td>System-level USD class transfer</td></tr>
-<tr><td><code>FinalizeEvmContractAction</code></td><td>Finalize EVM contract deployment from L1</td></tr>
-<tr><td><code>SubAccountSpotTransferAction</code></td><td>Sub-account spot token transfer</td></tr></table>
-<p><strong>Testnet vs Mainnet</strong>: 97 vs 90 action variants (testnet build 331bef9b, 2026-04-03). RestingOrder +2 fields, Fill +12 fields on testnet.<sup><a href="#ref-9">[9]</a></sup></p>
-</div></details>
+<h3 id="exec-actions">4.9 Action Dispatch &mdash; All 97 Variants</h3>
+<p>Main dispatcher at VA <code>0x0272a320</code> (&gt;500KB). <span class="badge badge-confirmed">CONFIRMED</span>: 90 mainnet + 7 testnet-only variants. All implemented in hlx.<sup><a href="#ref-8">[8]</a></sup></p>
+
+<h4>Trading (9 types)</h4>
+<table><tr><th>Wire Name</th><th>Action</th><th>State Touched</th><th>Share</th></tr>
+<tr><td><code>order</code></td><td>Place limit/IOC/ALO order</td><td>matching.books, oid_to_order, fills</td><td>68.2%</td></tr>
+<tr><td><code>cancel</code></td><td>Cancel by OID</td><td>matching.books, oid_to_order</td><td>10.5%</td></tr>
+<tr><td><code>cancelByCloid</code></td><td>Cancel by client order ID</td><td>matching.books, cloid_to_oid</td><td>16.7%</td></tr>
+<tr><td><code>modify</code></td><td>Modify resting order price/size</td><td>matching.books</td><td>&lt;0.1%</td></tr>
+<tr><td><code>batchModify</code></td><td>Batch modify multiple orders</td><td>matching.books</td><td>0.9%</td></tr>
+<tr><td><code>scheduleCancel</code></td><td>Schedule future cancel for asset</td><td>user_to_scheduled_cancel</td><td>0.3%</td></tr>
+<tr><td><code>twapOrder</code></td><td>Submit TWAP order</td><td>twap.running_heap</td><td>&lt;0.1%</td></tr>
+<tr><td><code>twapCancel</code></td><td>Cancel TWAP order</td><td>twap.user_to_id_to_state</td><td>&lt;0.1%</td></tr>
+<tr><td><code>liquidate</code></td><td>Liquidate underwater position</td><td>clearinghouse.positions, balances</td><td>&lt;0.1%</td></tr></table>
+
+<h4>Margin &amp; Leverage (3 types)</h4>
+<table><tr><th>Wire Name</th><th>Action</th><th>State Touched</th></tr>
+<tr><td><code>updateLeverage</code></td><td>Set leverage for asset</td><td>clearinghouse.positions</td></tr>
+<tr><td><code>updateIsolatedMargin</code></td><td>Add/remove isolated margin</td><td>clearinghouse.balances, isolated_margins</td></tr>
+<tr><td><code>topUpIsolatedOnlyMargin</code></td><td>Top up isolated-only margin</td><td>clearinghouse.balances</td></tr></table>
+
+<h4>Transfers (6 types)</h4>
+<table><tr><th>Wire Name</th><th>Action</th><th>State Touched</th></tr>
+<tr><td><code>usdSend</code></td><td>Send USDC to another user</td><td>clearinghouse.balances (both users)</td></tr>
+<tr><td><code>usdClassTransfer</code></td><td>USD class transfer</td><td>clearinghouse.balances</td></tr>
+<tr><td><code>spotSend</code></td><td>Send spot token</td><td>spot_clearinghouse.user_balances</td></tr>
+<tr><td><code>sendAsset</code></td><td>General asset transfer (multi-dex)</td><td>routing + balances</td></tr>
+<tr><td><code>withdraw3</code></td><td>Withdraw USDC (v3)</td><td>clearinghouse.balances</td></tr>
+<tr><td><code>sendToEvmWithData</code></td><td>L1 &rarr; EVM transfer with calldata</td><td>clearinghouse.balances, hyper_evm queues</td></tr></table>
+
+<h4>Sub-Accounts (3 types)</h4>
+<table><tr><th>Wire Name</th><th>Action</th><th>State Touched</th></tr>
+<tr><td><code>createSubAccount</code></td><td>Create sub-account</td><td>sub_accounts</td></tr>
+<tr><td><code>subAccountTransfer</code></td><td>Transfer USD between master/sub</td><td>clearinghouse.balances</td></tr>
+<tr><td><code>subAccountSpotTransfer</code></td><td>Transfer spot token between master/sub</td><td>spot_clearinghouse.user_balances</td></tr></table>
+
+<h4>Vaults (6 types)</h4>
+<table><tr><th>Wire Name</th><th>Action</th><th>State Touched</th></tr>
+<tr><td><code>createVault</code></td><td>Create a new vault</td><td>vaults.vaults</td></tr>
+<tr><td><code>vaultTransfer</code></td><td>Deposit/withdraw from vault</td><td>vaults.followers, clearinghouse.balances</td></tr>
+<tr><td><code>vaultDistribute</code></td><td>Distribute vault profits</td><td>vaults.followers, total_equity</td></tr>
+<tr><td><code>vaultModify</code></td><td>Modify vault config</td><td>vaults.vaults</td></tr>
+<tr><td><code>netChildVaultPositions</code></td><td>Net child vault positions</td><td>vaults.children</td></tr>
+<tr><td><code>setVaultDisplayName</code></td><td>Set vault display name</td><td>vaults.vaults</td></tr></table>
+
+<h4>Staking (5 types)</h4>
+<table><tr><th>Wire Name</th><th>Action</th><th>State Touched</th></tr>
+<tr><td><code>tokenDelegate</code></td><td>Delegate HYPE to validator</td><td>staking.delegations, stakes</td></tr>
+<tr><td><code>claimRewards</code></td><td>Claim staking rewards</td><td>staking.rewards, clearinghouse.balances</td></tr>
+<tr><td><code>linkStakingUser</code></td><td>Link staking identity</td><td>staking.linked_staking_users</td></tr>
+<tr><td><code>registerValidator</code></td><td>Register new validator</td><td>staking.validator_profiles</td></tr>
+<tr><td><code>extendLongTermStaking</code></td><td>Extend long-term lock</td><td>staking.long_term_locks</td></tr></table>
+
+<h4>Account (7 types)</h4>
+<table><tr><th>Wire Name</th><th>Action</th><th>State Touched</th></tr>
+<tr><td><code>approveAgent</code></td><td>Authorize agent address</td><td>agents.user_to_main_agent</td></tr>
+<tr><td><code>setDisplayName</code></td><td>Set user display name</td><td>user_to_display_name</td></tr>
+<tr><td><code>setReferrer</code></td><td>Set referrer code</td><td>fee_tracker.referrer_states</td></tr>
+<tr><td><code>convertToMultiSigUser</code></td><td>Convert to multi-sig account</td><td>multi_sig_users</td></tr>
+<tr><td><code>approveBuilderFee</code></td><td>Approve builder fee rate</td><td>agents.builder_fees</td></tr>
+<tr><td><code>startFeeTrial</code></td><td>Start fee trial period</td><td>fee_tracker.fee_trials</td></tr>
+<tr><td><code>userPortfolioMargin</code></td><td>Enable portfolio margin</td><td>portfolio_margin_users</td></tr></table>
+
+<h4>DeFi &amp; Abstraction (5 types)</h4>
+<table><tr><th>Wire Name</th><th>Action</th><th>State Touched</th></tr>
+<tr><td><code>borrowLend</code></td><td>BOLE deposit/borrow/repay</td><td>bole.reserves, user_positions</td></tr>
+<tr><td><code>userDexAbstraction</code></td><td>Enable DEX abstraction</td><td>user_abstraction_settings</td></tr>
+<tr><td><code>userSetAbstraction</code></td><td>Set abstraction config</td><td>user_abstraction_settings</td></tr>
+<tr><td><code>agentSetAbstraction</code></td><td>Agent abstraction config</td><td>user_abstraction_settings</td></tr>
+<tr><td><code>agentEnableDexAbstraction</code></td><td>Agent enable DEX abstraction</td><td>user_abstraction_settings</td></tr></table>
+
+<h4>Governance (3 types)</h4>
+<table><tr><th>Wire Name</th><th>Action</th><th>State Touched</th></tr>
+<tr><td><code>govPropose</code></td><td>Submit governance proposal</td><td>governance_proposals</td></tr>
+<tr><td><code>govVote</code></td><td>Vote on proposal</td><td>governance_proposals[].votes</td></tr>
+<tr><td><code>voteGlobal</code></td><td>Validator governance vote (22 sub-types)</td><td>Various (see below)</td></tr></table>
+
+<h4>VoteGlobal Sub-Types (22 wired)</h4>
+<table><tr><th>Sub-Type</th><th>State Touched</th></tr>
+<tr><td><code>ModifyBroadcaster</code></td><td>staking.broadcasters</td></tr>
+<tr><td><code>HaltPerpTrading</code></td><td>clearinghouse.halted_assets</td></tr>
+<tr><td><code>SetPerpDexOpenInterestCap</code></td><td>open_interest_caps</td></tr>
+<tr><td><code>DisableNodeIp</code></td><td>disabled_node_ips</td></tr>
+<tr><td><code>QuarantineUser</code></td><td>quarantined_users + cancel all orders</td></tr>
+<tr><td><code>CancelUserOrders</code></td><td>matching.cancel_all_for_user</td></tr>
+<tr><td><code>SetOutcomeFeeScale</code></td><td>outcome_fee_scale</td></tr>
+<tr><td><code>SetCoreWriterActionEnabled</code></td><td>hyper_evm.disabled_core_writer_actions</td></tr>
+<tr><td><code>SetScheduledFreezeHeight</code></td><td>scheduled_freeze_height</td></tr>
+<tr><td><code>SetPostOnlyUntilTime</code></td><td>post_only_until_time</td></tr>
+<tr><td><code>SetPostOnlyUntilHeight</code></td><td>post_only_until_height</td></tr>
+<tr><td><code>SetMaxOrderDistanceFromAnchor</code></td><td>max_order_distance_from_anchor</td></tr>
+<tr><td><code>SetBridge2WithdrawFee</code></td><td>bridge2_withdraw_fee</td></tr>
+<tr><td><code>SetPerformAutoDeleveraging</code></td><td>perform_auto_deleveraging</td></tr>
+<tr><td><code>SetSpotDisabled</code></td><td>spot_disabled</td></tr>
+<tr><td><code>SetEvmEnabled</code></td><td>evm_enabled</td></tr>
+<tr><td><code>SetL1TransfersEnabled</code></td><td>hyper_evm.l1_transfers_enabled</td></tr>
+<tr><td><code>SetDexAbstractionEnabled</code></td><td>dex_abstraction_enabled</td></tr>
+<tr><td><code>SetPerpsDisabledLaunch</code></td><td>perps_disabled_launch</td></tr>
+<tr><td><code>SetHip3NoCross</code></td><td>hip3_no_cross</td></tr>
+<tr><td><code>SetFundingMultiplier</code></td><td>funding[asset].multiplier</td></tr>
+<tr><td><code>SetMarginMode</code></td><td>margin_modes</td></tr></table>
+
+<h4>Validator (9 types)</h4>
+<table><tr><th>Wire Name</th><th>Action</th><th>State Touched</th></tr>
+<tr><td><code>CValidator</code></td><td>Validator profile management</td><td>staking.validator_profiles</td></tr>
+<tr><td><code>CSigner</code></td><td>Unjail/jail validator</td><td>staking.jailed</td></tr>
+<tr><td><code>validatorL1Vote</code></td><td>L1 oracle consensus vote</td><td>validator_l1_vote_tracker</td></tr>
+<tr><td><code>validatorL1Stream</code></td><td>L1 stream (SOFR rate vote)</td><td>hpt.validator_rate_votes</td></tr>
+<tr><td><code>signValidatorSetUpdate</code></td><td>Sign bridge validator set update</td><td>bridge_vote_tracker</td></tr>
+<tr><td><code>ValidatorSignWithdrawal</code></td><td>Sign bridge withdrawal</td><td>bridge_vote_tracker</td></tr>
+<tr><td><code>VoteEthDeposit</code></td><td>Vote on ETH deposit</td><td>bridge_vote_tracker</td></tr>
+<tr><td><code>VoteEthFinalizedWithdrawal</code></td><td>Vote finalized withdrawal</td><td>bridge_vote_tracker</td></tr>
+<tr><td><code>VoteEthFinalizedValidatorSetUpdate</code></td><td>Vote finalized validator set</td><td>bridge_vote_tracker</td></tr></table>
+
+<h4>HIP-3/HIP-4 (3 types + sub-types)</h4>
+<table><tr><th>Wire Name</th><th>Action</th><th>Sub-Types</th></tr>
+<tr><td><code>SetGlobalAction</code></td><td>Oracle/margin/fee config</td><td>oraclePxs, externalPerpPxs, usdtUsdcPx, nativePx, markPxs, marginTable</td></tr>
+<tr><td><code>perpDeploy</code></td><td>HIP-3 perp deployment</td><td>registerAsset, setOracle, setSubDeployers, setPerpAnnotation, setFeeScale, setFeeRecipient, haltTrading, insertMarginTable, outcomeDeploy</td></tr>
+<tr><td><code>spotDeploy</code></td><td>Spot market deployment</td><td>&mdash;</td></tr></table>
+
+<h4>System (11 types)</h4>
+<table><tr><th>Wire Name</th><th>Action</th><th>State Touched</th></tr>
+<tr><td><code>SystemBole</code></td><td>System BOLE operations</td><td>bole (stub)</td></tr>
+<tr><td><code>SystemSpotSend</code></td><td>System spot transfer</td><td>routing + balances</td></tr>
+<tr><td><code>SystemUsdClassTransfer</code></td><td>System USD class transfer</td><td>routing + balances</td></tr>
+<tr><td><code>SystemSendAsset</code></td><td>System asset transfer</td><td>routing + balances</td></tr>
+<tr><td><code>SystemApproveBuilderFee</code></td><td>System builder fee approval</td><td>agents.builder_fees</td></tr>
+<tr><td><code>SystemAlignedQuoteSupplyDelta</code></td><td>Aligned quote supply adjustment</td><td>clearinghouse.balances</td></tr>
+<tr><td><code>DeployerSendToEvmForFrozenUser</code></td><td>Recovery for frozen users</td><td>clearinghouse.balances</td></tr>
+<tr><td><code>CWithdraw</code></td><td>Consensus withdrawal</td><td>clearinghouse.balances</td></tr>
+<tr><td><code>CUserModify</code></td><td>Consensus user balance modify</td><td>clearinghouse.balances</td></tr>
+<tr><td><code>EvmUserModify</code></td><td>EVM user balance modify</td><td>clearinghouse.balances</td></tr>
+<tr><td><code>ReassessFees</code></td><td>Reassess user fee tier</td><td>fee_tracker</td></tr></table>
+
+<h4>Special (7 types)</h4>
+<table><tr><th>Wire Name</th><th>Action</th><th>State Touched</th></tr>
+<tr><td><code>evmRawTx</code></td><td>Execute raw EVM transaction</td><td>hyper_evm, action_delayer (via CoreWriter)</td></tr>
+<tr><td><code>multiSig</code></td><td>Multi-sig wrapper</td><td>Re-dispatches inner action</td></tr>
+<tr><td><code>noop</code></td><td>No-op (heartbeat)</td><td>None</td></tr>
+<tr><td><code>VoteAppHash</code></td><td>Validator state hash vote</td><td>app_hash_vote_tracker</td></tr>
+<tr><td><code>ForceIncreaseEpoch</code></td><td>Force epoch increment</td><td>staking.current_epoch</td></tr>
+<tr><td><code>userOutcome</code></td><td>Outcome market operations</td><td>outcomes (split/merge/negate/mergeQuestion)</td></tr>
+<tr><td><code>settleFraction</code></td><td>Partial outcome settlement</td><td>outcomes.markets</td></tr></table>
+
+<h4>Additional (8 types)</h4>
+<table><tr><th>Wire Name</th><th>Action</th><th>State Touched</th></tr>
+<tr><td><code>priorityBid</code></td><td>Gas priority bidding</td><td>priority_bids</td></tr>
+<tr><td><code>registerSpot</code> / <code>registerSpot2</code></td><td>Register spot asset</td><td>spot_registrations</td></tr>
+<tr><td><code>disableDex</code></td><td>Halt asset trading</td><td>clearinghouse.halted_assets</td></tr>
+<tr><td><code>setPerpAnnotation</code></td><td>Set perp metadata</td><td>perp_annotations</td></tr>
+<tr><td><code>evmContractTransfer</code></td><td>EVM contract transfer</td><td>finalized_evm_contracts</td></tr>
+<tr><td><code>cancelAllOrders</code></td><td>Cancel all user orders</td><td>matching.cancel_all_for_user</td></tr>
+<tr><td><code>quarantineUser</code></td><td>Freeze + cancel all</td><td>matching + quarantined_users</td></tr>
+<tr><td><code>setMarginModes</code></td><td>Set per-asset margin modes</td><td>margin_modes</td></tr></table>
+
+<p><strong>Total</strong>: 90 mainnet + 7 testnet-only = <strong>97 action variants</strong>, expanding to <strong>126 sub-types</strong> (+ 6 SetGlobal + 8 PerpDeploy + 22 VoteGlobal). All implemented in hlx with zero stubs.<sup><a href="#ref-9">[9]</a></sup></p>
 </section>
 
 <section class="section" id="state">
