@@ -62,6 +62,18 @@ Mark prices updated from book mid-prices: `mark_prices[asset] = book.mid_price()
 
 Every 2000 blocks. Quorum at 2/3+ stake. Hash: `rmp_serde → blake3 XOF (2048B) → paddw u16 → SHA-256 (32B)`.
 
+### 1.6 Consensus / Topology Surface
+
+Current confirmed testnet-facing networking and consensus facts:
+
+- ingress is concentrated through a broadcaster layer
+- proposer rotation uses stake-weighted `RoundRobinTtl`
+- QC and TC certificates drive the two-chain commit rule
+- validator/sentry admission checks gate the transport layer
+- ports `4001` and `4002` split block-streaming and peer/RPC verification traffic
+
+Treat the exact operator deployment shape as still chain-scoped, but keep these surfaces aligned across lifecycle, gossip, and consensus notes.
+
 ---
 
 ## 2. Exchange State (57 Fields)
@@ -218,6 +230,8 @@ Current testnet notes widen the action surface to 97 variants. The local engine 
 - **Submission**: `validatorL1Stream` action with `riskFreeRate` field, daily at 22:00 UTC.
 - **Protocol rate**: Stake-weighted median of all active validator votes.
 - **Fee benefits**: 20% lower taker, 50% better maker rebate for aligned stablecoins.
+
+This is also a begin-block surface: `update_aligned_quote_token` is the current effect-9 lane in the widened testnet note.
 
 ---
 

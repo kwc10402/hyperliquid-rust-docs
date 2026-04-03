@@ -10,7 +10,9 @@ This is the compact fact ledger for the repo. Treat it as the fastest way to ans
 
 ## Confirmed Facts
 
+- `claim.hyperbft_topology_and_rotation` - HyperBFT uses broadcaster ingress, validator/sentry admission checks, and RoundRobinTtl proposer rotation (`consensus`, `testnet_impl`, `active`)
 - `claim.action_delayer_maturity_surface` - ActionDelayer drain is a named begin-block lane, while mode semantics remain partly open (`execution`, `local_impl`, `active`)
+- `claim.aligned_quote_token_sampling` - Aligned quote token state samples validator risk-free-rate votes in begin-block effect 9 (`execution`, `testnet_impl`, `active`)
 - `claim.begin_block_ordering_surface` - Begin-block ordering is 9 named effects with BOLE at #3 and ActionDelayer at #8 (`execution`, `testnet_impl`, `closed`)
 - `claim.corewriter_delayed_action_surface` - CoreWriter re-enters L1 through a delayed action lane with 15 known action types (`execution`, `testnet_impl`, `active`)
 - `claim.action_surface_testnet` - Current widened testnet action surface is 97 variants with 126 sub-types (`execution`, `testnet_impl`, `active`)
@@ -23,7 +25,9 @@ This is the compact fact ledger for the repo. Treat it as the fastest way to ans
 
 ## Active Facts
 
+- `claim.hyperbft_topology_and_rotation` - HyperBFT uses broadcaster ingress, validator/sentry admission checks, and RoundRobinTtl proposer rotation (`confirmed`, `confirmed`, `testnet_impl`)
 - `claim.action_delayer_maturity_surface` - ActionDelayer drain is a named begin-block lane, while mode semantics remain partly open (`implemented`, `confirmed`, `local_impl`)
+- `claim.aligned_quote_token_sampling` - Aligned quote token state samples validator risk-free-rate votes in begin-block effect 9 (`confirmed`, `confirmed`, `testnet_impl`)
 - `claim.corewriter_delayed_action_surface` - CoreWriter re-enters L1 through a delayed action lane with 15 known action types (`confirmed`, `confirmed`, `testnet_impl`)
 - `claim.action_surface_testnet` - Current widened testnet action surface is 97 variants with 126 sub-types (`confirmed`, `confirmed`, `testnet_impl`)
 - `claim.block_lifecycle_phase_map` - The repo now uses one explicit block lifecycle phase map and hook surface (`confirmed`, `confirmed`, `local_impl`)

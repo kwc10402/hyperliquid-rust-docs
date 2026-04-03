@@ -70,6 +70,19 @@ The dedicated lifecycle reference is here:
 
 - [Block Lifecycle](../block-lifecycle/index.html)
 
+Current confirmed networking and consensus facts are tracked in:
+
+- [Truth Register](../findings/truth-register.md)
+- [HyperBFT Protocol Specification](../obsidian/HyperBFT%20Protocol%20Specification.md)
+- [Gossip Protocol](../obsidian/Gossip%20Protocol.md)
+
+The current working picture is:
+
+- users submit through a small broadcaster layer
+- validators and sentries gate peer admission
+- proposer rotation is stake-weighted round-robin
+- QC/TC certificates drive the two-chain commit flow
+
 ### 3.2 Exchange Execution
 
 The exchange execution layer is the heart of the protocol. A block generally follows this shape:
@@ -181,6 +194,12 @@ The EVM is tightly integrated but not sovereign over L1 state. The important bri
 - bridge validator signatures and finalized withdrawal state
 
 This repo now models the delayed-action queue explicitly, but the exact binary placement of matured delayed actions within the `begin_block` / execution-state wrapper is still one of the remaining ordering-closure tasks.
+
+The other EVM-adjacent lane now promoted into claims is the aligned quote token:
+
+- `hpt` tracks aligned quote token state in `Exchange`
+- validators publish SOFR-like rates through `validatorL1Stream`
+- `update_aligned_quote_token` currently sits in begin-block effect 9
 
 ## 8. Outcomes and Special Risk Surfaces
 

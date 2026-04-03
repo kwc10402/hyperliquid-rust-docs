@@ -12,6 +12,10 @@ Generated from `knowledge/sources` by `tools/compile_knowledge_docs.py`.
   - Locator: `docs/obsidian/Block Lifecycle.md`
 - `source.block_lifecycle_page` - Block lifecycle reference page (`local_doc`, `local_impl`)
   - Locator: `docs/block-lifecycle/index.html`
+- `source.gossip_protocol_note` - Gossip protocol note (`local_doc`, `testnet_impl`)
+  - Locator: `docs/obsidian/Gossip Protocol.md`
+- `source.hyperbft_spec_note` - HyperBFT protocol specification note (`local_doc`, `testnet_impl`)
+  - Locator: `docs/obsidian/HyperBFT Protocol Specification.md`
 - `source.hyperliquid_portfolio_margin_docs` - Hyperliquid portfolio margin docs (`official_doc`, `protocol`)
   - Locator: `https://hyperliquid.gitbook.io/hyperliquid-docs/trading/portfolio-margin`
 - `source.l1_evm_bridge_flow_note` - L1 EVM bridge flow note (`local_doc`, `testnet_impl`)

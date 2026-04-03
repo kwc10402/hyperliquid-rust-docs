@@ -2,10 +2,17 @@
 
 Generated from `knowledge/claims` by `tools/compile_knowledge_docs.py`.
 
+## consensus
+
+- `claim.hyperbft_topology_and_rotation` - HyperBFT uses broadcaster ingress, validator/sentry admission checks, and RoundRobinTtl proposer rotation (`confirmed`, `confirmed`, `testnet_impl`, `active`)
+  - Source file: `knowledge/claims/hyperbft-topology-and-rotation.md`
+
 ## execution
 
 - `claim.action_delayer_maturity_surface` - ActionDelayer drain is a named begin-block lane, while mode semantics remain partly open (`implemented`, `confirmed`, `local_impl`, `active`)
   - Source file: `knowledge/claims/action-delayer-maturity-surface.md`
+- `claim.aligned_quote_token_sampling` - Aligned quote token state samples validator risk-free-rate votes in begin-block effect 9 (`confirmed`, `confirmed`, `testnet_impl`, `active`)
+  - Source file: `knowledge/claims/aligned-quote-token-sampling.md`
 - `claim.begin_block_ordering_surface` - Begin-block ordering is 9 named effects with BOLE at #3 and ActionDelayer at #8 (`confirmed`, `confirmed`, `testnet_impl`, `closed`)
   - Source file: `knowledge/claims/begin-block-ordering-surface.md`
 - `claim.corewriter_delayed_action_surface` - CoreWriter re-enters L1 through a delayed action lane with 15 known action types (`confirmed`, `confirmed`, `testnet_impl`, `active`)

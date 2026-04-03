@@ -34,8 +34,8 @@ This is the main live work queue and handoff note surface.
 
 ### 2.2 Open Protocol / Implementation Questions
 
-- [Open Claims](./open-claims.md)
-- [Truth Register](../findings/truth-register.md)
+- [Open Claims](./open-claims.html)
+- [Truth Register](../findings/truth-register.html)
 
 This is the best short list of unresolved truth surfaces.
 
@@ -61,7 +61,15 @@ Still-open execution questions include:
 - ActionDelayer mode/control behavior
 - per-effect guard cadence and threshold closure
 
-### 3.2 Hashing and Replay
+### 3.2 Consensus and Topology
+
+Still-open consensus/networking questions include:
+
+- sharper validator vs sentry role boundaries
+- which transport details are protocol-stable versus deployment-specific
+- proposer / suspect / jail interaction around `RoundRobinTtl`
+
+### 3.3 Hashing and Replay
 
 Still-open parity questions include:
 
@@ -69,7 +77,7 @@ Still-open parity questions include:
 - remaining replay mismatch localization
 - complete response-hash routing coverage
 
-### 3.3 Risk and Liquidation
+### 3.4 Risk and Liquidation
 
 Still-open risk questions include:
 
@@ -77,7 +85,7 @@ Still-open risk questions include:
 - remaining liquidation edge semantics
 - full portfolio-margin and BOLE interactions
 
-### 3.4 Outcomes
+### 3.5 Outcomes
 
 Still-open outcome questions include:
 
@@ -114,7 +122,7 @@ The best working loop for this repo is:
 For engineering status:
 
 1. [Task List](../../TASK_LIST.md)
-2. [Open Claims](./open-claims.md)
+2. [Open Claims](./open-claims.html)
 3. [Protocol Sync Report](./protocol-sync-report.md)
 
 For documentation status:

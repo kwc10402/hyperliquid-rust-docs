@@ -13,7 +13,7 @@ Use it when the question is:
 
 Start with the compact fact ledger if you need the shortest current truth surface:
 
-- [Truth Register](./truth-register.md)
+- [Truth Register](./truth-register.html)
 
 ### 1.1 Exchange State and Serialization
 
@@ -38,9 +38,21 @@ Start with:
 
 - [Block Lifecycle](../block-lifecycle/index.html)
 - [ABCI State Machine](../obsidian/ABCI%20State%20Machine.md)
-- [Truth Register](./truth-register.md)
+- [Truth Register](./truth-register.html)
 
-### 1.3 Liquidation, ADL, and BOLE
+### 1.3 Consensus, Topology, and Ingress
+
+- broadcaster ingress, validator/sentry admission checks, and `RoundRobinTtl` proposer rotation are now first-class claims
+- the transport split on `4001` / `4002` is now part of the structured source layer
+- the lifecycle and gossip pages now have a clearer shared fact surface
+
+Start with:
+
+- [Truth Register](./truth-register.html)
+- [HyperBFT Protocol Specification](../obsidian/HyperBFT%20Protocol%20Specification.md)
+- [Gossip Protocol](../obsidian/Gossip%20Protocol.md)
+
+### 1.4 Liquidation, ADL, and BOLE
 
 - liquidation family boundaries are now explicit across perps, PM, BOLE, spot, and outcomes
 - BOLE is modeled as its own liquidation family, not a perp-style liquidation surface
@@ -50,9 +62,21 @@ Start with:
 
 - [Liquidation & ADL](../liquidation/index.html)
 - [Liquidation Engine](../obsidian/Liquidation%20Engine.md)
-- [Portfolio margin liquidation claim](../status/open-claims.md)
+- [Open Claims](../status/open-claims.html)
 
-### 1.4 Outcomes and Solvency
+### 1.5 Aligned Quote Token and Validator Rate Sampling
+
+- aligned quote token sampling is now promoted as a real begin-block fact
+- `hpt` is tracked as Exchange field `56`
+- validator `riskFreeRate` votes and the `aqa-publisher` sidecar now sit in the structured fact layer
+
+Start with:
+
+- [Truth Register](./truth-register.html)
+- [Exchange State](../obsidian/Exchange%20State.md)
+- [Block Lifecycle](../block-lifecycle/index.html)
+
+### 1.6 Outcomes and Solvency
 
 - the leading current risk hypothesis is still question-level outcome reconciliation
 - fallback/named-outcome settlement interaction remains the most interesting open outcome lane
@@ -71,7 +95,7 @@ Start with:
 The normalized claim inventory is here:
 
 - [Claims Index](./claims-index.md)
-- [Truth Register](./truth-register.md)
+- [Truth Register](./truth-register.html)
 
 That is the best place to see which findings have already been promoted into durable repo truth.
 
@@ -79,7 +103,7 @@ That is the best place to see which findings have already been promoted into dur
 
 The unresolved or still-active claim surface is here:
 
-- [Open Claims](../status/open-claims.md)
+- [Open Claims](../status/open-claims.html)
 
 Use that page to separate:
 
@@ -113,7 +137,7 @@ If you want the deeper writeups rather than the curated summaries, these are the
 
 For implementation work:
 
-1. start with [Open Claims](../status/open-claims.md)
+1. start with [Open Claims](../status/open-claims.html)
 2. find the owning subsystem note
 3. cross-check the [Yellow Paper](../yellowpaper/index.md)
 4. patch code only once the claim is strong enough
