@@ -742,45 +742,32 @@ flowchart TD
   Undelegation cooldown: 7 days (~8.6M blocks at 70ms block time).
 </div>
 <div class="mermaid">
-stateDiagram-v2
-    [*] --> Registered: registerValidator action
+flowchart TD
+    REG["Registered<br/>registerValidator"]
+    STK["Staked<br/>tokenDelegate"]
+    ACT["Active set<br/>minimum stake + not jailed"]
+    PROD["Producing / voting<br/>selected for round"]
+    APP["VoteAppHash cadence<br/>checkpoint voting"]
+    JAIL["Jailed<br/>self-jail or system jail"]
+    JISO["Jailed isolated<br/>isolated signer jail"]
+    UNJ["Manual unjail<br/>rate-limited by cooldown"]
+    UNDEL["Undelegating<br/>tokenDelegate undelegate"]
+    UNLOCK["Unlocked<br/>7 day cooldown elapsed"]
+    EPOCH["Epoch transition<br/>elapsed duration or ForceIncreaseEpoch"]
+    RECOMP["Recompute active set<br/>stake + jail filtering"]
 
-    Registered --> Staked: tokenDelegate (delegate)
-    Staked --> ActiveSet: meets minimum stake<br/>+ not jailed
+    REG --> STK --> ACT
+    ACT --> PROD --> ACT
+    ACT --> APP --> ACT
+    ACT --> JAIL
+    ACT --> JISO
+    JAIL --> UNJ --> ACT
+    JISO --> UNJ
+    ACT --> UNDEL --> UNLOCK
+    ACT --> EPOCH --> RECOMP --> ACT
 
-    ActiveSet --> ProducingBlocks: selected for round
-    ProducingBlocks --> ActiveSet: block committed
-
-    ActiveSet --> Jailed: CSigner::jailSelf<br/>or system jail (misbehavior)
-    ActiveSet --> JailedIsolated: CSigner::jailSelfIsolated
-
-    Jailed --> ActiveSet: CSigner::unjailSelf<br/>(rate-limited: 1hr cooldown,<br/>signer_to_last_manual_unjail_time)
-    JailedIsolated --> ActiveSet: CSigner::unjailSelf
-
-    ActiveSet --> Undelegating: tokenDelegate (undelegate)
-    Undelegating --> Unlocked: cooldown: 7 days<br/>(~8.6M blocks)
-    Unlocked --> [*]: funds returned to delegator
-
-    state ActiveSet {
-        direction LR
-        ValidateBlocks --> VoteAppHash: every 2000 blocks
-        VoteAppHash --> QuorumCheck: >2/3 validators agree
-        QuorumCheck --> ValidateBlocks
-    }
-
-    state EpochTransition {
-        direction TB
-        CurrentEpoch --> NextEpoch: forceIncreaseEpoch<br/>or epoch_duration_secs elapsed
-        NextEpoch --> RecomputeActiveSet
-        RecomputeActiveSet --> ProcessUnlocks
-    }
-
-    note right of ActiveSet
-        active_validators: Vec<Address>
-        broadcasters: 8 whitelisted addresses
-        stakes: HashMap<Address, u128>
-        delegations: HashMap<Address, HashMap<Address, u128>>
-    end note
+    META["State anchors<br/>active_validators<br/>broadcasters<br/>stakes<br/>delegations"]
+    ACT -.-> META
 </div>
 </section>
 

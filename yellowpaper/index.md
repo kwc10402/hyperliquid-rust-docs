@@ -4,7 +4,7 @@ The protocol-truth reference for the Hyperliquid L1 reimplementation. Every clai
 
 **Evidence levels**: `CONFIRMED` = verified from binary RE or official docs. `OBSERVED` = seen in runtime/snapshots. `IMPLEMENTED` = coded in hlx. `INFERRED` = deduced from behavior.
 
-Use the [White Paper](../whitepaper/index.md) for narrative architecture. Use the [Hypurrliquid Paper](../paper/index.html) for the full RE reference with Mermaid diagrams.
+Use the [White Paper](../whitepaper/index.md) for narrative architecture. Use the [Hypurrliquid Paper](../paper/index.html) for the full RE reference with Mermaid diagrams. Use the [Action Inventory](./action-inventory.md) for the current action-family and sub-variant tables.
 
 ---
 
@@ -30,7 +30,7 @@ RecoverUsers → BeginBlock (9+5 effects) → DeliverSignedActions (97 types)
 | 5 | `refresh_hip3_stale_mark_pxs` | from snapshot | `CONFIRMED` |
 | 6 | `prune_book_empty_user_states` | 60000ms | `CONFIRMED` |
 | 7 | `update_staking_rewards` | — | `CONFIRMED` |
-| 8 | `update_action_delayer` | — | `CONFIRMED` |
+| 8 | `update_action_delayer` | — | older RE placement; exact binary slot still open |
 | 9 | `update_aligned_quote_token` | — | `CONFIRMED` |
 
 ### 1.3 Supplementary Effects
@@ -42,6 +42,8 @@ RecoverUsers → BeginBlock (9+5 effects) → DeliverSignedActions (97 types)
 | `validator_l1_vote_tracker_prune_expired` | 60000ms | `CONFIRMED` |
 | `reset_recent_ois` | 1000ms | `CONFIRMED` |
 | `update_stale_mark_guards` | per-book | `CONFIRMED` |
+
+Important boundary: the delayed-action lane is confirmed, but the current repo claim is that its exact binary placement relative to the 9-effect body is still open. Current local `main` drains matured delayed actions after the standard begin-block effects.
 
 ### 1.4 EndBlock
 
