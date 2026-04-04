@@ -483,7 +483,7 @@ graph LR
 <p>Update mark prices from order book mid-prices: for each book with orders, <code>mark_prices[asset] = book.mid_price()</code>.</p>
 
 <h3 id="exec-phase7">4.7 Commit + VoteAppHash</h3>
-<p>State hash: <code>rmp_serde &rarr; blake3 XOF (2048B) &rarr; paddw u16 (LtHash16) &rarr; SHA-256 (32B)</code>. 14 L1 + 3 EVM accumulator categories. Every 2000 blocks, validators submit <code>VoteAppHash</code>; quorum at 2/3+ stake agreement.</p>
+<p>State hash: <code>rmp_serde &rarr; blake3 XOF (2048B) &rarr; paddw u16 (LtHash16) &rarr; SHA-256 (32B)</code>. 11 L1 + 3 EVM accumulator categories. Final <code>app_hash</code> is <code>first_16(SHA-256(L1_combined)) || first_16(SHA-256(EVM_combined))</code>. Every 2000 blocks, validators submit <code>VoteAppHash</code>; quorum at 2/3+ stake agreement.</p>
 
 <h3 id="exec-timing">4.8 Timing Parameters</h3>
 <table><tr><th>Parameter</th><th>Value</th></tr>
@@ -1932,6 +1932,122 @@ Unjail requirements:
 |   +-- consensus/state.rs, server.rs, types.rs, timer.rs, mempool.rs
 |   +-- client_block.rs, heartbeat_tracker.rs, rpc.rs, network.rs</code></pre>
 <p>Compared to mainnet build <code>105cb1dc</code> (40+ files in base/), the testnet binary shows 50+ files in base/ and additional modules in the evm/ subtree.</p>
+</section>
+
+<section class="section" id="changelog">
+<h2>Changelog &amp; Corrections <a href="#changelog" class="anchor-link">#</a></h2>
+<p>Reverse engineering is iterative. This section documents wrong assumptions, corrections, and when findings were updated. Entries are newest-first.</p>
+
+<h3>2026-04-04</h3>
+<table>
+<tr><th>Topic</th><th>Was</th><th>Now</th><th>How discovered</th></tr>
+<tr>
+  <td>Signing formula</td>
+  <td><code>keccak256(domain + content)</code></td>
+  <td><code>keccak256(domain + 0x00 + content)</code> — NULL byte separator</td>
+  <td>GDB live capture of keccak256 input at VA 0x4a9442f</td>
+</tr>
+<tr>
+  <td>Signing content encoding</td>
+  <td>Assumed msgpack (file is <code>rmp_signable.rs</code>)</td>
+  <td>Content is <strong>bincode-encoded</strong></td>
+  <td>GDB capture: 1601-byte input is bincode, not msgpack</td>
+</tr>
+<tr>
+  <td>App hash format</td>
+  <td><code>SHA-256(all_14_combined)</code> — single 32-byte digest</td>
+  <td><code>first_16(SHA256(L1)) || first_16(SHA256(EVM))</code> — two halves</td>
+  <td>Node log at h=536290000: L1 half matched, EVM half differed</td>
+</tr>
+<tr>
+  <td>Port 4001 greeting</td>
+  <td>6-byte body, u32 LE variant index, variant 0 = send_abci</td>
+  <td>7-8 byte body, <strong>u32 BE</strong> variant index, testnet=3, mainnet=2</td>
+  <td>Live peer connection: 8-byte greeting gets response on testnet</td>
+</tr>
+<tr>
+  <td>Port 4001 framing</td>
+  <td><code>[u32 BE len][body]</code></td>
+  <td><code>[u32 BE len][u8 kind][body]</code> — includes kind byte</td>
+  <td>Wire trace: kind=0 for greeting, kind=1 for data frames</td>
+</tr>
+<tr>
+  <td>Book order price field</td>
+  <td><code>p</code> field on order = limit price</td>
+  <td><code>p</code> = linked-list prev-pointer. Price is at <code>c.l[0]</code></td>
+  <td>Orders loading with 100-6000x wrong prices, traced to <code>p</code> vs <code>c.l</code></td>
+</tr>
+<tr>
+  <td>Bridge2 <code>oaw</code> type</td>
+  <td><code>serde_json::Value</code> (opaque)</td>
+  <td><code>bool</code></td>
+  <td>Binary deserializer helper confirmed <code>read_bool</code> call</td>
+</tr>
+<tr>
+  <td>BSS accumulators</td>
+  <td>Assumed to be live running accumulators</td>
+  <td><strong>Stale heartbeat cache</strong> — never matches committed hashes</td>
+  <td>Multiple BSS captures never matched any VoteAppHash quorum value</td>
+</tr>
+<tr>
+  <td><code>szDecimals</code> fallback</td>
+  <td>Default 0 when metadata absent</td>
+  <td>Default <strong>5</strong> (matches rest of bootstrap's unknown-asset path)</td>
+  <td>Price scaling divergence on assets missing from metadata map</td>
+</tr>
+<tr>
+  <td>Heartbeat <code>concise_lt_hashes</code></td>
+  <td>Contains all 14 category accumulators (L1 + EVM)</td>
+  <td><strong>EVM only</strong> (accounts, contracts, storage). L1 rebuilt from state.</td>
+  <td>Ghidra trace of heartbeat serializer path, confirmed 3 fields only</td>
+</tr>
+</table>
+
+<h3>2026-04-03</h3>
+<table>
+<tr><th>Topic</th><th>Was</th><th>Now</th><th>How discovered</th></tr>
+<tr>
+  <td>Hash response serialization</td>
+  <td><code>rmp_serde::to_vec</code> (compact/positional mode)</td>
+  <td><code>rmp_serde::to_vec_named</code> (map mode, camelCase keys)</td>
+  <td>Binary RE of hash serializer functions at VA 0x427xxxx</td>
+</tr>
+<tr>
+  <td>Order fill hash shape</td>
+  <td>Flat 9-field struct with null fields</td>
+  <td>Externally-tagged enum: <code>{"filled":{"totalSz":...}}</code></td>
+  <td>Ghidra decompile of SerializerJ at VA 0x4280c90</td>
+</tr>
+<tr>
+  <td>L1 hash categories</td>
+  <td>12 categories assumed</td>
+  <td><strong>11 confirmed</strong>: CValidator, CSigner, Na, LiquidatedCross, LiquidatedIsolated, Settlement, NetChildVaultPositions, SpotDustConversion, BoleMarketLiquidation, BoleBackstopLiquidation, BolePartialLiquidation</td>
+  <td>Binary rodata at 0x65fb61, consecutive enum strings</td>
+</tr>
+<tr>
+  <td>Bridge2 field <code>baloaw</code></td>
+  <td>Single combined field</td>
+  <td>Three separate fields: <code>bal</code>, <code>last_pruned_deposit_block_number</code>, <code>oaw</code></td>
+  <td>Binary serializer/deserializer helper functions for Bridge2</td>
+</tr>
+</table>
+
+<h3>2026-04-02</h3>
+<table>
+<tr><th>Topic</th><th>Was</th><th>Now</th><th>How discovered</th></tr>
+<tr>
+  <td>Bridge signing keys</td>
+  <td>Separate EOA keys for bridge operations</td>
+  <td><strong>Same key</strong> as consensus — bridge signing = consensus signing</td>
+  <td>Binary string trace: same signer struct used in bridge + consensus paths</td>
+</tr>
+<tr>
+  <td>Gossip peer verification</td>
+  <td>Assumed open connection</td>
+  <td>Server-side <code>connection_checks</code>: IP must be known validator/sentry</td>
+  <td>Connection timeout analysis + binary string "not validator or sentry"</td>
+</tr>
+</table>
 </section>
 
 <section class="section" id="references">

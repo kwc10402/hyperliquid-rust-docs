@@ -83,6 +83,7 @@ The current working picture is:
 - validators and sentries gate peer admission
 - proposer rotation is stake-weighted round-robin
 - QC/TC certificates drive the two-chain commit flow
+- transport is split rather than flat: `4001` handles bootstrap / block streaming, while `4002` covers peer / RPC verification
 
 Validator control is also epoch-scoped rather than purely stake-scoped. The
 current notes support:
@@ -170,6 +171,12 @@ mainnet RespHash backends should not be treated as one undifferentiated
 serializer path, and the local code still separates "backend mode exists" from
 "full parity is closed".
 
+The final app-hash surface is also no longer treated as one monolithic digest.
+Current repo truth splits it into separate L1 and EVM halves, and the traced
+heartbeat path only exposes the EVM concise hashes. That is why the docs now
+separate live L1 hash state from stale BSS-era assumptions instead of treating
+every hash artifact as interchangeable.
+
 ### 5.2 Margin and Liquidation Safety
 
 Risk-bearing products must not leave losses unaccounted for. The system therefore needs:
@@ -219,6 +226,11 @@ for:
 That distinction matters because bridge solvency and operator trust are shaped
 by finalization state, dispute-period invalidation, and signer reuse, not just
 by the user-facing `withdraw3` entrypoint.
+
+Current repo truth also keeps bridge signing on validator signer keys rather
+than a detached bridge-only signer family. On the Ethereum side, that still
+coexists with hotter withdrawal-signature handling and colder validator-set
+control, so key reuse and finalization timing both matter to the threat model.
 
 Use the dedicated [Bridge2](../bridge/index.html) page for the staged withdrawal
 and validator-set update flow.

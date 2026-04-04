@@ -60,7 +60,7 @@ Mark prices updated from book mid-prices: `mark_prices[asset] = book.mid_price()
 
 ### 1.5 VoteAppHash
 
-Every 2000 blocks. Quorum at 2/3+ stake. Hash: `rmp_serde → blake3 XOF (2048B) → paddw u16 → SHA-256 (32B)`.
+Every 2000 blocks. Quorum at 2/3+ stake. Final `app_hash` is `first_16(SHA-256(L1_combined)) || first_16(SHA-256(EVM_combined))`, where each half comes from the `rmp_serde → blake3 XOF (2048B) → paddw u16` LtHash pipeline rather than one flat 14-category digest.
 
 ### 1.6 Consensus / Topology Surface
 
@@ -213,12 +213,16 @@ Current testnet notes widen the action surface to 97 variants. The local engine 
 
 `CONFIRMED` algorithm: `rmp_serde → blake3 XOF (2048B) → paddw u16 (LtHash16) → SHA-256 (32B)`.
 
-- **14 L1 categories** + **3 EVM categories** = 17 accumulators.
-- **L1 accumulators**: Running sums from genesis, stored in BSS (NOT rebuilt from state).
+- **11 L1 categories** + **3 EVM categories** = 14 accumulators.
+- **L1 accumulators**: Running sums from genesis maintained in live state, not the stale BSS cache that earlier notes treated as canonical.
 - **EVM accumulators**: accounts_hash, contracts_hash, storage_hash.
-- **Heartbeat `concise_lt_hashes`**: EVM only. L1 accumulators NOT in heartbeats.
+- **Heartbeat `concise_lt_hashes`**: EVM only. The traced heartbeat surface does not carry the full L1 accumulator state.
 
-### 6.1 RespHash Backend Split
+### 6.1 AppHash Split
+
+Current repo truth is that the final `app_hash` is `first_16(SHA-256(L1_combined)) || first_16(SHA-256(EVM_combined))`, not a single SHA-256 over one merged 14-accumulator buffer.
+
+### 6.2 RespHash Backend Split
 
 Current repo truth is intentionally narrower than "hashing is solved":
 
@@ -311,8 +315,10 @@ Current open risk lane:
 
 `CONFIRMED` from binary RE.
 
-- **Greeting**: 6-byte bincode-fork `TcpGreeting` enum. Chain: Local=0, Sandbox=1, Testnet=2, Mainnet=3.
-- **Frame format**: `[u32 BE len][u8 kind][body]`, often LZ4 compressed.
+- **Frame format**: `[u32 BE len][u8 kind][body]`. Traced data frames often use LZ4 with `kind=0x01`, while greetings use `kind=0x00`.
+- **Port 4001 greeting**: bincode-fork `TcpGreeting` with chain-based variant index. Current live observations are testnet variant `3` (8 bytes total) and mainnet variant `2` (7 bytes total).
+- **Broader chain enum**: the ABCI-stream chain mapping still tracks `Local=0`, `Sandbox=1`, `Testnet=2`, `Mainnet=3`; do not conflate that with the observed 4001 `TcpGreeting` variant index.
+- **Port 4003 authenticated greeting**: `keccak256("Hyperliquid Consensus Payload" + 0x00 + bincode(content))`; content is bincode, not msgpack.
 - **Connection**: Server-side `connection_checks` — unknown peers rejected after 5s timeout.
 - **Loopback**: Dominated by `MsgConcise`/`OutMsgConcise` (tag 27/28).
 
