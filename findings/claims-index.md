@@ -47,6 +47,8 @@ Generated from `knowledge/claims` by `tools/compile_knowledge_docs.py`.
 
 - `claim.outcome_merge_question_fallback_risk` - Multi-outcome MergeQuestion fallback reconciliation is the leading outcome solvency risk (`observed`, `hypothesis`, `testnet_impl`, `active`)
   - Source file: `knowledge/claims/outcome-merge-question-fallback-risk.md`
+- `claim.outcome_settlement_and_question_surface` - Outcomes are 1x isolated settlement markets with explicit question and fallback metadata (`confirmed`, `confirmed`, `testnet_impl`, `active`)
+  - Source file: `knowledge/claims/outcome-settlement-and-question-surface.md`
 
 ## state
 

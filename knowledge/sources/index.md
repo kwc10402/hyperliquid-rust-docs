@@ -16,6 +16,8 @@ Generated from `knowledge/sources` by `tools/compile_knowledge_docs.py`.
   - Locator: `docs/obsidian/Bridge.md`
 - `source.gossip_protocol_note` - Gossip protocol note (`local_doc`, `testnet_impl`)
   - Locator: `docs/obsidian/Gossip Protocol.md`
+- `source.hip4_outcomes_note` - HIP-4 outcomes note (`local_doc`, `testnet_impl`)
+  - Locator: `docs/obsidian/HIP-4 Outcomes.md`
 - `source.hyperbft_spec_note` - HyperBFT protocol specification note (`local_doc`, `testnet_impl`)
   - Locator: `docs/obsidian/HyperBFT Protocol Specification.md`
 - `source.hyperliquid_portfolio_margin_docs` - Hyperliquid portfolio margin docs (`official_doc`, `protocol`)

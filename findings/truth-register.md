@@ -23,6 +23,7 @@ This is the compact fact ledger for the repo. Treat it as the fastest way to ans
 - `claim.resphash_backend_split` - RespHash backends are chain-scoped, but mainnet serialization is not fully wired (`hashing`, `local_impl`, `open`)
 - `claim.liquidation_scope_boundaries` - Liquidation family boundaries are now explicit across perps, PM, BOLE, spot, and outcomes (`liquidation`, `local_impl`, `open`)
 - `claim.portfolio_margin_liquidation_mode` - Portfolio margin liquidates as a generalized cross-margin account (`liquidation`, `protocol`, `active`)
+- `claim.outcome_settlement_and_question_surface` - Outcomes are 1x isolated settlement markets with explicit question and fallback metadata (`outcomes`, `testnet_impl`, `active`)
 - `claim.exchange_struct_cardinality` - Exchange struct cardinality is currently 57 fields (`state`, `testnet_impl`, `open`)
 
 ## Active Facts
@@ -39,6 +40,7 @@ This is the compact fact ledger for the repo. Treat it as the fastest way to ans
 - `claim.liquidation_scope_boundaries` - Liquidation family boundaries are now explicit across perps, PM, BOLE, spot, and outcomes (`confirmed`, `confirmed`, `local_impl`)
 - `claim.portfolio_margin_liquidation_mode` - Portfolio margin liquidates as a generalized cross-margin account (`confirmed`, `confirmed`, `protocol`)
 - `claim.outcome_merge_question_fallback_risk` - Multi-outcome MergeQuestion fallback reconciliation is the leading outcome solvency risk (`observed`, `hypothesis`, `testnet_impl`)
+- `claim.outcome_settlement_and_question_surface` - Outcomes are 1x isolated settlement markets with explicit question and fallback metadata (`confirmed`, `confirmed`, `testnet_impl`)
 - `claim.exchange_struct_cardinality` - Exchange struct cardinality is currently 57 fields (`confirmed`, `confirmed`, `testnet_impl`)
 
 ## Inferred Or Hypothesis Lanes

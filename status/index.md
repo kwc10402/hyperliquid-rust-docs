@@ -84,6 +84,7 @@ Still-open parity questions include:
 - full response serialization closure across chains
 - remaining replay mismatch localization
 - complete response-hash routing coverage
+- exact boundary between confirmed backend split and still-missing mainnet serializer families
 
 ### 3.5 Risk and Liquidation
 
@@ -100,6 +101,14 @@ Still-open outcome questions include:
 - `MergeQuestion` / fallback reconciliation
 - settlement/merge gating
 - deeper collateral-conservation proof
+
+The baseline outcome market model is now promoted and should not be treated as
+an open question:
+
+- 1x isolated-only
+- no funding
+- settlement via `oracleUpdater`
+- explicit question/fallback metadata
 
 ## 4. Current Strengths
 

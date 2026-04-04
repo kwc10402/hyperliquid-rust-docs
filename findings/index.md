@@ -20,6 +20,7 @@ Start with the compact fact ledger if you need the shortest current truth surfac
 - `Exchange` is currently tracked here as a 57-field state surface.
 - the repo now has a structured sync check to keep that claim aligned across docs and code
 - response hashing is chain-scoped and not yet fully closed across all mainnet/testnet serializer paths
+- the docs now separate the confirmed LtHash pipeline from the still-open RespHash parity gap
 
 Start with:
 
@@ -91,12 +92,13 @@ Start with:
 
 ### 1.7 Outcomes and Solvency
 
+- the baseline outcome model is now promoted as a confirmed claim: 1x isolated, settlement-driven, question-scoped
 - the leading current risk hypothesis is still question-level outcome reconciliation
 - fallback/named-outcome settlement interaction remains the most interesting open outcome lane
-- this is a research-heavy lane, not a closed protocol chapter yet
 
 Start with:
 
+- [Truth Register](./truth-register.html)
 - [Outcome solvency review 2026-04-03](../generated/outcome_solvency_review_2026-04-03.md)
 - [HIP-4 Outcomes](../obsidian/HIP-4%20Outcomes.md)
 - [Outcomes](../obsidian/Outcomes.md)

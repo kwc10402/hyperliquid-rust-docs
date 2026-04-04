@@ -164,6 +164,11 @@ All validators must reach the same post-block state from the same ordered input 
 - same response serialization
 - same LtHash updates
 
+The hashing story is now explicitly chain-scoped in the repo. Testnet and
+mainnet RespHash backends should not be treated as one undifferentiated
+serializer path, and the local code still separates "backend mode exists" from
+"full parity is closed".
+
 ### 5.2 Margin and Liquidation Safety
 
 Risk-bearing products must not leave losses unaccounted for. The system therefore needs:
@@ -231,6 +236,18 @@ The outcomes system is one of the structurally richest parts of the protocol. It
 - fallback outcomes
 - settlement transitions
 - merge/split/negation-like token mechanics
+
+The confirmed baseline is now:
+
+- 1x isolated-only treatment
+- no funding
+- explicit settlement authority via `oracleUpdater`
+- question metadata with `fallbackOutcome`, `namedOutcomes`, and `settledNamedOutcomes`
+- settlement-triggered order cancellation/rejection rather than perp-style liquidation
+
+The current leading open risk remains above that baseline: question-level
+reconciliation, especially around `MergeQuestion`, fallback legs, and settled
+named outcomes.
 
 The current leading safety hypothesis in this repo is that the hardest outcome risk sits in question-level reconciliation, especially around fallback and settled named outcomes, not in the simplest binary pair mechanics alone.
 

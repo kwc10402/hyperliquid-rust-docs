@@ -23,5 +23,6 @@ Generated from `knowledge/claims` by `tools/compile_knowledge_docs.py`.
 - `claim.exchange_struct_cardinality` - Exchange struct cardinality is currently 57 fields (`state`, `confirmed`, `open`)
 - `claim.hyperbft_topology_and_rotation` - HyperBFT uses broadcaster ingress, validator/sentry admission checks, and RoundRobinTtl proposer rotation (`consensus`, `confirmed`, `active`)
 - `claim.outcome_merge_question_fallback_risk` - Multi-outcome MergeQuestion fallback reconciliation is the leading outcome solvency risk (`outcomes`, `observed`, `active`)
+- `claim.outcome_settlement_and_question_surface` - Outcomes are 1x isolated settlement markets with explicit question and fallback metadata (`outcomes`, `confirmed`, `active`)
 - `claim.begin_block_bole_ordering_conflict` - Stale BOLE begin-block ordering conflict is resolved (`execution`, `confirmed`, `closed`)
 - `claim.validator_lifecycle_and_jail_flow` - Validator lifecycle is time-epoch gated, jail-aware, and signer-checked against current epoch state (`consensus`, `confirmed`, `active`)

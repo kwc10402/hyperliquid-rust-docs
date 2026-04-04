@@ -218,6 +218,17 @@ Current testnet notes widen the action surface to 97 variants. The local engine 
 - **EVM accumulators**: accounts_hash, contracts_hash, storage_hash.
 - **Heartbeat `concise_lt_hashes`**: EVM only. L1 accumulators NOT in heartbeats.
 
+### 6.1 RespHash Backend Split
+
+Current repo truth is intentionally narrower than "hashing is solved":
+
+- the code explicitly tracks `Mainnet` versus `Testnet` RespHash backends
+- the backend split is real and should remain chain-scoped in docs and replay work
+- the local implementation does **not** yet claim full mainnet serializer parity across all response families
+
+Treat `RespHashMode::Mainnet` as backend selection, not as proof that every
+mainnet response serializer is already closed.
+
 ---
 
 ## 7. CoreWriter (EVM → L1)
@@ -271,7 +282,31 @@ This is also a begin-block surface: `update_aligned_quote_token` is the current 
 
 ---
 
-## 10. Gossip Protocol
+## 10. Outcomes and Settlement Surface
+
+`CONFIRMED` for the baseline market model; `HYPOTHESIS` for the leading
+solvency-risk lane.
+
+- **Risk mode**: 1x isolated-only, no leverage, no funding.
+- **Settlement authority**: `oracleUpdater` posts final outcome via
+  `SettleOutcome`.
+- **Post-settlement behavior**: open orders auto-cancel via
+  `outcomeSettledCanceled`; new orders reject via `outcomeSettledRejected`.
+- **Question metadata**: `fallbackOutcome`, `namedOutcomes`,
+  `settledNamedOutcomes`.
+- **User token operations**: `SplitOutcome`, `MergeOutcome`, `MergeQuestion`,
+  `NegateOutcome`.
+
+Current open risk lane:
+
+- `MergeQuestion` / fallback reconciliation is still the leading higher-order
+  solvency hypothesis.
+- The repo should treat question-level accounting as riskier than the simpler
+  YES/NO pair mechanics until the binary path is closed.
+
+---
+
+## 11. Gossip Protocol
 
 `CONFIRMED` from binary RE.
 
@@ -282,7 +317,7 @@ This is also a begin-block surface: `update_aligned_quote_token` is the current 
 
 ---
 
-## 11. Guard System
+## 12. Guard System
 
 All rate-limited effects use `BucketGuard`:
 
@@ -306,7 +341,7 @@ struct BucketGuard {
 
 ---
 
-## 12. Implementation Status
+## 13. Implementation Status
 
 | Component | Status | Tests |
 |-----------|--------|-------|
