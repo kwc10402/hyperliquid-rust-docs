@@ -1,0 +1,219 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+
+\definecolor{Accent}{HTML}{0F6B63}
+\definecolor{AccentTwo}{HTML}{A24F2B}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=Accent,
+  urlcolor=Accent,
+  citecolor=Accent
+}
+
+\titleformat{\section}{\Large\bfseries\color{Accent}}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\large\bfseries\color{AccentTwo}}{\thesubsection}{0.6em}{}
+
+\title{\textbf{Hypurrliquid White Paper}}
+\author{Reverse-Engineered Hyperliquid Reimplementation}
+\date{April 4, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This white paper describes the system-design view of the Hyperliquid
+reimplementation effort. The goal is not merely to build an exchange that feels
+similar. The goal is to reconstruct a deterministic exchange chain whose
+consensus, execution engine, liquidation logic, delayed EVM re-entry, and
+state-hash surfaces remain faithful enough to support replay and protocol
+research.
+\end{abstract}
+
+\section{System Purpose}
+
+Hyperliquid is a purpose-built exchange chain that combines perpetual futures,
+spot markets, account abstraction and portfolio margin, lending via BOLE,
+prediction markets via HIP-4 outcomes, and a tightly coupled EVM surface. The
+core engineering challenge is not just matching orders. It is preserving one
+deterministic state machine across consensus, matching, clearing, validator
+control, EVM-originated actions, and state hashing.
+
+\section{System Model}
+
+At a high level the system is composed of five interacting planes:
+
+\begin{enumerate}[leftmargin=1.4em]
+  \item \textbf{Consensus}. HyperBFT orders blocks, rotates proposers, and finalizes execution.
+  \item \textbf{Exchange state machine}. The \texttt{Exchange} object is the central L1 state surface.
+  \item \textbf{Matching and clearing}. Orders mutate books, fills mutate balances and positions, and clearing logic enforces margin and liquidation rules.
+  \item \textbf{EVM bridge surface}. HyperEVM runs alongside the L1 state machine and re-enters L1 through CoreWriter-delayed actions and transfer queues.
+  \item \textbf{Control and governance}. Validators, staking, bridge signatures, SetGlobal/VoteGlobal actions, and safety toggles sit above ordinary trading flow.
+\end{enumerate}
+
+\section{Architectural Layers}
+
+\subsection{Consensus and Networking}
+
+The consensus layer decides block order, proposer rotation, and commitment. The
+networking layer carries validator-to-validator consensus traffic, gossip and
+peer sync, state/bootstrap handoff for catching-up nodes, and runtime signals
+such as concise hashes and validator vote surfaces.
+
+Current repo truth is that ingress is broadcaster-mediated, validator and
+sentry admission is a separate transport gate, validator eligibility is
+epoch-scoped, and the network surface stays split between block-stream or
+bootstrap traffic and peer or RPC verification rather than one flat socket.
+
+\subsection{Exchange Execution}
+
+A block generally follows this shape:
+
+\begin{enumerate}[leftmargin=1.4em]
+  \item recover and identify actors,
+  \item run \texttt{begin\_block} hook surfaces,
+  \item deliver signed actions,
+  \item run block-finalization logic,
+  \item compute response-hash and state-hash material,
+  \item feed commit and vote surfaces.
+\end{enumerate}
+
+\subsection{Product Families}
+
+\begin{center}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.24\linewidth} >{\raggedright\arraybackslash}p{0.33\linewidth} >{\raggedright\arraybackslash}p{0.33\linewidth}}
+\toprule
+\textbf{Product family} & \textbf{Core behavior} & \textbf{Main risk surface} \\
+\midrule
+Perps & matched books + clearinghouse & margin, liquidation, ADL \\
+Spot & spot books and balances & transfer routing, spot bookkeeping \\
+Portfolio margin & unified risk over eligible assets & portfolio maintenance ratio and liquidation ordering \\
+BOLE & borrow/lend pool & utilization, health factor, market/partial/backstop liquidation \\
+Outcomes & 1x outcome markets & settlement and collateral conservation \\
+EVM-originated actions & delayed CoreWriter path & delayed execution ordering and safety gating \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Universe Model}
+
+The implementation is converging on an explicit universe model:
+
+\begin{itemize}[leftmargin=1.4em]
+  \item core perp universe: \texttt{""}
+  \item singleton spot universe: \texttt{"spot"}
+  \item named HIP-3 perp universes: \texttt{dexName}
+\end{itemize}
+
+\section{Account and Risk Modes}
+
+Hyperliquid separates where assets live from how risk is computed. The
+important account and risk modes are classic, dex abstraction, unified account,
+and portfolio margin. These are not separate universes. They are overlays on
+top of the asset-and-universe model.
+
+\section{Solvency and Safety Goals}
+
+\subsection{Deterministic State Evolution}
+
+All validators must reach the same post-block state from the same ordered input
+stream. That requires the same action decode, same execution order, same
+response serialization, and same LtHash updates.
+
+The repo now also treats the final app hash as two explicit halves rather than
+one monolithic digest: an L1 half and an EVM half. Chain-scoped RespHash
+backends and the split app-hash surface should stay explicit in docs and replay
+work.
+
+\subsection{Margin and Liquidation Safety}
+
+Risk-bearing products must not leave losses unaccounted for. The system
+therefore needs correct maintenance checks, deterministic liquidation triggers,
+a consistent fallback path when liquidation is insufficient, and ADL where
+necessary.
+
+\subsection{Collateral Conservation}
+
+Collateral should not be created by bad transfer routing, incorrect BOLE
+repayment accounting, incorrect outcome settlement or merge logic, or
+inconsistent bridge finalization.
+
+\subsection{Controlled EVM Re-entry}
+
+HyperEVM is not allowed to bypass L1 fairness or ordering constraints. The
+CoreWriter plus ActionDelayer path exists to slow and serialize EVM-originated
+actions before they re-enter the main L1 state machine.
+
+\section{Liquidation and ADL}
+
+Perp and portfolio-margin liquidation are part of the main risk engine. BOLE
+liquidation is a separate family with its own health-factor and backstop
+semantics. Outcomes are not ordinary perp-style liquidations; they are
+primarily a settlement and collateral-conservation problem instead.
+
+\section{EVM, Bridge, and Delayed Actions}
+
+The EVM is tightly integrated but not sovereign over L1 state. The important
+bridge points are L1 transfers to and from HyperEVM, CoreWriter-delayed
+actions, and bridge validator signatures and finalized withdrawal state.
+
+Bridge control is staged through separate withdrawal signatures,
+finalized-withdrawal votes, validator-set signatures, and finalized
+validator-set votes. Current repo truth also keeps bridge signing on validator
+signer keys rather than a detached bridge-only signer family.
+
+The open work on this lane is the control semantics around
+\texttt{enabled}, \texttt{delayer\_mode}, \texttt{status\_guard}, and
+\texttt{vty\_trackers}, not whether a named delayed-action drain exists.
+
+\section{Outcomes and Special Risk Surfaces}
+
+The outcomes system introduces question-level metadata, named outcomes,
+fallback outcomes, settlement transitions, and merge/split/negation-like token
+mechanics. The leading safety hypothesis in this repository is that the
+hardest outcome risk sits in question-level reconciliation, especially around
+fallback and settled named outcomes.
+
+\section{Implementation Strategy}
+
+This project is trying to reach protocol truth in a controlled way:
+
+\begin{enumerate}[leftmargin=1.4em]
+  \item ingest evidence,
+  \item promote evidence into claims,
+  \item implement only confirmed or chain-scoped truths,
+  \item add regressions,
+  \item run crate tests and replay/parity checks,
+  \item sync docs and claims when repository truth moves.
+\end{enumerate}
+
+\section{Current Boundaries}
+
+The hardest parity surfaces still open are exact response-hashing parity across
+mainnet and testnet paths, deeper per-effect begin-block semantics, some bridge
+and staking transition details, deeper outcome reconciliation logic, and ADL
+and liquidation edge semantics.
+
+\section{Reading Guide}
+
+Recommended reading order:
+
+\begin{enumerate}[leftmargin=1.4em]
+  \item the large Hypurrliquid paper for the broad reverse-engineering reference,
+  \item this white paper for system design,
+  \item the yellow paper for protocol truth and execution details,
+  \item liquidation and block-lifecycle references for risk execution and block flow,
+  \item findings and status pages for active truth maintenance.
+\end{enumerate}
+
+\end{document}
