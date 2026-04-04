@@ -2,16 +2,21 @@
 
 The state hash used by [[HyperBFT]] consensus to verify all validators agree on state.
 
-## Algorithm (CONFIRMED 2026-04-01)
+## Algorithm (CONFIRMED 2026-04-04)
 
 ```
-State Mutation → rmp_serde::to_vec(event) → blake3::Hasher (streaming Write)
+Action Response → rmp_serde::to_vec_named(response) → blake3::Hasher (streaming Write)
     → blake3 XOF (2048 bytes) → interpret as 1024 × u16 LE
-    → SSE2 paddw wrapping-add to LtHash16 checksum
+    → SSE2 paddw wrapping-add to per-category LtHash16 accumulator
     → accumulate n_elements, n_bytes
 
-Final: SHA-256(combined_checksum) → 32-byte app_hash
+Final app_hash (32 bytes):
+    L1_combined  = paddw(all 11 L1 category accumulators)
+    EVM_combined = paddw(all 3 EVM category accumulators)
+    app_hash     = first_16(SHA-256(L1_combined)) || first_16(SHA-256(EVM_combined))
 ```
+
+**CONFIRMED 2026-04-04**: app_hash is NOT a single SHA-256 of all 14 combined. It is the concatenation of the first 16 bytes of each half's SHA-256 digest. Verified from node log at height 536290000 where L1 portions matched but EVM differed.
 
 **Key confirmations from binary RE:**
 - Compression: **SHA-256** (sha2 0.10.8) — NOT SHA3, NOT Keccak

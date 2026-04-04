@@ -6,33 +6,56 @@ Complete reverse engineering of the Hyperliquid gossip/P2P protocol.
 - **4001** — Block streaming (abci_stream)
 - **4002** — Peer discovery / RPC verification
 
-## TCP Greeting (Port 4001) — CORRECTED 2026-04-02
+## TCP Greeting (Port 4001) — CONFIRMED 2026-04-04
 
-### TcpGreeting Enum (bincode-fork, CONFIRMED from Ghidra)
+### TcpGreeting (bincode-fork, chain-based variant index)
 
-The greeting is a **bincode-fork serialized `TcpGreeting` enum** with exactly **2 variants** (confirmed from VARIANTS array in binary at 0x3c31b8: `"send_abcibroadcast_group"`):
+The variant index doubles as the chain identifier, encoded as **u32 BE**:
 
-```rust
-enum TcpGreeting {
-    send_abci {           // variant index 0 (u32 LE = 0)
-        send_abci: bool,  // request ABCI state transfer
-        id: u64,          // session/block height identifier
-    },
-    broadcast_group {     // variant index 1
-        // fields TBD
-    },
-}
+```
+Testnet: variant 3 (BE), body = [00 01 00 00] → 8 bytes total
+Mainnet: variant 2 (BE), body = [00 00 00]    → 7 bytes total
 ```
 
-**Wire format** (framed with u32 BE length prefix):
+**Wire frame** (with kind byte):
 ```
-[u32 BE len] [u32 LE = 0] [u8 bool] [varint u64]
+[u32 BE body_len][u8 kind=0][greeting body]
 ```
 
-**Chain enum** (separate from TcpGreeting, used in AbciStreamGreeting):
+**Server response** (6 bytes): `[u32 BE len=1][u8 kind=0][u8 chain_byte]`
+
+After greeting exchange, bootstrap data streams: ~500MB ABCI state + ~4GB EVM RocksDB.
+
+**Chain enum** (used in AbciStreamGreeting):
 - Local = 0, Sandbox = 1, Testnet = 2, Mainnet = 3
 
-**CORRECTION**: The old 7-byte format `[u32 BE = 2][00][00][00]` was a misread. The actual format is a 6-byte bincode-fork `TcpGreeting` with 2 variants (`send_abci`, `broadcast_group`), NOT a 7-byte fixed format. The `u32 BE = 2` was actually a length prefix, not a message type.
+## TCP Greeting (Port 4003) — Signing CONFIRMED 2026-04-04
+
+### Authenticated Consensus Greeting
+
+Port 4003 requires a signed greeting for the consensus stream. The signing formula has been **confirmed via GDB live capture**:
+
+```
+hash = keccak256("Hyperliquid Consensus Payload" + 0x00 + content_bytes)
+sig  = secp256k1_sign_recoverable(hash, private_key)
+```
+
+**Critical**: A NULL byte (0x00) separates domain from content. Content is BINCODE-encoded (not msgpack, despite `rmp_signable.rs` source file name).
+
+**Signature details**:
+- RFC 6979 deterministic nonces
+- Low-S normalization (EIP-2)
+- `v = recovery_id + 27` (Ethereum convention)
+- r,s stored as 4 u64 LE limbs, each bincode-fork varint-encoded
+
+**Wire format** (159 bytes for greeting):
+```
+addr(20) + type(varint=5) + sig_r(4×u64_varint) + sig_s(4×u64_varint) + v(u8=27|28) + content_fields(65B)
+```
+
+**Content fields**: `addr(20) + varint(hardfork=1304) + varint(commit_height) + varint(latest_round) + pubkey(32)`
+
+**Status**: Signing formula confirmed. Exact greeting content serialization for signing still being determined (all 5 GDB captures were consensus messages, not greetings).
 
 ### Connection Checks (CONFIRMED 2026-04-02)
 

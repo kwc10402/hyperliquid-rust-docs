@@ -351,8 +351,9 @@ graph TD
 <tr><td>Active validators</td><td>24 (mainnet), top 50 (testnet)</td><td><span class="badge badge-observed">OBSERVED</span></td></tr>
 <tr><td>Epoch</td><td>100,000 rounds (~90 min)</td><td><span class="badge badge-confirmed">CONFIRMED</span></td></tr>
 <tr><td>Proposer selection</td><td><code>RoundRobinTtl</code></td><td><span class="badge badge-confirmed">CONFIRMED</span></td></tr>
-<tr><td>Signing</td><td>secp256k1</td><td><span class="citation-tag cite-bin">BIN: k256-0.13.3, secp256k1-0.29.0</span></td></tr>
-<tr><td>Domain separator</td><td><code>"Hyperliquid Consensus Payload"</code></td><td><span class="citation-tag cite-bin">BIN: VA 0x76db94</span></td></tr>
+<tr><td>Signing</td><td>secp256k1 (RFC 6979, low-S/EIP-2)</td><td><span class="badge badge-confirmed">CONFIRMED</span> <span class="citation-tag cite-bin">BIN: k256-0.13.3</span></td></tr>
+<tr><td>Domain separator</td><td><code>"Hyperliquid Consensus Payload" + 0x00</code></td><td><span class="badge badge-confirmed">CONFIRMED</span> <span class="citation-tag cite-bin">BIN: VA 0x6d10f4, GDB live capture</span></td></tr>
+<tr><td>Signing formula</td><td><code>keccak256(domain + 0x00 + bincode(content))</code></td><td><span class="badge badge-confirmed">CONFIRMED</span></td></tr>
 <tr><td>VoteAppHash</td><td>Every 2000 blocks</td><td><span class="badge badge-observed">OBSERVED</span></td></tr></table>
 <h3 id="consensus-lifecycle">2.2 Round Lifecycle</h3>
 <div class="mermaid">
@@ -1160,15 +1161,20 @@ graph TD
 
 <section class="section" id="hashing">
 <h2>10. State Hashing: LtHash16 <a href="#hashing" class="anchor-link">#</a></h2>
-<h3 id="hash-algo">10.1 Algorithm (CRACKED)</h3>
-<pre><code>State Mutation (response struct)
-  -> rmp_serde::to_vec (compact format)    // rmp-serde 1.3.0
+<h3 id="hash-algo">10.1 Algorithm <span class="badge badge-confirmed">CONFIRMED</span></h3>
+<pre><code>Action Response (per action)
+  -> rmp_serde::to_vec_named(response)     // rmp-serde 1.3.0, named/map mode
   -> blake3::Hasher (streaming Write)      // blake3 1.7.0 at VA 0x04e03010
   -> blake3 XOF (2048 bytes)
   -> 1024 x u16 LE
   -> SSE2 paddw wrapping-add               // VA 0x04e05786
-  -> LtHash16 checksum
-Final: SHA-256(checksum) -> 32-byte app_hash  // sha2 0.10.8</code></pre>
+  -> Per-category LtHash16 accumulator (11 L1 + 3 EVM = 14 total)
+
+Final app_hash (32 bytes):
+  L1_combined  = paddw(all 11 L1 accumulators)
+  EVM_combined = paddw(all 3 EVM accumulators)
+  app_hash     = first_16(SHA-256(L1_combined)) || first_16(SHA-256(EVM_combined))
+  // NOT a single SHA-256 of all 14 combined! Confirmed from node log at h=536290000</code></pre>
 <h3 id="hash-categories">10.2 All 11 L1 Hash Categories</h3>
 <p><span class="badge badge-confirmed">CONFIRMED</span> at rodata 0x65fb61.<sup><a href="#ref-15">[15]</a></sup></p>
 <table><tr><th>#</th><th>Category</th><th>Offset</th><th>Pairing</th></tr>
