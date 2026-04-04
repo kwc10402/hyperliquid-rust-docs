@@ -9,7 +9,7 @@ This repo is not an official Hyperliquid codebase. It is a reverse-engineered im
 - `how value and control move through the system`
 - `what invariants matter`
 
-For protocol-detail and field-order truth, use the [Yellow Paper](../yellowpaper/index.md). For the fastest compact fact surface, use the [Truth Register](../findings/truth-register.md). For the live HTML reference, use the [Hypurrliquid Paper](../paper/index.html). For the actual execution and topology flows, use the dedicated [Block Lifecycle](../block-lifecycle/index.html) and [Liquidation & ADL](../liquidation/index.html) pages.
+For protocol-detail and field-order truth, use the [Yellow Paper](../yellowpaper/index.md). For the fastest compact fact surface, use the [Truth Register](../findings/truth-register.md). For the live HTML reference, use the [Hypurrliquid Paper](../paper/index.html). For the actual execution and topology flows, use the dedicated [Block Lifecycle](../block-lifecycle/index.html), [Liquidation & ADL](../liquidation/index.html), [Hashing](../hashing/index.html), [Staking & Validators](../staking/index.html), [Bridge2](../bridge/index.html), and [Outcomes](../outcomes/index.html) pages.
 
 ## Fact Surfaces
 
@@ -75,6 +75,7 @@ Current confirmed networking and consensus facts are tracked in:
 - [Truth Register](../findings/truth-register.md)
 - [HyperBFT Protocol Specification](../obsidian/HyperBFT%20Protocol%20Specification.md)
 - [Gossip Protocol](../obsidian/Gossip%20Protocol.md)
+- [Staking & Validators](../staking/index.html)
 
 The current working picture is:
 
@@ -219,6 +220,9 @@ That distinction matters because bridge solvency and operator trust are shaped
 by finalization state, dispute-period invalidation, and signer reuse, not just
 by the user-facing `withdraw3` entrypoint.
 
+Use the dedicated [Bridge2](../bridge/index.html) page for the staged withdrawal
+and validator-set update flow.
+
 This repo now models the delayed-action queue explicitly, but the exact binary placement of matured delayed actions within the `begin_block` / execution-state wrapper is still one of the remaining ordering-closure tasks.
 
 The other EVM-adjacent lane now promoted into claims is the aligned quote token:
@@ -226,6 +230,9 @@ The other EVM-adjacent lane now promoted into claims is the aligned quote token:
 - `hpt` tracks aligned quote token state in `Exchange`
 - validators publish SOFR-like rates through `validatorL1Stream`
 - `update_aligned_quote_token` currently sits in begin-block effect 9
+
+Use the dedicated [Hashing](../hashing/index.html) page for the current LtHash /
+RespHash split and app-hash boundaries.
 
 ## 8. Outcomes and Special Risk Surfaces
 
@@ -248,6 +255,9 @@ The confirmed baseline is now:
 The current leading open risk remains above that baseline: question-level
 reconciliation, especially around `MergeQuestion`, fallback legs, and settled
 named outcomes.
+
+Use the dedicated [Outcomes](../outcomes/index.html) page for the confirmed
+market baseline versus the still-open solvency hypothesis.
 
 The current leading safety hypothesis in this repo is that the hardest outcome risk sits in question-level reconciliation, especially around fallback and settled named outcomes, not in the simplest binary pair mechanics alone.
 

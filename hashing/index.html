@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hypurrliquid Hashing and RespHash</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<style>
+:root {
+  --bg: #f4f0e8;
+  --panel: #fffaf2;
+  --panel-strong: #f2ebdf;
+  --ink: #1d1b18;
+  --muted: #6a6258;
+  --line: #d6cbb9;
+  --accent: #215b9f;
+  --accent-soft: rgba(33, 91, 159, 0.10);
+  --green: #1c7c54;
+  --yellow: #8b6b08;
+  --red: #a02727;
+  --shadow: rgba(38, 24, 12, 0.08);
+  --mono: "SF Mono", "JetBrains Mono", "Menlo", monospace;
+  --sans: "Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif;
+  --serif: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--serif);
+  background:
+    radial-gradient(circle at top left, #fff8ef 0%, transparent 34%),
+    linear-gradient(180deg, #efe7da 0%, var(--bg) 50%, #efe7da 100%);
+  color: var(--ink);
+}
+a { color: var(--accent); }
+main { max-width: 1080px; margin: 0 auto; padding: 28px 24px 80px; }
+.topbar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
+.topbar a {
+  text-decoration: none; padding: 8px 12px; border: 1px solid var(--line);
+  border-radius: 999px; background: var(--panel); box-shadow: 0 8px 18px var(--shadow);
+  font: 600 13px/1.2 var(--sans);
+}
+.hero { padding: 18px 0 26px; border-bottom: 1px solid var(--line); }
+.eyebrow {
+  font: 600 12px/1.4 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+}
+h1 {
+  margin: 10px 0 12px; font: 700 54px/1.02 var(--sans); letter-spacing: -0.03em;
+}
+.hero p, .section p, li { color: var(--muted); line-height: 1.68; }
+.hero p { max-width: 880px; margin: 0; font-size: 18px; }
+.hero-links, .pill-row {
+  display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px;
+}
+.hero-links a, .pill {
+  text-decoration: none; padding: 10px 14px; border: 1px solid var(--line);
+  border-radius: 12px; background: var(--panel); font: 600 14px/1.2 var(--sans);
+}
+.pill { display: inline-flex; align-items: center; gap: 8px; }
+.section { margin-top: 42px; }
+.section h2 { margin: 0 0 12px; font: 700 34px/1.05 var(--sans); }
+.panel {
+  margin-top: 18px; padding: 18px 20px; border: 1px solid var(--line);
+  border-radius: 16px; background: var(--panel); box-shadow: 0 10px 26px var(--shadow);
+}
+.panel-strong { background: var(--panel-strong); }
+table {
+  width: 100%; border-collapse: collapse; margin-top: 14px;
+  font-family: var(--sans); font-size: 14px;
+}
+th, td {
+  border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top;
+}
+th { background: var(--panel-strong); font-size: 13px; }
+pre {
+  overflow-x: auto; padding: 14px 16px; border: 1px solid var(--line);
+  border-radius: 14px; background: #fbf5ec; font: 13px/1.6 var(--mono);
+}
+.mermaid {
+  margin-top: 16px; padding: 12px; border: 1px solid var(--line);
+  border-radius: 16px; background: #fffdf9;
+}
+.status {
+  display: inline-block; padding: 3px 8px; border-radius: 999px;
+  font: 700 11px/1 var(--sans); letter-spacing: 0.06em; text-transform: uppercase;
+}
+.confirmed { background: rgba(28, 124, 84, 0.12); color: var(--green); }
+.observed { background: rgba(33, 91, 159, 0.12); color: var(--accent); }
+.inferred { background: rgba(139, 107, 8, 0.14); color: var(--yellow); }
+.warning { background: rgba(160, 39, 39, 0.12); color: var(--red); }
+ul { margin: 12px 0 0; padding-left: 22px; }
+@media (max-width: 760px) {
+  main { padding: 22px 18px 64px; }
+  h1 { font-size: 40px; }
+  .section h2 { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+<main>
+  <div class="topbar">
+    <a href="../index.html">Docs Hub</a>
+    <a href="../paper/index.html#hashing">Paper Chapter</a>
+    <a href="../yellowpaper/index.html">Yellow Paper</a>
+    <a href="../findings/truth-register.html">Truth Register</a>
+  </div>
+
+  <section class="hero">
+    <div class="eyebrow">Hashing Reference</div>
+    <h1>RespHash, LtHash, and App Hash</h1>
+    <p>
+      This page is the compact hashing reference for the repo: what is confirmed
+      about the LtHash pipeline, what is chain-scoped in RespHash, what reaches
+      `VoteAppHash`, and what is still open. The goal is to separate "algorithm
+      cracked" from "full parity closed" so the docs do not overclaim.
+    </p>
+    <div class="hero-links">
+      <a href="../obsidian/LtHash%20Serialization.md">LtHash Serialization Note</a>
+      <a href="../obsidian/App%20Hash.md">App Hash Note</a>
+      <a href="../call-graphs.html#state-hash">State Hash Call Graph</a>
+      <a href="../status/open-claims.html">Open Claims</a>
+    </div>
+    <div class="pill-row">
+      <div class="pill">LtHash pipeline <span class="status confirmed">confirmed</span></div>
+      <div class="pill">RespHash backend split <span class="status confirmed">confirmed</span></div>
+      <div class="pill">Mainnet serializer parity <span class="status warning">still open</span></div>
+      <div class="pill">Heartbeat concise hashes <span class="status confirmed">confirmed</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="pipeline">
+    <h2>1. Hash Pipeline</h2>
+    <p>
+      The current confirmed pipeline is: response serialization feeds a
+      per-category LtHash accumulator, then the final accumulator state is
+      condensed into the app-hash and vote surfaces. The pipeline itself is
+      cracked; the remaining gap is exact response-family parity.
+    </p>
+    <div class="mermaid">
+flowchart TD
+    A[Execution produces response objects] --> B[rmp_serde serialization]
+    B --> C[blake3 XOF to 2048-byte element]
+    C --> D[LtHash16 paddw u16 accumulator]
+    D --> E[Per-category running state]
+    E --> F[Finalize accumulator state]
+    F --> G[SHA-256 concise digest]
+    G --> H[VoteAppHash and heartbeat surfaces]
+    </div>
+    <div class="panel panel-strong">
+      <table>
+        <tr>
+          <th>Stage</th>
+          <th>Current truth</th>
+          <th>Status</th>
+        </tr>
+        <tr>
+          <td>LtHash element pipeline</td>
+          <td><code>rmp_serde → blake3 XOF (2048B) → paddw u16 → SHA-256</code></td>
+          <td><span class="status confirmed">confirmed</span></td>
+        </tr>
+        <tr>
+          <td>RespHash backend mode</td>
+          <td>Local code tracks `Mainnet` and `Testnet` backends explicitly.</td>
+          <td><span class="status confirmed">confirmed</span></td>
+        </tr>
+        <tr>
+          <td>Mainnet response families</td>
+          <td>Not all mainnet-specific serializer families are wired end-to-end yet.</td>
+          <td><span class="status warning">open</span></td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="surface">
+    <h2>2. Accumulator Surface</h2>
+    <div class="panel">
+      <table>
+        <tr>
+          <th>Surface</th>
+          <th>Current fact</th>
+          <th>Notes</th>
+        </tr>
+        <tr>
+          <td>L1 accumulators</td>
+          <td>14 categories are tracked in the current paper surface.</td>
+          <td>Settlement, validator, signer, liquidation, vault, BOLE, and other L1 lanes remain separate.</td>
+        </tr>
+        <tr>
+          <td>EVM accumulators</td>
+          <td>3 categories: accounts, contracts, storage.</td>
+          <td>These are the concise-hash families visible in heartbeat snapshots.</td>
+        </tr>
+        <tr>
+          <td>Heartbeat digest</td>
+          <td><code>hash_concise</code> is a compact digest, not the raw 2048-byte accumulator.</td>
+          <td>Public surfaces should not imply that the heartbeat carries full L1 hash state.</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="backends">
+    <h2>3. Backend Split</h2>
+    <p>
+      The repo now treats RespHash backend choice as chain-scoped. That is
+      important because "testnet binary path observed" is not the same thing as
+      "mainnet serializer parity implemented."
+    </p>
+    <div class="panel">
+      <table>
+        <tr>
+          <th>Question</th>
+          <th>Current answer</th>
+        </tr>
+        <tr>
+          <td>Is the backend split real?</td>
+          <td>Yes. The docs and code both now carry a mainnet/testnet RespHash distinction.</td>
+        </tr>
+        <tr>
+          <td>Does backend mode mean full parity?</td>
+          <td>No. `RespHashMode::Mainnet` is backend selection, not proof that every mainnet response shape is already closed.</td>
+        </tr>
+        <tr>
+          <td>What is the main open gap?</td>
+          <td>Full mainnet serializer families plus exact action-to-response routing for all response categories.</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="vote">
+    <h2>4. VoteAppHash and Network Surfaces</h2>
+    <div class="panel">
+      <ul>
+        <li><code>VoteAppHash</code> is the validator agreement surface for the finalized digest.</li>
+        <li>Heartbeat snapshots expose concise EVM hash summaries, not the full LtHash lattice state.</li>
+        <li>The docs should keep "accumulator naming", "heartbeat concise hashes", and "vote hash" as separate ideas.</li>
+      </ul>
+      <pre>Execution response
+  → category accumulator
+  → final app-hash material
+  → VoteAppHash
+
+Heartbeat path
+  → concise EVM hash summaries
+  → peer / sync visibility
+  → not a full replay substitute</pre>
+    </div>
+  </section>
+
+  <section class="section" id="gaps">
+    <h2>5. What Is Still Open</h2>
+    <div class="panel panel-strong">
+      <ul>
+        <li>Exact mainnet serializer shapes for the remaining response families.</li>
+        <li>Exact action-to-response routing closure across all categories.</li>
+        <li>Replay proof that the current backend split moves the first mismatch later, not just labels it better.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+<script>
+mermaid.initialize({ startOnLoad: true, theme: "neutral" });
+</script>
+</body>
+</html>

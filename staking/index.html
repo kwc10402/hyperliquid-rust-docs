@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hypurrliquid Staking and Validator Lifecycle</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<style>
+:root {
+  --bg: #f4f0e8; --panel: #fffaf2; --panel-strong: #f2eadf; --ink: #1d1b18;
+  --muted: #6a6258; --line: #d6cbb9; --accent: #256d57; --green: #1c7c54;
+  --yellow: #8b6b08; --red: #a02727; --shadow: rgba(38, 24, 12, 0.08);
+  --mono: "SF Mono", "JetBrains Mono", "Menlo", monospace;
+  --sans: "Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif;
+  --serif: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: var(--serif); color: var(--ink);
+  background: radial-gradient(circle at top left, #fff8ef 0%, transparent 34%),
+    linear-gradient(180deg, #efe7da 0%, var(--bg) 50%, #efe7da 100%);
+}
+a { color: var(--accent); }
+main { max-width: 1080px; margin: 0 auto; padding: 28px 24px 80px; }
+.topbar, .hero-links, .pill-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.topbar { margin-bottom: 22px; }
+.topbar a, .hero-links a, .pill {
+  text-decoration: none; padding: 8px 12px; border: 1px solid var(--line);
+  border-radius: 999px; background: var(--panel); box-shadow: 0 8px 18px var(--shadow);
+  font: 600 13px/1.2 var(--sans);
+}
+.hero { padding: 18px 0 26px; border-bottom: 1px solid var(--line); }
+.eyebrow { font: 600 12px/1.4 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+h1 { margin: 10px 0 12px; font: 700 54px/1.02 var(--sans); letter-spacing: -0.03em; }
+.hero p, .section p, li { color: var(--muted); line-height: 1.68; }
+.hero p { max-width: 880px; margin: 0; font-size: 18px; }
+.hero-links, .pill-row { margin-top: 18px; }
+.pill { display: inline-flex; align-items: center; gap: 8px; }
+.section { margin-top: 42px; }
+.section h2 { margin: 0 0 12px; font: 700 34px/1.05 var(--sans); }
+.panel {
+  margin-top: 18px; padding: 18px 20px; border: 1px solid var(--line);
+  border-radius: 16px; background: var(--panel); box-shadow: 0 10px 26px var(--shadow);
+}
+.panel-strong { background: var(--panel-strong); }
+table { width: 100%; border-collapse: collapse; margin-top: 14px; font-family: var(--sans); font-size: 14px; }
+th, td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+th { background: var(--panel-strong); font-size: 13px; }
+.mermaid {
+  margin-top: 16px; padding: 12px; border: 1px solid var(--line);
+  border-radius: 16px; background: #fffdf9;
+}
+.status {
+  display: inline-block; padding: 3px 8px; border-radius: 999px;
+  font: 700 11px/1 var(--sans); letter-spacing: 0.06em; text-transform: uppercase;
+}
+.confirmed { background: rgba(28, 124, 84, 0.12); color: var(--green); }
+.observed { background: rgba(37, 109, 87, 0.12); color: var(--accent); }
+.inferred { background: rgba(139, 107, 8, 0.14); color: var(--yellow); }
+.warning { background: rgba(160, 39, 39, 0.12); color: var(--red); }
+ul { margin: 12px 0 0; padding-left: 22px; }
+@media (max-width: 760px) { main { padding: 22px 18px 64px; } h1 { font-size: 40px; } .section h2 { font-size: 28px; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="topbar">
+    <a href="../index.html">Docs Hub</a>
+    <a href="../paper/index.html#validator">Paper Chapter</a>
+    <a href="../block-lifecycle/index.html">Block Lifecycle</a>
+    <a href="../findings/truth-register.html">Truth Register</a>
+  </div>
+
+  <section class="hero">
+    <div class="eyebrow">Control Plane Reference</div>
+    <h1>Staking, Validator Lifecycle, and Jailing</h1>
+    <p>
+      This page condenses the validator-control surface into one place: time-based
+      epochs, active-set gating, jailed signer handling, self-jail and self-unjail
+      actions, broadcaster adjacency, and the remaining open trigger details.
+    </p>
+    <div class="hero-links">
+      <a href="../obsidian/HyperBFT.md">HyperBFT Note</a>
+      <a href="../obsidian/HyperBFT%20Protocol%20Specification.md">HyperBFT Protocol Spec</a>
+      <a href="../obsidian/Gossip%20Protocol.md">Gossip Protocol</a>
+      <a href="../status/open-claims.html">Open Claims</a>
+    </div>
+    <div class="pill-row">
+      <div class="pill">Time-based epochs <span class="status confirmed">confirmed</span></div>
+      <div class="pill">Current-epoch signer gate <span class="status confirmed">confirmed</span></div>
+      <div class="pill">Self unjail rate-limit <span class="status confirmed">confirmed</span></div>
+      <div class="pill">ForceIncreaseEpoch details <span class="status warning">open</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="surface">
+    <h2>1. State and Control Surface</h2>
+    <div class="panel">
+      <table>
+        <tr><th>Surface</th><th>Role</th><th>Current truth</th></tr>
+        <tr><td><code>staking</code></td><td>Epoch state</td><td>Tracks epoch states, active epoch, current epoch state, and epoch duration.</td></tr>
+        <tr><td><code>c_staking</code></td><td>Consensus control plane</td><td>Carries stakes, delegations, jailed signers, broadcasters, disabled validators, and manual unjail timing.</td></tr>
+        <tr><td><code>validator_l1_vote_tracker</code></td><td>Vote aggregation</td><td>Tracks validator L1 vote activity and pruning windows.</td></tr>
+        <tr><td><code>validator_l1_stream_tracker</code></td><td>Streaming control input</td><td>Carries validator stream inputs like aligned-quote-token rate votes.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="lifecycle">
+    <h2>2. Validator Lifecycle</h2>
+    <div class="mermaid">
+flowchart TD
+    A[Register validator profile and signer] --> B[Enter epoch ranking]
+    B --> C{Top active set for epoch?}
+    C -->|No| D[Remain registered but inactive]
+    C -->|Yes| E[Active validator and proposer candidate]
+    E --> F[Produce votes and blocks]
+    F --> G{Heartbeat or jail issue?}
+    G -->|No| H[Continue through epoch]
+    G -->|Yes| I[Jailed or disabled path]
+    I --> J[Self unjail or governance path]
+    J --> B
+    H --> K[Epoch boundary recompute]
+    K --> B
+    </div>
+    <div class="panel panel-strong">
+      <ul>
+        <li>Validator eligibility is tied to <code>epoch_states[cur_epoch]</code>, not just a loose stake snapshot.</li>
+        <li>Jailed signers are excluded from ordinary proposer/signing flow.</li>
+        <li>Manual unjail is rate-limited through <code>signer_to_last_manual_unjail_time</code>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="actions">
+    <h2>3. Validator and Staking Actions</h2>
+    <div class="panel">
+      <table>
+        <tr><th>Action family</th><th>Purpose</th><th>Notes</th></tr>
+        <tr><td><code>CValidator</code></td><td>Validator profile management</td><td>Register/change profile and other validator lifecycle changes.</td></tr>
+        <tr><td><code>CSigner</code></td><td>Jail / unjail surface</td><td>Current surface includes <code>unjailSelf</code>, <code>jailSelf</code>, and <code>jailSelfIsolated</code>.</td></tr>
+        <tr><td><code>tokenDelegate</code></td><td>Delegation and reward routing</td><td>Stake movement influences active-set ranking at epoch boundaries.</td></tr>
+        <tr><td><code>validatorL1Vote</code></td><td>Validator vote lane</td><td>Feeds consensus oracle / control-plane vote surfaces.</td></tr>
+        <tr><td><code>validatorL1Stream</code></td><td>Streaming validator signal lane</td><td>Currently includes aligned-quote-token rate sampling.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="boundaries">
+    <h2>4. What Is Confirmed vs Open</h2>
+    <div class="panel">
+      <table>
+        <tr><th>Question</th><th>Current answer</th></tr>
+        <tr><td>Are epochs time-based?</td><td>Yes. The docs now treat <code>epoch_duration_seconds</code> as the governing mechanism.</td></tr>
+        <tr><td>Is validator eligibility epoch-scoped?</td><td>Yes. Signer validity checks are tied to current epoch state.</td></tr>
+        <tr><td>Are jailing details fully closed?</td><td>No. Trigger thresholds, especially latency-EMA details, remain open.</td></tr>
+        <tr><td>Is broadcaster authorization the same thing as active validator eligibility?</td><td>No. They are adjacent control-plane surfaces but not the same gate.</td></tr>
+      </table>
+    </div>
+  </section>
+</main>
+<script>
+mermaid.initialize({ startOnLoad: true, theme: "neutral" });
+</script>
+</body>
+</html>

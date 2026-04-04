@@ -4,7 +4,7 @@ The protocol-truth reference for the Hyperliquid L1 reimplementation. Every clai
 
 **Evidence levels**: `CONFIRMED` = verified from binary RE or official docs. `OBSERVED` = seen in runtime/snapshots. `IMPLEMENTED` = coded in hlx. `INFERRED` = deduced from behavior.
 
-Use the [White Paper](../whitepaper/index.md) for narrative architecture. Use the [Hypurrliquid Paper](../paper/index.html) for the full RE reference with Mermaid diagrams. Use the [Action Inventory](./action-inventory.md) for the current action-family and sub-variant tables. Use the [Truth Register](../findings/truth-register.md) when you want the compact fact ledger instead of the full chapter narrative.
+Use the [White Paper](../whitepaper/index.md) for narrative architecture. Use the [Hypurrliquid Paper](../paper/index.html) for the full RE reference with Mermaid diagrams. Use the [Action Inventory](./action-inventory.md) for the current action-family and sub-variant tables. Use the [Truth Register](../findings/truth-register.md) when you want the compact fact ledger instead of the full chapter narrative. For the denser subsystem splits, use [Hashing](../hashing/index.html), [Staking & Validators](../staking/index.html), [Bridge2](../bridge/index.html), and [Outcomes](../outcomes/index.html).
 
 ---
 

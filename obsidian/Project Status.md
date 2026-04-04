@@ -1,10 +1,11 @@
 # Project Status
 
-Current state of the hyperliquid-rust reimplementation as of 2026-04-02.
+Current state of the hyperliquid-rust reimplementation as of 2026-04-03.
 
 ## Stats
-- **13 crates**, ~18,000+ lines of Rust, **402 tests passing**
-- 29 Obsidian docs
+- **13 crates**, ~140,000 lines of Rust, **416+ tests passing**
+- **57/57 bootstrap fields**, **90/90 action variants**, **6 pipeline stages**
+- 31 Obsidian docs
 - 3 repos: lastdotnet/hyperliquid-rust, lastdotnet/hlz, lastdotnet/foundry-hl
 - Deployed on hyperscan (Tailscale: `100.85.232.55`, 64 cores, 755GB RAM)
 - GhidraMCP running for interactive binary RE
@@ -39,9 +40,14 @@ hlx (node):
 
 ### Matching Engine (hl-engine)
 - Order books with BTreeMap + VecDeque + O(1) OID cancel
-- 80 action types handled with real state mutations
+- **90 action types handled** with real state mutations (0 unimplemented)
 - Service layers: staking, vaults, sub-accounts, BOLE lending, outcomes, agents
+- Full fee computation: 7 VIP tiers, 7 staking discounts, 3 MM rebates, referral, builder, deployer
+- Self-trade prevention, reduce-only, triggers, price clamping, tick size, order limits
 - Funding settlement (EMA premium, **CONFIRMED 1h period** = 3600s, not 8h)
+- Liquidation with ADL cascade, bad-debt socialization, partial liquidation cooldown
+- Nonce tracking implemented
+- OutcomeTracker.fee_scale wired from ABCI state
 - Security audit: 30 findings, all criticals fixed
 
 ### State Hash
@@ -163,35 +169,40 @@ hlx (node):
 
 ## Gap Analysis
 
-### Level 1: Passive Observer (95%)
+### Level 1: Passive Observer (98%)
 | Component | Status |
 |-----------|--------|
-| Gossip connect + stream | ✅ Connected to mainnet, receiving data |
-| Block parsing | ✅ 99.96% of 80 action types |
-| State bootstrap | ✅ 2.1M users, $3B, 314 books |
-| Matching engine | ✅ With all service layers |
-| State hash algorithm | ✅ SHA-256 + blake3 + rmp confirmed |
-| **Gossip bootstrap framing** | ⚠️ Mixed/TBD — need exact greeting/state-transfer decoder |
-| **L1 hash accumulator** | ⚠️ Need starting value from heartbeat |
-| **Exact hash serialization** | ⚠️ Field ordering TBD via differential testing |
+| Gossip connect + stream | Done -- connected to mainnet, receiving data |
+| Block parsing | Done -- all 90 action types parsed |
+| State bootstrap | Done -- 57/57 fields, 2.1M users, $3B, 314 books |
+| Matching engine | Done -- full fees, self-trade, reduce-only, triggers, ADL |
+| State hash algorithm | Done -- SHA-256 + blake3 + rmp confirmed |
+| Gossip greeting | Done -- CRACKED (6-byte bincode-fork TcpGreeting) |
+| MsgConcise/OutMsgConcise | Done -- CRACKED (tag 27/28, all inner variants) |
+| **L1 hash accumulator** | Blocked -- need starting value (accumulates from genesis) |
+| **Exact hash serialization** | Blocked -- field orders cracked but not fully wired |
 
-### Level 2: Full Non-Validator (80%)
+### Level 2: Full Non-Validator (90%)
 | Component | Status |
 |-----------|--------|
-| /info API | ✅ 30+ query types |
-| EVM RPC | ✅ Full JSON-RPC + precompiles + debug |
-| Local devnet | ✅ Fork mode + live oracle |
-| Fork from mainnet | ✅ (memory-optimized bootstrap) |
-| **All action side-effects** | ⚠️ 80 handled, most wired with real state |
-| **app_hash exact match** | ❌ Need L1 accumulator from gossip/heartbeat |
+| /info API | Done -- 30+ query types |
+| EVM RPC | Done -- full JSON-RPC + precompiles + debug |
+| Local devnet | Done -- fork mode + live oracle |
+| Fork from mainnet | Done -- 57/57 fields, memory-optimized bootstrap |
+| All action side-effects | Done -- 90/90 variants with real state mutations |
+| CoreWriter + EVM | Done -- full decode, dual-block framework, hash accumulators |
+| Fee system | Done -- full spec (VIP, staking, MM, referral, outcome, growth, builder, deployer) |
+| Pipeline stages | Done -- 6 real stages (not stubs) |
+| Replay-validate | Done -- 11,986 blocks in 4.6s |
+| **app_hash exact match** | Blocked -- need L1 accumulator, response hash wiring |
 
 ### Level 3: Validator (30%)
 | Component | Status |
 |-----------|--------|
-| Consensus voting | ❌ Not implemented |
-| Block proposal | ❌ Not implemented |
-| Heartbeat send/receive | ❌ Need exact greeting/bootstrap framing and heartbeat extraction |
-| Epoch transitions | ❌ Stub |
+| Consensus voting | Not implemented |
+| Block proposal | Not implemented |
+| Heartbeat send/receive | Blocked -- peer verification rejects unknown peers |
+| Epoch transitions | Stub |
 
 ## Key Binary RE Findings
 
@@ -296,18 +307,19 @@ Each state mutation → rmp_serde::to_vec() → blake3::Hasher (streaming Write)
 
 ## Blockers & Next Steps
 
-### Critical Path: Crack the L1 Hash
-1. **Map the small prefixes in front of inner varint-bincode control/consensus frames**
-2. **Decode the actual greeting/bootstrap framing** to parse gossip greeting and EVM KVs precisely
-3. **Find the live transport location for the L1 `hash_concise` accumulator**
-4. With the real L1 accumulator → verify our hash format via chain follower
-4. Iterate on Settlement struct field ordering until hashes match
+### Critical Path: Hash Match
+1. **Capture live L1 accumulator** -- Frida hook on SHA-256 finalize or `run_node_compute_resps_hash` at VoteAppHash time
+2. **Wire response struct field orders into StateHasher** -- 11 structs cracked, sitting unused
+3. **Fix spot balance encoding** -- 1,030 rejections per 10K blocks
+4. **Fix perpDeploy sub-actions** -- 26 rejections for nested setOracle/registerAsset
+5. Iterate on remaining divergences until hashes match
 
 ### Secondary
-- Determine exactly where `rmp` ends and any custom bootstrap framing begins
-- Implement consensus voting (needs 10K HYPE testnet stake)
+- Bypass peer verification for gossip sync (need sentry registration or run real hl-node)
+- Implement consensus voting (needs 10K HYPE testnet stake, currently jailed)
 - Wire foundry-hl for full Solidity testing workflow
 - Build the chain-following auto-heal mode
+- EVM persistence (RocksDB state, log storage, receipts)
 
 ## Links
 - [[ABCI State Machine]] — block processing pipeline

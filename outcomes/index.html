@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hypurrliquid Outcomes and Settlement</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<style>
+:root {
+  --bg: #f4f0e8; --panel: #fffaf2; --panel-strong: #f1e8df; --ink: #1d1b18;
+  --muted: #6a6258; --line: #d6cbb9; --accent: #8a224d; --green: #1c7c54;
+  --yellow: #8b6b08; --red: #a02727; --shadow: rgba(38, 24, 12, 0.08);
+  --mono: "SF Mono", "JetBrains Mono", "Menlo", monospace;
+  --sans: "Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif;
+  --serif: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: var(--serif); color: var(--ink);
+  background: radial-gradient(circle at top left, #fff8ef 0%, transparent 34%),
+    linear-gradient(180deg, #efe7da 0%, var(--bg) 50%, #efe7da 100%);
+}
+a { color: var(--accent); }
+main { max-width: 1080px; margin: 0 auto; padding: 28px 24px 80px; }
+.topbar, .hero-links, .pill-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.topbar { margin-bottom: 22px; }
+.topbar a, .hero-links a, .pill {
+  text-decoration: none; padding: 8px 12px; border: 1px solid var(--line);
+  border-radius: 999px; background: var(--panel); box-shadow: 0 8px 18px var(--shadow);
+  font: 600 13px/1.2 var(--sans);
+}
+.hero { padding: 18px 0 26px; border-bottom: 1px solid var(--line); }
+.eyebrow { font: 600 12px/1.4 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+h1 { margin: 10px 0 12px; font: 700 54px/1.02 var(--sans); letter-spacing: -0.03em; }
+.hero p, .section p, li { color: var(--muted); line-height: 1.68; }
+.hero p { max-width: 880px; margin: 0; font-size: 18px; }
+.hero-links, .pill-row { margin-top: 18px; }
+.pill { display: inline-flex; align-items: center; gap: 8px; }
+.section { margin-top: 42px; }
+.section h2 { margin: 0 0 12px; font: 700 34px/1.05 var(--sans); }
+.panel {
+  margin-top: 18px; padding: 18px 20px; border: 1px solid var(--line);
+  border-radius: 16px; background: var(--panel); box-shadow: 0 10px 26px var(--shadow);
+}
+.panel-strong { background: var(--panel-strong); }
+table { width: 100%; border-collapse: collapse; margin-top: 14px; font-family: var(--sans); font-size: 14px; }
+th, td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+th { background: var(--panel-strong); font-size: 13px; }
+.mermaid {
+  margin-top: 16px; padding: 12px; border: 1px solid var(--line);
+  border-radius: 16px; background: #fffdf9;
+}
+.status {
+  display: inline-block; padding: 3px 8px; border-radius: 999px;
+  font: 700 11px/1 var(--sans); letter-spacing: 0.06em; text-transform: uppercase;
+}
+.confirmed { background: rgba(28, 124, 84, 0.12); color: var(--green); }
+.observed { background: rgba(138, 34, 77, 0.12); color: var(--accent); }
+.inferred { background: rgba(139, 107, 8, 0.14); color: var(--yellow); }
+.warning { background: rgba(160, 39, 39, 0.12); color: var(--red); }
+ul { margin: 12px 0 0; padding-left: 22px; }
+@media (max-width: 760px) { main { padding: 22px 18px 64px; } h1 { font-size: 40px; } .section h2 { font-size: 28px; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="topbar">
+    <a href="../index.html">Docs Hub</a>
+    <a href="../paper/index.html#outcomes">Paper Chapter</a>
+    <a href="../yellowpaper/index.html">Yellow Paper</a>
+    <a href="../findings/truth-register.html">Truth Register</a>
+  </div>
+
+  <section class="hero">
+    <div class="eyebrow">Outcome Reference</div>
+    <h1>HIP-4 Outcomes, Settlement, and Solvency</h1>
+    <p>
+      This page separates the confirmed outcome baseline from the still-open
+      solvency hypothesis. It is meant to stop the docs from treating every
+      outcome statement as equally solid: the baseline market model is now
+      promoted, while `MergeQuestion` and fallback reconciliation remain the
+      highest-risk open lane.
+    </p>
+    <div class="hero-links">
+      <a href="../obsidian/HIP-4%20Outcomes.md">HIP-4 Outcomes Note</a>
+      <a href="../generated/outcome_solvency_review_2026-04-03.md">Outcome Solvency Review</a>
+      <a href="../status/open-claims.html">Open Claims</a>
+      <a href="../liquidation/index.html">Liquidation &amp; ADL</a>
+    </div>
+    <div class="pill-row">
+      <div class="pill">1x isolated-only <span class="status confirmed">confirmed</span></div>
+      <div class="pill">No funding <span class="status confirmed">confirmed</span></div>
+      <div class="pill">Question metadata <span class="status confirmed">confirmed</span></div>
+      <div class="pill">MergeQuestion fallback risk <span class="status warning">open</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="baseline">
+    <h2>1. Confirmed Baseline</h2>
+    <div class="panel">
+      <table>
+        <tr><th>Property</th><th>Current truth</th></tr>
+        <tr><td>Risk mode</td><td>1x isolated-only, no leverage, no funding.</td></tr>
+        <tr><td>Settlement authority</td><td><code>oracleUpdater</code> posts final settlement.</td></tr>
+        <tr><td>Post-settlement behavior</td><td>Open orders cancel and new orders reject.</td></tr>
+        <tr><td>Question metadata</td><td><code>fallbackOutcome</code>, <code>namedOutcomes</code>, and <code>settledNamedOutcomes</code> are real surface fields.</td></tr>
+        <tr><td>User operations</td><td><code>SplitOutcome</code>, <code>MergeOutcome</code>, <code>MergeQuestion</code>, and <code>NegateOutcome</code>.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="lifecycle">
+    <h2>2. Outcome Lifecycle</h2>
+    <div class="mermaid">
+flowchart TD
+    A[Deploy outcome or question] --> B[Opening auction]
+    B --> C[Continuous trading]
+    C --> D[oracleUpdater posts settlement]
+    D --> E[outcomeSettledCanceled and outcomeSettledRejected]
+    E --> F[Settle positions in collateral token]
+    F --> G[Question-level reconciliation]
+    </div>
+    <div class="panel panel-strong">
+      <ul>
+        <li>Outcomes are settlement-first instruments, not a special case of perp liquidation.</li>
+        <li>Question metadata is economically meaningful because fallback and named outcomes coexist on testnet.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="surface">
+    <h2>3. Question and Token Surface</h2>
+    <div class="panel">
+      <table>
+        <tr><th>Surface</th><th>Role</th></tr>
+        <tr><td><code>fallbackOutcome</code></td><td>Default question resolution surface when explicit settlement is absent or partial.</td></tr>
+        <tr><td><code>namedOutcomes</code></td><td>Named multi-outcome question branches.</td></tr>
+        <tr><td><code>settledNamedOutcomes</code></td><td>Tracks which named outcomes are already settled.</td></tr>
+        <tr><td><code>SplitOutcome</code> / <code>MergeOutcome</code></td><td>Pairwise token mechanics around YES/NO-style claims.</td></tr>
+        <tr><td><code>MergeQuestion</code></td><td>Question-level reconciliation surface across all relevant outcomes.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="risk">
+    <h2>4. Active Solvency Hypothesis</h2>
+    <div class="panel">
+      <p>
+        The leading current risk is no longer the generic statement "outcomes are
+        risky." It is narrower: question-level reconciliation, especially around
+        <code>MergeQuestion</code>, fallback legs, and settled named outcomes.
+      </p>
+      <table>
+        <tr><th>Question</th><th>Current answer</th></tr>
+        <tr><td>Is the simple pairwise token path the main suspected bug site?</td><td>No. The current hypothesis points above that layer.</td></tr>
+        <tr><td>Is the baseline outcome model still open?</td><td>No. The baseline settlement-driven market model is now promoted as confirmed.</td></tr>
+        <tr><td>What remains open?</td><td>Exact binary identity of the `MergeQuestion` branch and the operational meaning of the fallback-trade guard.</td></tr>
+      </table>
+    </div>
+  </section>
+</main>
+<script>
+mermaid.initialize({ startOnLoad: true, theme: "neutral" });
+</script>
+</body>
+</html>

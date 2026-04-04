@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hypurrliquid Bridge2 and Withdrawal Flow</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<style>
+:root {
+  --bg: #f4f0e8; --panel: #fffaf2; --panel-strong: #f2eadf; --ink: #1d1b18;
+  --muted: #6a6258; --line: #d6cbb9; --accent: #975a17; --green: #1c7c54;
+  --yellow: #8b6b08; --red: #a02727; --shadow: rgba(38, 24, 12, 0.08);
+  --mono: "SF Mono", "JetBrains Mono", "Menlo", monospace;
+  --sans: "Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif;
+  --serif: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: var(--serif); color: var(--ink);
+  background: radial-gradient(circle at top left, #fff8ef 0%, transparent 34%),
+    linear-gradient(180deg, #efe7da 0%, var(--bg) 50%, #efe7da 100%);
+}
+a { color: var(--accent); }
+main { max-width: 1080px; margin: 0 auto; padding: 28px 24px 80px; }
+.topbar, .hero-links, .pill-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.topbar { margin-bottom: 22px; }
+.topbar a, .hero-links a, .pill {
+  text-decoration: none; padding: 8px 12px; border: 1px solid var(--line);
+  border-radius: 999px; background: var(--panel); box-shadow: 0 8px 18px var(--shadow);
+  font: 600 13px/1.2 var(--sans);
+}
+.hero { padding: 18px 0 26px; border-bottom: 1px solid var(--line); }
+.eyebrow { font: 600 12px/1.4 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+h1 { margin: 10px 0 12px; font: 700 54px/1.02 var(--sans); letter-spacing: -0.03em; }
+.hero p, .section p, li { color: var(--muted); line-height: 1.68; }
+.hero p { max-width: 880px; margin: 0; font-size: 18px; }
+.hero-links, .pill-row { margin-top: 18px; }
+.pill { display: inline-flex; align-items: center; gap: 8px; }
+.section { margin-top: 42px; }
+.section h2 { margin: 0 0 12px; font: 700 34px/1.05 var(--sans); }
+.panel {
+  margin-top: 18px; padding: 18px 20px; border: 1px solid var(--line);
+  border-radius: 16px; background: var(--panel); box-shadow: 0 10px 26px var(--shadow);
+}
+.panel-strong { background: var(--panel-strong); }
+table { width: 100%; border-collapse: collapse; margin-top: 14px; font-family: var(--sans); font-size: 14px; }
+th, td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+th { background: var(--panel-strong); font-size: 13px; }
+.mermaid {
+  margin-top: 16px; padding: 12px; border: 1px solid var(--line);
+  border-radius: 16px; background: #fffdf9;
+}
+.status {
+  display: inline-block; padding: 3px 8px; border-radius: 999px;
+  font: 700 11px/1 var(--sans); letter-spacing: 0.06em; text-transform: uppercase;
+}
+.confirmed { background: rgba(28, 124, 84, 0.12); color: var(--green); }
+.observed { background: rgba(151, 90, 23, 0.12); color: var(--accent); }
+.inferred { background: rgba(139, 107, 8, 0.14); color: var(--yellow); }
+.warning { background: rgba(160, 39, 39, 0.12); color: var(--red); }
+ul { margin: 12px 0 0; padding-left: 22px; }
+@media (max-width: 760px) { main { padding: 22px 18px 64px; } h1 { font-size: 40px; } .section h2 { font-size: 28px; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="topbar">
+    <a href="../index.html">Docs Hub</a>
+    <a href="../paper/index.html#bridge">Paper Chapter</a>
+    <a href="../yellowpaper/index.html">Yellow Paper</a>
+    <a href="../findings/truth-register.html">Truth Register</a>
+  </div>
+
+  <section class="hero">
+    <div class="eyebrow">Bridge Reference</div>
+    <h1>Bridge2, Withdrawals, and Validator-Set Updates</h1>
+    <p>
+      This page condenses the Bridge2 control plane into one staged flow: user
+      withdrawal entry, validator signatures, finalized-vote state, validator-set
+      update signatures, and the current trust model around dispute-period
+      invalidation and signer reuse.
+    </p>
+    <div class="hero-links">
+      <a href="../obsidian/Bridge.md">Bridge Note</a>
+      <a href="../obsidian/Action%20Types.md">Action Types</a>
+      <a href="../paper/index.html#bridge-withdrawal">Paper Withdrawal Flow</a>
+      <a href="../status/open-claims.html">Open Claims</a>
+    </div>
+    <div class="pill-row">
+      <div class="pill">Signer reuse <span class="status confirmed">confirmed</span></div>
+      <div class="pill">Withdrawal finalization stages <span class="status confirmed">confirmed</span></div>
+      <div class="pill">Dispute invalidation risk <span class="status warning">active</span></div>
+      <div class="pill">Bridge2 field <code>oaw</code> <span class="status inferred">open decode</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="state">
+    <h2>1. Bridge2 State Surface</h2>
+    <div class="panel">
+      <table>
+        <tr><th>Field family</th><th>Role</th></tr>
+        <tr><td><code>eth_id_to_deposit_votes</code></td><td>Deposit confirmation tracking.</td></tr>
+        <tr><td><code>withdrawal_signatures</code></td><td>Collected validator signatures for pending withdrawals.</td></tr>
+        <tr><td><code>withdrawal_finalized_votes</code></td><td>Finalization vote state after the signature stage.</td></tr>
+        <tr><td><code>finished_withdrawal_to_time</code></td><td>Timing/tracking surface for completed withdrawals.</td></tr>
+        <tr><td><code>validator_set_signatures</code></td><td>Signature collection for bridge validator-set changes.</td></tr>
+        <tr><td><code>validator_set_finalized_votes</code></td><td>Finalization votes for validator-set updates.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="flows">
+    <h2>2. Withdrawal and Validator-Set Flow</h2>
+    <div class="mermaid">
+flowchart TD
+    A[withdraw3] --> B[ValidatorSignWithdrawal]
+    B --> C[withdrawal_signatures accumulates]
+    C --> D[Threshold reached]
+    D --> E[VoteEthFinalizedWithdrawal]
+    E --> F[withdrawal_finalized_votes]
+    F --> G[Dispute period and release]
+
+    H[Epoch or signer-set change] --> I[SignValidatorSetUpdate]
+    I --> J[validator_set_signatures]
+    J --> K[VoteEthFinalizedValidatorSetUpdate]
+    K --> L[validator_set_finalized_votes]
+    L --> M[Ethereum-side validator set update]
+    </div>
+    <div class="panel panel-strong">
+      <ul>
+        <li>The current repo truth keeps withdrawal signing and finalized voting as separate bridge phases.</li>
+        <li>Validator-set updates are a first-class bridge flow, not just an implied governance side effect.</li>
+        <li>Bridge signing is currently documented as reusing validator signer keys.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="actions">
+    <h2>3. Action Families</h2>
+    <div class="panel">
+      <table>
+        <tr><th>Action</th><th>Purpose</th></tr>
+        <tr><td><code>withdraw3</code></td><td>User bridge withdrawal entrypoint.</td></tr>
+        <tr><td><code>ValidatorSignWithdrawal</code></td><td>Validator signature on a pending withdrawal.</td></tr>
+        <tr><td><code>VoteEthFinalizedWithdrawal</code></td><td>Finalize the staged withdrawal path.</td></tr>
+        <tr><td><code>SignValidatorSetUpdate</code></td><td>Signature lane for bridge validator-set changes.</td></tr>
+        <tr><td><code>VoteEthFinalizedValidatorSetUpdate</code></td><td>Finalize the validator-set update path.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="risk">
+    <h2>4. Current Risk Surface</h2>
+    <div class="panel">
+      <table>
+        <tr><th>Question</th><th>Current answer</th></tr>
+        <tr><td>Is the bridge trust-minimized?</td><td>No. The current docs keep dispute-period invalidation and no-escape-hatch risk explicit.</td></tr>
+        <tr><td>Is finalization a one-step action?</td><td>No. Signatures and finalized-vote state are separate surfaces.</td></tr>
+        <tr><td>Are all Bridge2 fields fully decoded?</td><td>No. `oaw` remains open.</td></tr>
+      </table>
+    </div>
+  </section>
+</main>
+<script>
+mermaid.initialize({ startOnLoad: true, theme: "neutral" });
+</script>
+</body>
+</html>
