@@ -251,7 +251,8 @@ control-plane notes.
 
 - **Bridge2 state** includes `withdrawal_signatures`,
   `withdrawal_finalized_votes`, `finished_withdrawal_to_time`,
-  `validator_set_signatures`, and `validator_set_finalized_votes`.
+  `validator_set_signatures`, `validator_set_finalized_votes`, `bal`,
+  `last_pruned_deposit_block_number`, and `oaw` (`bool`).
 - **Withdrawal entrypoint**: `withdraw3`.
 - **Bridge signing action**: `ValidatorSignWithdrawal`.
 - **Finalize actions**: `VoteEthFinalizedWithdrawal` and

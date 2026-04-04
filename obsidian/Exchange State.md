@@ -4,7 +4,7 @@ The central state object of [[Hyperliquid]] — **57 fields** (binary says "stru
 
 **CONFIRMED 2026-04-02**: Complete field map extracted from ABCI state snapshot (942770000.rmp, 1.1GB) cross-referenced against binary rodata (8 identical serializer string tables). Exchange uses **full field names** in serde (NOT 2-char rename codes). The Locus sub-struct uses 3-char abbreviated names.
 
-**UPDATED 2026-04-03**: New testnet binary (sha256 `1a99c892...`, built `2026-04-03 10:43:39 UTC`, commit `331bef9b`) confirms all 57 fields. Field 54 is `hilo` (not `hil`), field 56 is `hpt`. Full serde struct chain at `.rodata` offset `0x543428` includes complete field orders for Bridge2, Context, Staking, FundingTracker, Clearinghouse, and all nested types. See `docs/generated/re/runs/2026-04-03-struct-chain.md` for the complete parsed chain.
+**UPDATED 2026-04-04**: Bridge2 field order is now closed from binary serializer/deserializer helpers, not just the rodata chain. The last three Bridge2 fields are `bal`, `last_pruned_deposit_block_number`, and `oaw`, and `oaw` is binary-confirmed bool-typed. Field 54 is `hilo` (not `hil`), field 56 is `hpt`.
 
 ## Complete Exchange Field Map (57 fields)
 
@@ -20,7 +20,7 @@ Verified from binary rodata at 0x386138 (and 7 duplicate copies). Field names ar
 | 5 | `funding_update_guard` | BucketGuard | {last_bucket, bucket_millis} |
 | 6 | `sub_account_tracker` | SubAccountTracker(2) | {user_to_sub_accounts, sub_account_to_master} |
 | 7 | `allowed_liquidators` | Vec\<Address\>(5) | Liquidator whitelist (5 addresses on mainnet) |
-| 8 | `bridge2` | Bridge2(10) | [[Bridge]] v2: {eth_id_to_deposit_votes, finished_deposits_data, withdrawal_signatures, withdrawal_finalized_votes, finished_withdrawal_to_time, validator_set_signatures, validator_set_finalized_votes, bal, last_pruned_deposit_block_number, oaw} |
+| 8 | `bridge2` | Bridge2(10) | [[Bridge]] v2: {eth_id_to_deposit_votes, finished_deposits_data, withdrawal_signatures, withdrawal_finalized_votes, finished_withdrawal_to_time, validator_set_signatures, validator_set_finalized_votes, bal, last_pruned_deposit_block_number, oaw(bool)} |
 | 9 | `staking` | Staking(6) | {epoch_states, active_epoch, cur_epoch_state, cur_epoch, epoch_duration_seconds, allowed_validators} |
 | 10 | `c_staking` | CStaking(23) | Full consensus staking: {stakes, allowed_validators, allow_all_validators, broadcasters, validator_to_profile, validator_to_last_signer_change_time, delegations, proposals, stakes_decay_bucket_guard, jailed_signers, jail_vote_tracker, jail_until, signer_to_last_manual_unjail_time, native_token_reserve, stage_reward_bucket_guard, validator_to_staged_rewards, distribute_reward_bucket_guard, user_states, pending_withdrawals, self_delegation_requirement, disabled_validators, disabled_node_ips, validator_to_state} |
 | 11 | `funding_err_dur_guard` | ErrDurGuard(3) | {err_duration, first_err_time, last_err_time} |

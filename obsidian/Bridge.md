@@ -3,7 +3,7 @@
 ETH↔Hyperliquid bridge system. Version 2 ("Bridge2") is the current active bridge.
 
 ## Bridge2 (10 fields)
-From [[Exchange State]]:
+Binary-confirmed field order from serializer/deserializer helpers:
 - `eth_id_to_deposit_votes` — deposit confirmation tracking
 - `finished_deposits_data` — completed deposits
 - `withdrawal_signatures` — withdrawal sigs
@@ -11,9 +11,9 @@ From [[Exchange State]]:
 - `finished_withdrawal_to_time` — withdrawal timing
 - `validator_set_signatures` — validator set update sigs
 - `validator_set_finalized_votes` — validator set votes
-- `bal` — bridge balance tracking
+- `bal` — standalone Bridge2 field; concrete runtime type/meaning still open
 - `last_pruned_deposit_block_number` — deposit pruning watermark
-- `oaw` — (abbreviated, pending full decode)
+- `oaw` — standalone boolean Bridge2 field; acronym/operational meaning still open
 
 ## Signing Model (CONFIRMED 2026-04-02)
 

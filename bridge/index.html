@@ -90,7 +90,7 @@ ul { margin: 12px 0 0; padding-left: 22px; }
       <div class="pill">Signer reuse <span class="status confirmed">confirmed</span></div>
       <div class="pill">Withdrawal finalization stages <span class="status confirmed">confirmed</span></div>
       <div class="pill">Dispute invalidation risk <span class="status warning">active</span></div>
-      <div class="pill">Bridge2 field <code>oaw</code> <span class="status inferred">open decode</span></div>
+      <div class="pill">Bridge2 field <code>oaw</code> <span class="status warning">bool confirmed, meaning open</span></div>
     </div>
   </section>
 
@@ -100,11 +100,15 @@ ul { margin: 12px 0 0; padding-left: 22px; }
       <table>
         <tr><th>Field family</th><th>Role</th></tr>
         <tr><td><code>eth_id_to_deposit_votes</code></td><td>Deposit confirmation tracking.</td></tr>
+        <tr><td><code>finished_deposits_data</code></td><td>Completed-deposit state.</td></tr>
         <tr><td><code>withdrawal_signatures</code></td><td>Collected validator signatures for pending withdrawals.</td></tr>
         <tr><td><code>withdrawal_finalized_votes</code></td><td>Finalization vote state after the signature stage.</td></tr>
         <tr><td><code>finished_withdrawal_to_time</code></td><td>Timing/tracking surface for completed withdrawals.</td></tr>
         <tr><td><code>validator_set_signatures</code></td><td>Signature collection for bridge validator-set changes.</td></tr>
         <tr><td><code>validator_set_finalized_votes</code></td><td>Finalization votes for validator-set updates.</td></tr>
+        <tr><td><code>bal</code></td><td>Standalone Bridge2 field. Present in binary; concrete runtime meaning still open.</td></tr>
+        <tr><td><code>last_pruned_deposit_block_number</code></td><td>Deposit pruning watermark.</td></tr>
+        <tr><td><code>oaw</code></td><td>Standalone boolean Bridge2 field. Acronym and operational role still open.</td></tr>
       </table>
     </div>
   </section>
@@ -156,7 +160,7 @@ flowchart TD
         <tr><th>Question</th><th>Current answer</th></tr>
         <tr><td>Is the bridge trust-minimized?</td><td>No. The current docs keep dispute-period invalidation and no-escape-hatch risk explicit.</td></tr>
         <tr><td>Is finalization a one-step action?</td><td>No. Signatures and finalized-vote state are separate surfaces.</td></tr>
-        <tr><td>Are all Bridge2 fields fully decoded?</td><td>No. `oaw` remains open.</td></tr>
+        <tr><td>Are all Bridge2 fields fully decoded?</td><td>No. Field order is closed, and <code>oaw</code> is confirmed bool-typed, but the meanings of <code>bal</code> and <code>oaw</code> are still open.</td></tr>
       </table>
     </div>
   </section>

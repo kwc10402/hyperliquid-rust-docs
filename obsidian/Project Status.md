@@ -5,7 +5,7 @@ Current state of the hyperliquid-rust reimplementation as of 2026-04-03.
 ## Stats
 - **13 crates**, ~140,000 lines of Rust, **416+ tests passing**
 - **57/57 bootstrap fields**, **90/90 action variants**, **6 pipeline stages**
-- 31 Obsidian docs
+- 32 Obsidian docs
 - 3 repos: lastdotnet/hyperliquid-rust, lastdotnet/hlz, lastdotnet/foundry-hl
 - Deployed on hyperscan (Tailscale: `100.85.232.55`, 64 cores, 755GB RAM)
 - GhidraMCP running for interactive binary RE

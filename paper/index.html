@@ -1411,9 +1411,9 @@ delayer_mode(Alternating), delay_scale</code></pre>
     finished_withdrawal_to_time,       // withdrawal completion timestamps
     validator_set_signatures,          // validator set update signatures
     validator_set_finalized_votes,     // validator set finalization votes
-    bal,                               // bridge balance tracking
+    bal,                               // standalone Bridge2 field; meaning still open
     last_pruned_deposit_block_number,  // deposit pruning watermark
-    oaw,                               // (abbreviated, pending full decode)
+    oaw,                               // standalone bool field; acronym/role still open
 }</code></pre>
 
 <h3 id="bridge-signing">13.2 Signing Model <span class="badge badge-confirmed">CONFIRMED</span></h3>

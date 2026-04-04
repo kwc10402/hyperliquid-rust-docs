@@ -8,7 +8,7 @@ confidence: confirmed
 scope: testnet_impl
 sources: ["source.bridge_note", "source.action_types_note", "source.exchange_state_note", "source.hyperbft_spec_note"]
 docs_targets: ["whitepaper", "yellowpaper", "findings", "status"]
-updated: 2026-04-03
+updated: 2026-04-04
 ---
 
 ## Summary
@@ -19,6 +19,9 @@ The current repo truth is that Bridge2 keeps distinct state for:
 - finalized-withdrawal votes
 - validator-set signatures
 - finalized validator-set votes
+- a standalone `bal` field
+- a standalone `last_pruned_deposit_block_number`
+- a standalone boolean `oaw` field
 
 The action surface also distinguishes the bridge phases: `withdraw3`,
 `ValidatorSignWithdrawal`, `VoteEthFinalizedWithdrawal`,
@@ -37,7 +40,8 @@ not a detached bridge-only signer family.
 
 - Exact timer semantics for the dispute period and finalize-vote closure.
 - Exact operational split between hot-signature and cold-signature surfaces on the Ethereum side.
-- Exact meaning of Bridge2 field `oaw`.
+- Exact acronym expansion and operational role of Bridge2 bool field `oaw`.
+- Exact concrete runtime type/meaning of Bridge2 field `bal`.
 
 ## Implementation Impact
 
