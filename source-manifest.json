@@ -1,0 +1,2933 @@
+{
+  "head": "35d72fb7599e36d35d68d3fda3755074e5350691",
+  "files": [
+    {
+      "path": "crates/hl-primitives/examples/check_cloid_cancel_signer.rs",
+      "sha256": "40c094f93f0522a22fb65a6dc0b086128ae1932fffeb44c0ef0bfb3cf2b0c4fc"
+    },
+    {
+      "path": "crates/hl-primitives/examples/check_noop_signer.rs",
+      "sha256": "2c3952850090755a001d64d7f58125686f964501f4af31d4293867f6f192249f"
+    },
+    {
+      "path": "crates/hl-primitives/examples/check_perpdeploy_signer.rs",
+      "sha256": "d301cb6ad4f35a7d6436414749e55e1e0a961683cecc2f9ebd6afcfea816cf93"
+    },
+    {
+      "path": "crates/hl-primitives/examples/check_vault_cancel_signer.rs",
+      "sha256": "df84fa80d3faf3e0cb256a6095307f1b418067d506d57035a52da534cac9876e"
+    },
+    {
+      "path": "crates/hl-primitives/examples/recover_bridge_vote_signer.rs",
+      "sha256": "9d7dd1cdf96c4479a67a8d5683f1f3042a20bf2a8bc345eea03df8cfdc95f040"
+    },
+    {
+      "path": "crates/hl-primitives/src/action.rs",
+      "sha256": "6b381616d7423f9dd23594ca3a71cbebb7099b0cea09214b718cd94507f2c9aa"
+    },
+    {
+      "path": "crates/hl-primitives/src/action_signing.rs",
+      "sha256": "b71a029ff57e8dfd0fde290f3f146edaff01bd2418d98f948ea8f404e69090b6"
+    },
+    {
+      "path": "crates/hl-primitives/src/block.rs",
+      "sha256": "0993a108504db2d728715b73ec3e7fefbe0cdc769297b9fe734d7a02a045024d"
+    },
+    {
+      "path": "crates/hl-primitives/src/chain.rs",
+      "sha256": "ac85276c752a64308b50ae5e5e53303a49a0972e0df8892fc6bdf8f2c221e12e"
+    },
+    {
+      "path": "crates/hl-primitives/src/chain_rules.rs",
+      "sha256": "64ed4e35c43485cb029090957f9c01ce5e56d37c2ac3907481fea9ab1c8de7ca"
+    },
+    {
+      "path": "crates/hl-primitives/src/diag.rs",
+      "sha256": "09fa2bd5667345a817615d363ef8800e3e8367074e397384a9a3444a8a3a525c"
+    },
+    {
+      "path": "crates/hl-primitives/src/eip712.rs",
+      "sha256": "f6624af766fc4a1bf76a17ac3d62f15198955128fa3c5a1cf860bf3889faf17c"
+    },
+    {
+      "path": "crates/hl-primitives/src/evm.rs",
+      "sha256": "09e277efe7e6fe2eecf7dd9036a2d53f9ae6b95651fbb20f84156b71e27fc51f"
+    },
+    {
+      "path": "crates/hl-primitives/src/explorer.rs",
+      "sha256": "b59f489ba40abd98e53394b67363fa9e6f8ce716f2ea71ea127c65a606fdbe63"
+    },
+    {
+      "path": "crates/hl-primitives/src/lib.rs",
+      "sha256": "439eda035bcf5a57a2cb894597092c3f33944e98c994b001a0cbdf2ef06faa30"
+    },
+    {
+      "path": "crates/hl-primitives/src/signature.rs",
+      "sha256": "2c3dee64a5c3fb82eb4cc98f527334cf1730ea3655c3272211b4a2488a620273"
+    },
+    {
+      "path": "crates/hl-primitives/src/state.rs",
+      "sha256": "a949518d9f4ea1a4efc38de0bc2938f79053d261f984e74b43f12a50c3ce28c6"
+    },
+    {
+      "path": "crates/hl-primitives/src/user_abstraction.rs",
+      "sha256": "9869c9d0d4e12da023cc0c975bbb5782cd884be2e2a2047be1f42f2c4dcafa28"
+    },
+    {
+      "path": "crates/hl-primitives/src/validator.rs",
+      "sha256": "518b4eb45b2adf797df6db4c27f90fb2fd407c43003a959327aa2ba1c9cf0ffc"
+    },
+    {
+      "path": "crates/hl-consensus/examples/counter_vote_byteconfirm.rs",
+      "sha256": "5f94fd40eba002d3a44f17b4fff2c9aa600747f3c8747502244b57515ad49d08"
+    },
+    {
+      "path": "crates/hl-consensus/examples/counter_vote_dry_run.rs",
+      "sha256": "8e598966110db864a9162f1a198a0f84b4957000446d58c32f972cc946c57903"
+    },
+    {
+      "path": "crates/hl-consensus/src/bft.rs",
+      "sha256": "7b3ddf56ef6ee36c86b394d398ee5e14998e966ad98ab3f97924500c00de5da0"
+    },
+    {
+      "path": "crates/hl-consensus/src/block_applier.rs",
+      "sha256": "00cb10b044afbdcd08df9ffce671c47ed5f95cdbf6ea575d0df697c3079b6603"
+    },
+    {
+      "path": "crates/hl-consensus/src/block_codec.rs",
+      "sha256": "d37ef21633b477be4c9146c15ff682447b4ce5d7b505e596517dd6fee87ae804"
+    },
+    {
+      "path": "crates/hl-consensus/src/block_store.rs",
+      "sha256": "cef4b6b0db326aa8d4132464b149da70dbd80f7f828def034ac9d036f542737c"
+    },
+    {
+      "path": "crates/hl-consensus/src/counter_vote.rs",
+      "sha256": "a72d00d8000b365cd353fc89cc2ebaf230fb82eec4c40c28e52f7d974e552b2e"
+    },
+    {
+      "path": "crates/hl-consensus/src/epoch.rs",
+      "sha256": "696604f840082d85b85b83c8b4c9c99a17a060a122e49e56b949f87ffde445e7"
+    },
+    {
+      "path": "crates/hl-consensus/src/gossip_bridge.rs",
+      "sha256": "899afc35c87c648d63795a7b4691fc275fc02867a711cdb4e31fdc104894b4bc"
+    },
+    {
+      "path": "crates/hl-consensus/src/heartbeat_emit.rs",
+      "sha256": "7a5002081b08d6966f258a93ce3edfab2f95561641763ba7f8bf48aeab1346fa"
+    },
+    {
+      "path": "crates/hl-consensus/src/leader_state.rs",
+      "sha256": "eeead50392b716020209c3157ece56f769d5f58a63066382c9002a9d7b6ad786"
+    },
+    {
+      "path": "crates/hl-consensus/src/lib.rs",
+      "sha256": "738269b39b7be94c715183315c3e2794ca6788e06bec6398ec022a3247a69e93"
+    },
+    {
+      "path": "crates/hl-consensus/src/mempool.rs",
+      "sha256": "c3eaa56cb820d879fb5bb7caebed028cc4f5bf726a7c142d67797216ab93b41a"
+    },
+    {
+      "path": "crates/hl-consensus/src/native_leader.rs",
+      "sha256": "30c95caef24a1cf7615ea4c6ee9dddf4c310459d8ea84b687f50cb2014cd451d"
+    },
+    {
+      "path": "crates/hl-consensus/src/proposer.rs",
+      "sha256": "91be94344a6312b46db3b31dcb28fbecdc6809dfea8b3e77ccb76c16423c5e5c"
+    },
+    {
+      "path": "crates/hl-consensus/src/recovery.rs",
+      "sha256": "3c26aef3df411953153c5be03516372523b583ae822f4e5784fb96d9cd552c51"
+    },
+    {
+      "path": "crates/hl-consensus/src/round_driver.rs",
+      "sha256": "9e1a10d8f30a57c853423e845565bd6e4c54af6c4179c3b1e9b646cd5a000c00"
+    },
+    {
+      "path": "crates/hl-consensus/src/runtime.rs",
+      "sha256": "cf18db862a8e02e34532da570797c46b03f5badc6ed00d94763c83ac35c49d71"
+    },
+    {
+      "path": "crates/hl-consensus/src/signer.rs",
+      "sha256": "d0e3b602549ba274155fb61f60df384237b22d16f9e81057decad4d99bf6c934"
+    },
+    {
+      "path": "crates/hl-consensus/src/signer_service.rs",
+      "sha256": "45dd9f485e00dc211f2b0da727fd69621bad3ceaf425a241375ffef9d755c46a"
+    },
+    {
+      "path": "crates/hl-consensus/src/staking_inputs.rs",
+      "sha256": "12740fd0db2685eb56029f961f232ff131c3e3868d3160322a4fe6d74caa069b"
+    },
+    {
+      "path": "crates/hl-consensus/src/test_support.rs",
+      "sha256": "4bb63747da7aa95dc843054957b5d3a3bf60bf1b59fc8fdc94d1861069d1c669"
+    },
+    {
+      "path": "crates/hl-consensus/src/timeout_handler.rs",
+      "sha256": "fa05157fbb0bbc501a31216220369168d9cfe472c373b976b056bae0c0909431"
+    },
+    {
+      "path": "crates/hl-consensus/src/unjail.rs",
+      "sha256": "fe752bfef2b749137f399caba2b4530dca9976de4d7bd4b2f78830ff243860c7"
+    },
+    {
+      "path": "crates/hl-consensus/src/validation.rs",
+      "sha256": "6c6c4a535824b53ef7a472e7509f607142018ccfe057824bd7c39b001d53a460"
+    },
+    {
+      "path": "crates/hl-consensus/src/validator_service.rs",
+      "sha256": "18994c6bca1a46e023891949ef9850abf188640e0e17d4dd624d6ea7bd72cce3"
+    },
+    {
+      "path": "crates/hl-consensus/src/validator_set_sync.rs",
+      "sha256": "79a45242cdef7db1cb860eb3bf82975ce769937ca8f4ec06c40883b1237eacef"
+    },
+    {
+      "path": "crates/hl-consensus/src/wal.rs",
+      "sha256": "c3c550a10c7eda73d766c09661b4b57fb9cccf7ca4770966a41db5ab8d0b35ef"
+    },
+    {
+      "path": "crates/hl-consensus/tests/block_hash_ground_truth_1219.rs",
+      "sha256": "22ecfb1d5767051f6659c46fce16da52baecafd60d0afc581fc1369573fbb09e"
+    },
+    {
+      "path": "crates/hl-consensus/tests/certificate_startup_fraction.rs",
+      "sha256": "b99dba147b23883f834dab5960e0bf6b201924d3061081e602d098049f2ddb8d"
+    },
+    {
+      "path": "crates/hl-consensus/tests/client_block_round_links.rs",
+      "sha256": "88f3b60aa74ba17e9413453007aeeba4955a773a8425e62b1799087a38aeb531"
+    },
+    {
+      "path": "crates/hl-consensus/tests/consensus_rpc_native.rs",
+      "sha256": "68c873da7b68cbe04976bc223caadc532041b6fd363719ebbebd2e08c5d423ab"
+    },
+    {
+      "path": "crates/hl-consensus/tests/heartbeat_content_native.rs",
+      "sha256": "f07d6e6dfa454d0328348cf5e40d8b14bddc06f4a139cdf47f6710b6c55d431b"
+    },
+    {
+      "path": "crates/hl-consensus/tests/hf1525_vote_context.rs",
+      "sha256": "7d000ab8eeaa5918adab60827d5923ef4dc5cc0f55691f31571a049a05993c6a"
+    },
+    {
+      "path": "crates/hl-consensus/tests/leader_hard_set.rs",
+      "sha256": "9537a83423106f89c8729fe01d255faf46ee4c9afc4b1a2de2e0c9719ca687a1"
+    },
+    {
+      "path": "crates/hl-consensus/tests/leader_selection_ground_truth.rs",
+      "sha256": "6a463046a8776e606dafc9f6b5e9b96f3672bbf7d8929ee74f495f95ced0e0de"
+    },
+    {
+      "path": "crates/hl-consensus/tests/leader_state_ground_truth.rs",
+      "sha256": "f64b0fe635148181eafbee286759acede4143d1141307be71863c85b789e573a"
+    },
+    {
+      "path": "crates/hl-consensus/tests/own_slot_native_state.rs",
+      "sha256": "c13423c4dfbb94355af41da4d8a3002317fa4f540924b870cf68a1eeca4079f0"
+    },
+    {
+      "path": "crates/hl-consensus/tests/proposer_ring_order_ground_truth.rs",
+      "sha256": "759e0ef88fced5c1b7b55227158f24a8769f34bc3ba751c203c0b4828b4c3281"
+    },
+    {
+      "path": "crates/hl-consensus/tests/qc_admission.rs",
+      "sha256": "8af9b591f86a673a4b111cb7319f5134548d1a22d13b023e09ccde93e21ef3dc"
+    },
+    {
+      "path": "crates/hl-consensus/tests/qc_verify_hf1379.rs",
+      "sha256": "7064aadf8f502dcc08af910490513ab10fd4da7fc03214eb56412b1272dfd8c0"
+    },
+    {
+      "path": "crates/hl-consensus/tests/qc_wire_layout_1068.rs",
+      "sha256": "ba609cd1436c98bf0a0a8be78007fae29463781a99a1d704d04451bff620060d"
+    },
+    {
+      "path": "crates/hl-consensus/tests/ring_descending_advance_ground_truth.rs",
+      "sha256": "002359aa666215fa97ebdf07f6dbd6302810be96921b4a39558ef41516933e32"
+    },
+    {
+      "path": "crates/hl-consensus/tests/safety_invariants.rs",
+      "sha256": "f8d5fd05713fc7194af5c4a56db37cace47ff226c211c1cc379b2ac705d1b38b"
+    },
+    {
+      "path": "crates/hl-consensus/tests/signable_content_ground_truth.rs",
+      "sha256": "af6b2dc823986fb290ff517e69dc98d379d048688bc736ae29e6246275e7482d"
+    },
+    {
+      "path": "crates/hl-consensus/tests/validator_formats_1098.rs",
+      "sha256": "3d500f2771beda76ccf1010bd8c1c375f3bd721c4fd6ba2f4b5ddd52da2cb97f"
+    },
+    {
+      "path": "crates/hl-storage/src/lib.rs",
+      "sha256": "007d776919b61349f40e73999e281def97a3725b026fda84b50db1a69d263977"
+    },
+    {
+      "path": "crates/hl-storage/src/s3_ingest.rs",
+      "sha256": "f2779195b493cb09512d22f39222d537c2fc1abfb55f8fa940a5f032ea56b82b"
+    },
+    {
+      "path": "crates/hl-storage/src/state_reader.rs",
+      "sha256": "45c3e4a808290516cc5a2b6e72d663b7dd72e53ccfe0b7dafe23c0db429d40a7"
+    },
+    {
+      "path": "crates/hl-storage/src/traits.rs",
+      "sha256": "90e795a74e844c7b67fb3db4fa073aff70f084461e32e57bf914a14d09835671"
+    },
+    {
+      "path": "crates/hl-network/examples/block_hash_bundle_verify.rs",
+      "sha256": "4e228a7d9bf545de02812891f557beabbba636cacefbea8cadf553a6401a9ed1"
+    },
+    {
+      "path": "crates/hl-network/examples/block_hash_diff.rs",
+      "sha256": "5b65ece669f7a59c4f9cc89f7bdc5ec8c41e509f8a75f96f880b0353b31f4f5d"
+    },
+    {
+      "path": "crates/hl-network/examples/check_lz4_dict.rs",
+      "sha256": "0fd684ae2c6e8816844a76ad3634af20557df45d51c8d1912aad0b7393a8cb79"
+    },
+    {
+      "path": "crates/hl-network/examples/decode_abci_lz4_frames.rs",
+      "sha256": "65a42b6695f4b48aee68af46b793145b10014dd0299a3ecd9b23df0711190cc5"
+    },
+    {
+      "path": "crates/hl-network/examples/decode_wire_vs_disk_diff.rs",
+      "sha256": "0c5f71026eb01dcee2f97d888eacd2d6dce066955c237619c8b32fbc31beb30e"
+    },
+    {
+      "path": "crates/hl-network/examples/dump_lz4_plain_prefix.rs",
+      "sha256": "5acdd0317f23e18108742919d908ccdb7a6d52ffb6ddb869e1b589a891b203a2"
+    },
+    {
+      "path": "crates/hl-network/examples/lz4_with_prefix_capture_decode.rs",
+      "sha256": "fb9e977d5d183fe836563be6d3d4fed3caa41c05238ad535e9e8cb1b4f74d57f"
+    },
+    {
+      "path": "crates/hl-network/examples/offline_wire_codec_diff.rs",
+      "sha256": "d382d7128b5d5c21de9ce2c5c2d6eec804c4b59adb3463d05b8b4760b42da2aa"
+    },
+    {
+      "path": "crates/hl-network/examples/resolve_25_opcode.rs",
+      "sha256": "41f7a8e00dcdacdbe650a21abc028436845af798a2cf6277d020442c6f29b596"
+    },
+    {
+      "path": "crates/hl-network/src/abci_block_stream.rs",
+      "sha256": "cf5dfa95b40f1b8eda59305409e15a3603a1c064795ed96169762bc2c5dac9d6"
+    },
+    {
+      "path": "crates/hl-network/src/abci_bootstrap.rs",
+      "sha256": "452ff2d7ee4881c93f8ac0a99c83adaa511b1bd34b9bbd1d66df36275d7fd63a"
+    },
+    {
+      "path": "crates/hl-network/src/abci_state.rs",
+      "sha256": "edd914978aa620b4136366cfb3f735a89048b4b2f2c06c74e8797d3c4075315a"
+    },
+    {
+      "path": "crates/hl-network/src/abci_wire.rs",
+      "sha256": "5e3eefb7ca3a9fda4c7f3b6bfe814d6f37603417e9a02783b1ff9c0afd36f861"
+    },
+    {
+      "path": "crates/hl-network/src/abci_wire_encoder.rs",
+      "sha256": "57bbef05bf1edb7f97884b4bfa6db5adab5a77cbeb7713580add28b923125216"
+    },
+    {
+      "path": "crates/hl-network/src/absorb.rs",
+      "sha256": "28161256f66911da80caae1f1a07fcf094b1b48925f395812d87b4fe8d785666"
+    },
+    {
+      "path": "crates/hl-network/src/client.rs",
+      "sha256": "0d4c3deb7cad02691c575ae06091951d4cdf755604a96d0a61fe4810ec0b42b3"
+    },
+    {
+      "path": "crates/hl-network/src/concise.rs",
+      "sha256": "0dbeff14c1116da2a53e564fe19c8f38ffc85071f050995f0cebd4399cc6bccd"
+    },
+    {
+      "path": "crates/hl-network/src/concise_inner.rs",
+      "sha256": "0e87e19176645ee7f6eb0534d61d74432ebfcdeeffe233810e5122b6aae0f821"
+    },
+    {
+      "path": "crates/hl-network/src/concise_wire.rs",
+      "sha256": "38faa8a82c1ebbd98370f37869eff108eaf1533e8ee568bed217979a7712cc44"
+    },
+    {
+      "path": "crates/hl-network/src/connection.rs",
+      "sha256": "5e5d94a454fa5fb2eb220451a826e44803aa395110a08d9aef4cbf2732063d02"
+    },
+    {
+      "path": "crates/hl-network/src/consensus_rpc.rs",
+      "sha256": "e800bc0f05454ea0e9a4ace28cfb5bc170f7eec28ea3b6570d3a1240c9da6ddb"
+    },
+    {
+      "path": "crates/hl-network/src/consensus_rpc_cache.rs",
+      "sha256": "0bcd2f25dc11b2d31f77f971851ae343c3aa8b7e6696d2465782e61b6ed21b2f"
+    },
+    {
+      "path": "crates/hl-network/src/discovery.rs",
+      "sha256": "437fddee50975a0f51fdd422f30d5c05bc1c9c72900350bbdf231409077ee001"
+    },
+    {
+      "path": "crates/hl-network/src/envelope.rs",
+      "sha256": "c452fea0c5794d42940b32d3e775649d725fc58e87c0a2eef21513d188e49814"
+    },
+    {
+      "path": "crates/hl-network/src/gossip/h2.rs",
+      "sha256": "87c87242295202d42a0b6eb6b68e386ce2b0125f3ab7de47fd9daf7b2eb64d55"
+    },
+    {
+      "path": "crates/hl-network/src/gossip/mod.rs",
+      "sha256": "330ef235efc19878eeb4e0ae1898007e52731555caffe4707ffa3bf3f31e6f86"
+    },
+    {
+      "path": "crates/hl-network/src/gossip_config.rs",
+      "sha256": "0e8866a79c37353be43e898cb5c5f0e73aeb55b99e2105400f684055ce3f9300"
+    },
+    {
+      "path": "crates/hl-network/src/gossip_rpc.rs",
+      "sha256": "c87395f28cc56a85e1a1f8a76a465fe99354ad12e431354bba4cd9196cdfb1d1"
+    },
+    {
+      "path": "crates/hl-network/src/heartbeat.rs",
+      "sha256": "e3c2a26b29bc4e11d35e275390478440dc5186fb613f758aabe811c6d1ba4561"
+    },
+    {
+      "path": "crates/hl-network/src/lib.rs",
+      "sha256": "025945ed5c0612d118f4f11cec0a6ed0df30443c15aba79f348e11672f66f8f8"
+    },
+    {
+      "path": "crates/hl-network/src/mempool_relay.rs",
+      "sha256": "56b77039f9c910a9009c17ff829cf9148a0451bc036056b023692cdcce3595c1"
+    },
+    {
+      "path": "crates/hl-network/src/message.rs",
+      "sha256": "e3aea663bffce95ddcf4adb7d30b2a0586c6735366404c82fc9abfb3a1198953"
+    },
+    {
+      "path": "crates/hl-network/src/msg_concise_encoder.rs",
+      "sha256": "5c0e4fa947a7e93e99c2ca6f3791be266abb58f4cb536bef0bf17be1eb819c0e"
+    },
+    {
+      "path": "crates/hl-network/src/observer_session.rs",
+      "sha256": "ad2a33d37dc42dffc1571203ea16389d2b0e109ff52f46d06189dcb2a0ca88f1"
+    },
+    {
+      "path": "crates/hl-network/src/peer.rs",
+      "sha256": "fb8aab7506da7694f19230da981e11ef8607e7d5106c81173a0501fab12d0d2d"
+    },
+    {
+      "path": "crates/hl-network/src/state_peers.rs",
+      "sha256": "f05467a03831e9cdd6cacfbfb54843f34383ad45e6cf2523aba7aac13a760a6e"
+    },
+    {
+      "path": "crates/hl-network/src/state_stream.rs",
+      "sha256": "5874a1bc12a45980e2628a8a58c1145b8912c9de63dffdbf066359f96884aa06"
+    },
+    {
+      "path": "crates/hl-network/src/transport.rs",
+      "sha256": "b8ecd438f81993734ae2a8042cf59edd9e0f89a47eed4e9877a0ae0c8c144e0f"
+    },
+    {
+      "path": "crates/hl-network/src/types.rs",
+      "sha256": "41b5820d0fbceb0af2ab263e594daa203849fb9fa0d5882fed33438a63defadb"
+    },
+    {
+      "path": "crates/hl-network/src/vote_frame.rs",
+      "sha256": "746d32ce6695ce9b6e9e3d687c747563cb89904c466096dbb477e6eda4a3b1e9"
+    },
+    {
+      "path": "crates/hl-network/src/wire.rs",
+      "sha256": "98ae2d495f1514a82eed8a0bad93d8c3a889415511febdce4a1c64fa4fbd4e42"
+    },
+    {
+      "path": "crates/hl-network/tests/abci_block_roundtrip_4001.rs",
+      "sha256": "b753cbf65e34e4d8e6793273e6a96b9ccb059a09074c1599b4d587a1612628ba"
+    },
+    {
+      "path": "crates/hl-network/tests/abci_bootstrap_roundtrip.rs",
+      "sha256": "ff7f18f1505445dbd2fb838eb6e891e026cacf7009e05bedf078fb77d6581a51"
+    },
+    {
+      "path": "crates/hl-network/tests/absorb_corpus.rs",
+      "sha256": "bcc8d54d329a26f0c653cbcdc84b7f5ab8fef9eaf7ff634edfbbe16ab0236446"
+    },
+    {
+      "path": "crates/hl-network/tests/absorb_official_order_vector.rs",
+      "sha256": "43c1a24fed25292cb56c36ff0d2fbfb4e82fef3479f780df0b3e49b7abb98aad"
+    },
+    {
+      "path": "crates/hl-network/tests/absorb_official_vector.rs",
+      "sha256": "027627ea36cd8a02044b19a1905c89cc2bfe4cd4bfa740992ce952361e04aab1"
+    },
+    {
+      "path": "crates/hl-network/tests/client_block_round_links.rs",
+      "sha256": "a9a3762c7b75341b7298bc1eb3315676492c305d5b90226fc0f3160d3384ceef"
+    },
+    {
+      "path": "crates/hl-network/tests/consensus_rpc_wire.rs",
+      "sha256": "86e9c6b0e4d362eea3ab00398d1478b6efbc6f4649a7701ca8c99819b6aec87a"
+    },
+    {
+      "path": "crates/hl-network/tests/envelope_decoder.rs",
+      "sha256": "a7c0564aa92987488176697f6d6c1cf1a09c97191c15d2a694e110204308a380"
+    },
+    {
+      "path": "crates/hl-network/tests/msg_concise_encoder.rs",
+      "sha256": "b9e5f606054e71d3c1b7d508ca8b4a763c2b31b350d688346fc683c81ec76b77"
+    },
+    {
+      "path": "crates/hl-network/tests/msg_concise_wire_scale.rs",
+      "sha256": "60f3ade0d3419a33cef8a2960229d2243e080fef28987c8bb791f1bd2c1f3782"
+    },
+    {
+      "path": "crates/hl-stages/src/action_validation.rs",
+      "sha256": "925958f28a31153fb23bfb6bfdb238379833076df9f1d7cd371444576bb864e1"
+    },
+    {
+      "path": "crates/hl-stages/src/app_hash_cache.rs",
+      "sha256": "206daafd27c54f3ec280494ff298dc3ef7a4c578b4cbb1dd29f1a8492eb4902c"
+    },
+    {
+      "path": "crates/hl-stages/src/execution.rs",
+      "sha256": "da29338cef0b742da59c9f684987c5af613d46fb22f9b23e1f70f9ce99d7e405"
+    },
+    {
+      "path": "crates/hl-stages/src/hash_verification.rs",
+      "sha256": "aaea33344b593de82955cdae7b0a60745e51a4e407bab72327d46d74e339c05c"
+    },
+    {
+      "path": "crates/hl-stages/src/header_validation.rs",
+      "sha256": "e9a3bdeefab25a565a2f7c1e28c7be0845824384bf36bd15ab84634a24eb572c"
+    },
+    {
+      "path": "crates/hl-stages/src/lib.rs",
+      "sha256": "1d5df09db2f6e8e6a7d9de4ef7a379c94e1c6b243b9881c9c9d643dabc0f0c70"
+    },
+    {
+      "path": "crates/hl-stages/src/pipeline.rs",
+      "sha256": "b693b4bcdf26b81993d32cf2f1221b31313f4109b753d8a9c39255b66b254030"
+    },
+    {
+      "path": "crates/hl-stages/src/stage.rs",
+      "sha256": "a423c8cf35000c52b018de6342d0a6cec1f671b26830d2772e8a69a73cbffc12"
+    },
+    {
+      "path": "crates/hl-stages/src/stages.rs",
+      "sha256": "d643648eb8f3a1070c6b6c3fa12ddc0b444f875144fca14e5c6f359d4b7e3f8e"
+    },
+    {
+      "path": "crates/hl-stages/src/state_write.rs",
+      "sha256": "0aee9b5567bcc26f2a52badb8b2a6e24c2a73be98ca30d489b48c9336c42ed53"
+    },
+    {
+      "path": "crates/hl-stages/src/sync.rs",
+      "sha256": "36ff454458abd3c9089f772aecad7cada2f401201c5f0ec9fae5fc11ff5c5e04"
+    },
+    {
+      "path": "crates/hl-exex/src/lib.rs",
+      "sha256": "579c5970edd0c09c0b3a69f645476bc35d8a3c09b6b5b0d90f22a56591290eda"
+    },
+    {
+      "path": "crates/hl-rpc/src/handler.rs",
+      "sha256": "d52b6c8d00b8ebf0c64ac4fd95f202c8f7d902ae286ccb6b81907230280ad165"
+    },
+    {
+      "path": "crates/hl-rpc/src/info.rs",
+      "sha256": "b1ca912c1e5d10f72e5ae061eabf28ada50d7ae9176b9a050c732daedcbfb585"
+    },
+    {
+      "path": "crates/hl-rpc/src/lib.rs",
+      "sha256": "33136b4b557f7fbdc8cd4916c8aab1143223914a22b01ed268f161d3c2d3bc9a"
+    },
+    {
+      "path": "crates/hl-rpc/src/server.rs",
+      "sha256": "e1498a00a9b69ef03ae70b7ac2b0c3b969b5fcc7652fa389adc4e64bf549ca06"
+    },
+    {
+      "path": "crates/hl-rpc/tests/info_endpoint_shapes.rs",
+      "sha256": "03abf8e0687d0712f43b3f393bcae275bde974426139c9f15b7b9cfebb5aab11"
+    },
+    {
+      "path": "crates/hl-observability/src/lib.rs",
+      "sha256": "01b04729459418f1d43fdbb5315c728cf2df38074d2ac1cbda3a64818f67fada"
+    },
+    {
+      "path": "crates/hl-re/src/actions.rs",
+      "sha256": "427e82bb7c9c6f8dda50f8ef5b3b450f291234f3407579df669f40398c9d577d"
+    },
+    {
+      "path": "crates/hl-re/src/anchors.rs",
+      "sha256": "8411489080b2a3d7533f4375126a8f4d6c0f139ed206fe8b13b51e8fe6c9df39"
+    },
+    {
+      "path": "crates/hl-re/src/corpus.rs",
+      "sha256": "b8fafff030402abf691212c61614785f7bd4f7d33b8398f2b5a994ff0fea6e44"
+    },
+    {
+      "path": "crates/hl-re/src/coverage.rs",
+      "sha256": "727b8e407a269c5ef9864cbd86b8089b939021c33998a74f4c41d6295825c05b"
+    },
+    {
+      "path": "crates/hl-re/src/diff.rs",
+      "sha256": "5d503044b52feafa274a8fb17c7ed70d839544f98213cd46b3cb9b9a2aff9ae4"
+    },
+    {
+      "path": "crates/hl-re/src/elf.rs",
+      "sha256": "d1ff56bee5249ba0d6c5c1254b0c5a19bcad31f13523a50ef9b9e1d354d44eb2"
+    },
+    {
+      "path": "crates/hl-re/src/findings/block_building.rs",
+      "sha256": "9e9455b3ae0a0ae5ee6c3631651466b49415e9a683c9f00786b1e356889ee0e5"
+    },
+    {
+      "path": "crates/hl-re/src/findings/evm_core.rs",
+      "sha256": "ddeab1ea2efea8794e45da551d6f1e74d9ccc33f2fb52c65aa3d579248681a55"
+    },
+    {
+      "path": "crates/hl-re/src/findings/mod.rs",
+      "sha256": "816ce515895a7987346e9088ab64735801b08a894002a148398edaf7911cf591"
+    },
+    {
+      "path": "crates/hl-re/src/findings/outcomes.rs",
+      "sha256": "49a16d55e309b0211ed07a3860e28b8fc3823d76a95d2672ee30567486c4ee59"
+    },
+    {
+      "path": "crates/hl-re/src/findings/rpc_backfill.rs",
+      "sha256": "dadaf7db8eb772464fce180acbe56eb8f286a84ba7fa616015ba9f83e9dcfbba"
+    },
+    {
+      "path": "crates/hl-re/src/lib.rs",
+      "sha256": "f6624c9bce427c4161371830e2105142d869221567f075b37c2dd66fa09186b2"
+    },
+    {
+      "path": "crates/hl-re/src/main.rs",
+      "sha256": "0ab8dcff855f6c7f993687ea60aead39c1567890b12e867ab2923fc2cae606bc"
+    },
+    {
+      "path": "crates/hl-re/src/onboard.rs",
+      "sha256": "f245a8b0cdb3e154bf68d97561b790f37784072f9f0500a69cbad6ad906abd4a"
+    },
+    {
+      "path": "crates/hl-re/src/runtime_logs.rs",
+      "sha256": "9d1d8ab68093818001d6026a874a57268498a755f2e3067a2a60dbe10932c5bd"
+    },
+    {
+      "path": "crates/hl-re/src/slot_diff.rs",
+      "sha256": "2808a4815ad9bbde6fef7ecca9f1c0c96b7d6b58ce26c8c49b97c0bcf364e899"
+    },
+    {
+      "path": "crates/hl-re/src/strings.rs",
+      "sha256": "458b2d2a906bd66cdecd0f44d9e26aaf4ed18d3eea8304925a085b06198f3d13"
+    },
+    {
+      "path": "crates/hl-re/tests/slot_diff_json.rs",
+      "sha256": "6a7ac1eb0f22a929b637cd446642c11d45d4814ffab88d84d61347bbafd7cba5"
+    },
+    {
+      "path": "crates/hl-gossip/src/assets.rs",
+      "sha256": "86b9c598f1fa9a3a7bc514dca698dcc65f451a4b904d7606105f465184c8a1c9"
+    },
+    {
+      "path": "crates/hl-gossip/src/decode.rs",
+      "sha256": "6639bfdf78cc53a76845e42ed5cfacda17a3bd17a10ebc4d93588fdc035a8516"
+    },
+    {
+      "path": "crates/hl-gossip/src/main.rs",
+      "sha256": "ff8e0c33de6a7b568df7e21694a6bf44902e23cba64787d0b6249f919617e654"
+    },
+    {
+      "path": "crates/hl-gossip/src/orderbook.rs",
+      "sha256": "625b5a839cf25082e4a84e86c5c8d6bf49a0a860678f586d99e42fa56a8c9646"
+    },
+    {
+      "path": "crates/hl-gossip/tests/oracle_connection_state_machine.rs",
+      "sha256": "a7e3e96c4bfbf67ab839e33b9bc9b700d15cc0c15d2d9c9731580dcfcb906394"
+    },
+    {
+      "path": "crates/hl-engine/examples/action_field_order_audit.rs",
+      "sha256": "42d44fb0b8af61a408468d3a9078d44de018bf5d790794052c0cb50eec1b212d"
+    },
+    {
+      "path": "crates/hl-engine/examples/bench_bootstrap.rs",
+      "sha256": "5e689a17a549f21f97d7a4f5b47ddca56258139988147ac07e7bb6ac8969e77b"
+    },
+    {
+      "path": "crates/hl-engine/examples/bench_locus_index.rs",
+      "sha256": "1faba752ccd2f8ecd6c601cc5cf0f6c55ee99e90d172965dbe48594dbf0c85cf"
+    },
+    {
+      "path": "crates/hl-engine/examples/check_4_blocks.rs",
+      "sha256": "f0d0e00ce27e94cd2c504f9bab8a6d52522dbf4d1b63b7512392ffca40899f71"
+    },
+    {
+      "path": "crates/hl-engine/examples/check_noop_block.rs",
+      "sha256": "e1c009cd6f72a3532d2bc57dd3ec4f1f8a9df3af3b1eca8fede9cee1a54a61fd"
+    },
+    {
+      "path": "crates/hl-engine/examples/check_oid_in_book.rs",
+      "sha256": "0df0233b7250d9efbc25c1140bd720ac4a4f9927889cb8f4d63f2bd5674d9982"
+    },
+    {
+      "path": "crates/hl-engine/examples/check_snapshot.rs",
+      "sha256": "fdf9773bb865beb31423679f6a441a181cea8488544ec863130c40658221bb64"
+    },
+    {
+      "path": "crates/hl-engine/examples/check_snapshot2.rs",
+      "sha256": "ef82cd3239e1c469d00a567f173c160d47b6c4493ccec65d6434b65bf245179d"
+    },
+    {
+      "path": "crates/hl-engine/examples/compare_block10_hash.rs",
+      "sha256": "104afa8bfb65bf09fdc04f153ff1b2d49ff2087a87644a89e43ad920a755a1f7"
+    },
+    {
+      "path": "crates/hl-engine/examples/compare_resp_window.rs",
+      "sha256": "b2a4905d758323679960959aa9fd788dc9f7fee9708c1c69d8152dfe0fedfcdb"
+    },
+    {
+      "path": "crates/hl-engine/examples/debug_noop_block.rs",
+      "sha256": "9db3d47d9fdc1929c114b75c8c9fe7bb32483535ad8112cb2c14fb81541455ac"
+    },
+    {
+      "path": "crates/hl-engine/examples/decode_block10.rs",
+      "sha256": "2c93e62af340b83eb82b73a4f2100bf3cbda4fadf1a6417444648c552e1667ca"
+    },
+    {
+      "path": "crates/hl-engine/examples/decode_block5_resp.rs",
+      "sha256": "24b264179569e97e2ee333a198e66ad245ed8df6fbe0e541b1bba5e036eafeff"
+    },
+    {
+      "path": "crates/hl-engine/examples/dump_asset132_book.rs",
+      "sha256": "b83a6de9aaba07c64123095382d5c55d52f66281659f3600e1cdeff5180452e4"
+    },
+    {
+      "path": "crates/hl-engine/examples/dump_block10.rs",
+      "sha256": "bca9670b8ac61dcf82cf9627db0ad3eef682fca5afc6d5bb35d5c996a413185f"
+    },
+    {
+      "path": "crates/hl-engine/examples/dump_raw_book_order.rs",
+      "sha256": "dfc1d24858c0969034bf1f8d282fe5c8572be044e877d491d3c693ef68f2dd13"
+    },
+    {
+      "path": "crates/hl-engine/examples/dump_resp_bytes.rs",
+      "sha256": "52b10bcbf1795d114111d2c9f01f7b448051c7ac46c50d0185812150f0fb7c6f"
+    },
+    {
+      "path": "crates/hl-engine/examples/dump_testnet_block10_msgpack.rs",
+      "sha256": "8d24bd0ba724f0d32a78629c0362a2fab743406d1bc90548da5e370f19ab7c5d"
+    },
+    {
+      "path": "crates/hl-engine/examples/l1_hash_bench.rs",
+      "sha256": "95a0655c2deda314172ac159c63df3f32a3b833ac9733e86c2fe185a7283346a"
+    },
+    {
+      "path": "crates/hl-engine/examples/noop_response_detail.rs",
+      "sha256": "8542b27ec7b9e55acbb737e3ce45f606758f4558210e1c731f77285b2e6cb903"
+    },
+    {
+      "path": "crates/hl-engine/examples/perp_deploy_envelope_sweep.rs",
+      "sha256": "094713a1dc811b145a0ebd9f1a60c95cd919b8eb164f5c13b4aea784bd7f450b"
+    },
+    {
+      "path": "crates/hl-engine/examples/test_bucket_order.rs",
+      "sha256": "4b5ed3b254aa7a48ab284ccc01e4c807bad782cae3302224d2ca12a60593b5f2"
+    },
+    {
+      "path": "crates/hl-engine/examples/test_hash_window.rs",
+      "sha256": "a9c828a36ee3bad17ea0b609c857749aef85f2968fbcc5b233b79e96f7fd3443"
+    },
+    {
+      "path": "crates/hl-engine/examples/test_mainnet_hash.rs",
+      "sha256": "9c9244f730cad79b458fa3aacd6028fdf14aebe0499a34f547e049154847a4ee"
+    },
+    {
+      "path": "crates/hl-engine/examples/test_noop_hash.rs",
+      "sha256": "0995908a97d75f0dc7dcbc403c0a73f521f117a696ab5355e03f87b56500d70d"
+    },
+    {
+      "path": "crates/hl-engine/examples/test_noop_recovery.rs",
+      "sha256": "f359e45e5c5e6d4f55be20d4d7b0aea780222ef62010dc27eae7781e634e48c4"
+    },
+    {
+      "path": "crates/hl-engine/examples/test_rolling_hash.rs",
+      "sha256": "654b10275e6305a68cee49eb1d636cf1ebbff69264cdab32d6dc2340ce835c2f"
+    },
+    {
+      "path": "crates/hl-engine/examples/test_window_concat.rs",
+      "sha256": "9f406ae595b0d8c56e6cb0c7c76267ac95b6b5227d6e332473dcee44fd660cba"
+    },
+    {
+      "path": "crates/hl-engine/examples/trace_alo_book.rs",
+      "sha256": "8ebe97caaa7d93a06ce7f29b0bfbeecd154fba81ffbf1b1940d8cfe819075e49"
+    },
+    {
+      "path": "crates/hl-engine/examples/trace_first_hash_block.rs",
+      "sha256": "78635d3c06b7945ebf72d40c9b33f1d1bb78008e4676d4e2e89ef93920371db6"
+    },
+    {
+      "path": "crates/hl-engine/examples/trace_oid_drift.rs",
+      "sha256": "ad91fdca90e5e5c0c66a3fe86811e0c982ade530e526ec76f18cf2f81fdd5a6a"
+    },
+    {
+      "path": "crates/hl-engine/examples/trace_oid_sequence.rs",
+      "sha256": "0bf2219286dc3f1be8c51f2f477f52ae8fb140045a1802db3a0bb80a5854b4fd"
+    },
+    {
+      "path": "crates/hl-engine/examples/trace_oid_v2.rs",
+      "sha256": "a451039819088280b42b108f58c20392c4a99429216afca5933dfe9d6fde13a7"
+    },
+    {
+      "path": "crates/hl-engine/examples/trace_rejections.rs",
+      "sha256": "3bfc0b4029029a3bf8734fa0a8d54682af0d89cc2277eff5888e91033ae7c54e"
+    },
+    {
+      "path": "crates/hl-engine/src/abci_tree/mod.rs",
+      "sha256": "322ab1fb0f5cd6aec062631422798d4a2c66b397f4965e62c60001f0eca5fbe3"
+    },
+    {
+      "path": "crates/hl-engine/src/abci_tree/report.rs",
+      "sha256": "e384564fb26e6d9dd63d14a2fac86eaec11fe4ee1db675d80bd9f91b591c1a84"
+    },
+    {
+      "path": "crates/hl-engine/src/abci_tree/schema.rs",
+      "sha256": "c8ecf7a188483f40250ef9b30b5f8933897ff54e6428c77316001881553da4e7"
+    },
+    {
+      "path": "crates/hl-engine/src/abci_tree/sources.rs",
+      "sha256": "a11a5c16f493f3c39a74d5fd4189e275fd519e55cfc65b6a36e06f07221077b7"
+    },
+    {
+      "path": "crates/hl-engine/src/abci_tree/walk.rs",
+      "sha256": "ee933e5daf0049d10fb991da2e857883c318abbdb746e92ee2ff255da28744ee"
+    },
+    {
+      "path": "crates/hl-engine/src/abstraction_counters.rs",
+      "sha256": "5bda98918b4b6a710bee1ccabd58a4a5157a6e15b31af1f20dd5e96c47bae7c1"
+    },
+    {
+      "path": "crates/hl-engine/src/account_abstraction.rs",
+      "sha256": "bb469254ad850132277f6beddc16e42b804778e3c140352cd0dc8c815f5e9dae"
+    },
+    {
+      "path": "crates/hl-engine/src/account_pass.rs",
+      "sha256": "e5e3dae740a9b27e26618e2f78a5e34a212be0c59d032ef93c56eea822d99a55"
+    },
+    {
+      "path": "crates/hl-engine/src/account_volume.rs",
+      "sha256": "f1e2d076800e61c634b7363fff9b109bec206717af70d93deb84c14e4aed3c85"
+    },
+    {
+      "path": "crates/hl-engine/src/action_admission.rs",
+      "sha256": "0a663151ca3e8a17c030e3500e88ec483c34f4e67b238a26969046c90bddf330"
+    },
+    {
+      "path": "crates/hl-engine/src/action_apply.rs",
+      "sha256": "2b68372861c6489a73318ba582f5becae5a87b7bbe3d03dee7e6c0af5c98079b"
+    },
+    {
+      "path": "crates/hl-engine/src/action_apply_account.rs",
+      "sha256": "2b0bb8137e53643887307a7b06ff1796fef53e7e028b422f0a6918501a3d14d3"
+    },
+    {
+      "path": "crates/hl-engine/src/action_apply_bridge.rs",
+      "sha256": "b0c829f7f31c0498c74e41ec7330bd5f91c101cb971e309cc8d95dbc0c4b42e1"
+    },
+    {
+      "path": "crates/hl-engine/src/action_apply_deploy.rs",
+      "sha256": "296dd93a65ebfcd4bfeb7ba829f99b9b165b1e76f9f707720e5244331996b123"
+    },
+    {
+      "path": "crates/hl-engine/src/action_apply_evm.rs",
+      "sha256": "056b164a13141d778e88cefcf72a0d52374c63acd82428f8b9b68f4829e8bf7e"
+    },
+    {
+      "path": "crates/hl-engine/src/action_apply_margin.rs",
+      "sha256": "23c055e5cfb0c60e59dd695f25f7114135c2f107a699fa26a356909d69b5216f"
+    },
+    {
+      "path": "crates/hl-engine/src/action_bucketing.rs",
+      "sha256": "e78d9162f1944df36f97860944fd90f15365c1369c265face73ae769bc652b7c"
+    },
+    {
+      "path": "crates/hl-engine/src/actions.rs",
+      "sha256": "334f4ef60b6b16f57851f356415e03c332444bf840e803d162ebe1f3c8c791f8"
+    },
+    {
+      "path": "crates/hl-engine/src/agent_prune.rs",
+      "sha256": "2c4f5bceb3b29511ad1c4b44a7bd3eb886ce96dc154b87b1f18846fd42e6ed25"
+    },
+    {
+      "path": "crates/hl-engine/src/app_hash_guard.rs",
+      "sha256": "bcdc86de0b4521dbfd6537c690b47341696715aad244f961b97d6dece8efa332"
+    },
+    {
+      "path": "crates/hl-engine/src/backstop_events.rs",
+      "sha256": "47fb21b82ce4473b4c7fa77b13d83b2fa02cc6c41e84326e8040e5aa01d6a0dc"
+    },
+    {
+      "path": "crates/hl-engine/src/backstop_liquidation.rs",
+      "sha256": "888a52c11fc35bf5d591f61fc809cb3ccdeef920fefb428815fa5f6c6a111fed"
+    },
+    {
+      "path": "crates/hl-engine/src/bandaid_metrics.rs",
+      "sha256": "fc7eb843ccf2e5ebc61ca989df026f440e2e2208b086c178b78bc58f061966e5"
+    },
+    {
+      "path": "crates/hl-engine/src/bole_action.rs",
+      "sha256": "0cd3111cf1ebc3ad09b7d768b7409b14a2523ba359e45333ba904e76c6937d29"
+    },
+    {
+      "path": "crates/hl-engine/src/bole_admission.rs",
+      "sha256": "22c35c83c6ef829c9b1c569a45cef9799b57b84109fc49e297c9a9818cf574e8"
+    },
+    {
+      "path": "crates/hl-engine/src/bole_amount.rs",
+      "sha256": "d8b5d96c142abf80e34c5cfccf673c031765e0a1a82f38426b438c8bae7d7511"
+    },
+    {
+      "path": "crates/hl-engine/src/bole_candidate.rs",
+      "sha256": "bb01605e1a7dc68ce12810d5399da5a77399e4d9277a3e46edee26cad3508c2b"
+    },
+    {
+      "path": "crates/hl-engine/src/bole_orders.rs",
+      "sha256": "1784e9e411202c2935e8425b17c755b7ee02c296473c75f1247e7ca3e1a6c748"
+    },
+    {
+      "path": "crates/hl-engine/src/bole_reserve_oracle.rs",
+      "sha256": "c23c72dbf63cc78aef0e0d4ba0598aa3e26fe3b2fe3c800eb4223ea883de83ee"
+    },
+    {
+      "path": "crates/hl-engine/src/bole_shares.rs",
+      "sha256": "919927a0f8792226b85fad69277ce70831a20aedc5aee2ee771ff99249059eb2"
+    },
+    {
+      "path": "crates/hl-engine/src/bole_user_read.rs",
+      "sha256": "9077e1f3e819a149fe58fbe06f7db9b414ee74a2b3eb6ac8616ad426c0fa2c1b"
+    },
+    {
+      "path": "crates/hl-engine/src/bole_valuation.rs",
+      "sha256": "7814393c3d727c4613bcf391907ce19dd7d2ffcb3000f2865b991cf00b9ffd46"
+    },
+    {
+      "path": "crates/hl-engine/src/bole_withdrawal.rs",
+      "sha256": "3fbddb80b1a80948c635e8999b85fb0c8a20217ce75595bf6dd36aadd322d527"
+    },
+    {
+      "path": "crates/hl-engine/src/bole_withdrawal_budget.rs",
+      "sha256": "86bc13af9e5b1bbb0b150af01f8aeb2b5d7b27b940eca5e03a744f0b689d1256"
+    },
+    {
+      "path": "crates/hl-engine/src/book.rs",
+      "sha256": "34f36f2523661295cb1ae8f3df13b19b8b9b04b6e9b03bd3fdf61dee25138d48"
+    },
+    {
+      "path": "crates/hl-engine/src/book_priority.rs",
+      "sha256": "99eb92ea8dfaafe298068ff251579badde73416f31963d000c7dff5c51288b47"
+    },
+    {
+      "path": "crates/hl-engine/src/book_priority_tests.rs",
+      "sha256": "5ecb4b872f6f6d6b506462b7b53d07aa7db577444db3848f3478d2b2454eb0d9"
+    },
+    {
+      "path": "crates/hl-engine/src/book_walk.rs",
+      "sha256": "06fe45e28a9299d4a6306660adddaa88dffc93bf3d7f7ab6ac475949d603cd86"
+    },
+    {
+      "path": "crates/hl-engine/src/bootstrap.rs",
+      "sha256": "fec1b5953056290987f2788313de0b852dc74c08c5e9bf23599272af2aff2afa"
+    },
+    {
+      "path": "crates/hl-engine/src/bootstrap_fast.rs",
+      "sha256": "ad569eff11e7d14c9750f5f1037b7828e5f0d1adc8de040c0b28219bca6082bf"
+    },
+    {
+      "path": "crates/hl-engine/src/borrowed_liquidation_tests.rs",
+      "sha256": "e9a60a25ae63c529817d6e040970d5a6e65f090f5af044ddb0693c0363b7d9e9"
+    },
+    {
+      "path": "crates/hl-engine/src/bridge_deposit.rs",
+      "sha256": "3383ca82fd8cd87de2523739bf09df61a2ecd13da6d30b4e84469f4b01ee0ae0"
+    },
+    {
+      "path": "crates/hl-engine/src/bridge_prune.rs",
+      "sha256": "6f249fffc4533ace3551554a841c494d56ad86ef2d57d3326f85afcbe1790290"
+    },
+    {
+      "path": "crates/hl-engine/src/bridge_validator_set.rs",
+      "sha256": "c71460643d552f5c473d89004f981806a918201d7727776e028c9a1c49f8df87"
+    },
+    {
+      "path": "crates/hl-engine/src/bridge_vote_tracker.rs",
+      "sha256": "9860943650577ca61ca2cf810f4d302752db0808b70011a21795d4a4ff4cb940"
+    },
+    {
+      "path": "crates/hl-engine/src/bridge_withdrawal.rs",
+      "sha256": "02a447906c879e3e2856fb85ed1585aed21af4df746fc87e57013d007364090b"
+    },
+    {
+      "path": "crates/hl-engine/src/c_signer.rs",
+      "sha256": "eda107de638a87fb0fe1ab5935d85979e1d66e599aaf64866c0df415c5699bad"
+    },
+    {
+      "path": "crates/hl-engine/src/c_staking_balance.rs",
+      "sha256": "a2b34f06b4684606f1a2ad314713610f0140d58eeee6018ef96db7bafb3b3f89"
+    },
+    {
+      "path": "crates/hl-engine/src/c_staking_proposals.rs",
+      "sha256": "6325789c73c08e8194c4cb04dee062cffb4c01f139918d554b74f903253e7c3b"
+    },
+    {
+      "path": "crates/hl-engine/src/c_staking_rewards.rs",
+      "sha256": "c22b2575732df13587b3cd7b085bfe639911d64105fb142a9c3cc3c0b866b75f"
+    },
+    {
+      "path": "crates/hl-engine/src/c_staking_withdrawal.rs",
+      "sha256": "ca5c30d24b06b2122dca228d19601512197cb780554ae3a797f0eb7ce4fb24a3"
+    },
+    {
+      "path": "crates/hl-engine/src/c_validator.rs",
+      "sha256": "6a979c44a0cfddc1c0ab511dcaf61d28b32318c442669386372bdaadd7f0f8a8"
+    },
+    {
+      "path": "crates/hl-engine/src/checkpoint.rs",
+      "sha256": "01b9d5185ea652edbf5e66d15a23413a26bb57dc1c6f03346910e3341125c821"
+    },
+    {
+      "path": "crates/hl-engine/src/clearinghouse.rs",
+      "sha256": "2851c9fb2cea6467eb8597aec29a2ca83b9b20dbba0030a5c3b9a6e3a4795dd4"
+    },
+    {
+      "path": "crates/hl-engine/src/collateral.rs",
+      "sha256": "1e0a9f228119b5657e54f579f4ad55f654181a4868a426b1195e35d3b3c27251"
+    },
+    {
+      "path": "crates/hl-engine/src/collateral_cleanup.rs",
+      "sha256": "cd5c2a3a3ff7da7a7877278d3237aa581a3b74f924cf5b334472b23a9ca63c6c"
+    },
+    {
+      "path": "crates/hl-engine/src/collateral_inputs.rs",
+      "sha256": "1f553687f8c124cdc87e5d9f975aef302d8afb5e1249a51f211de6c4bde8c960"
+    },
+    {
+      "path": "crates/hl-engine/src/collateral_transfer.rs",
+      "sha256": "70a02017312a5ac20441e8c8a85ab1f6e978b0df2123900adc87161ce8f287e3"
+    },
+    {
+      "path": "crates/hl-engine/src/committed_block.rs",
+      "sha256": "6f7a4aadee34ad9df2affff84e76b88cf6dbfa23b203b30dd239a404a2756b19"
+    },
+    {
+      "path": "crates/hl-engine/src/committed_bundle_admission.rs",
+      "sha256": "85e623233582c331edfe5aa280b738d7d6c0a7201b64b7bdf0e18cf9b7dbd70f"
+    },
+    {
+      "path": "crates/hl-engine/src/compact_wire.rs",
+      "sha256": "ff2a55bbb4096c32e6952a7afdb12d920272cc88a51a24385cd28ddbfffbac2c"
+    },
+    {
+      "path": "crates/hl-engine/src/core_writer.rs",
+      "sha256": "21308b8c578b913a0377c08d393a6207bf10e5a235e29be46de419f12af6f427"
+    },
+    {
+      "path": "crates/hl-engine/src/create_vault.rs",
+      "sha256": "37c2cca1e43555dcc80a8e99f9377a5e4e7ff0fd1cd4e274b95d60ab330ec031"
+    },
+    {
+      "path": "crates/hl-engine/src/day_maintenance.rs",
+      "sha256": "6d889c33789cf92741849713e6f0360e73f880933e3af305f973670a06603b5b"
+    },
+    {
+      "path": "crates/hl-engine/src/delayed_action_counter_tests.rs",
+      "sha256": "12c2ca30d7bcd20826d6caffc0e843612431f33c9e36e93197d7b1d86ca644c3"
+    },
+    {
+      "path": "crates/hl-engine/src/delisting.rs",
+      "sha256": "5f6dc83835f63641e5b96c7b875e71c72e3966941672fdc76c33fafa0573a8b7"
+    },
+    {
+      "path": "crates/hl-engine/src/deploy_gas_auction.rs",
+      "sha256": "3e6a1a24cd6ad8edbf7366e11a98f1c58091f5320b969419e10c8656c72cc0d6"
+    },
+    {
+      "path": "crates/hl-engine/src/dex_liquidation.rs",
+      "sha256": "3dd3d3f4b267ef4f6aeb8c0350696a0e8b6d914e968447c761eab6894eb8a3be"
+    },
+    {
+      "path": "crates/hl-engine/src/divergence.rs",
+      "sha256": "6bfab53cdaa91ca43c4ecf9d7d0041f03bb45055044d5f1a6546505f6fe8bd65"
+    },
+    {
+      "path": "crates/hl-engine/src/errors.rs",
+      "sha256": "0f579ff096690bc2c68a2e7d7e016ea4c159b539f5886bca8be0c25b19479195"
+    },
+    {
+      "path": "crates/hl-engine/src/evm_bridge.rs",
+      "sha256": "7c4c9cecbe82bedd534a6300b7cd20a93a749937dc0ac7e98576118cbf7b4a57"
+    },
+    {
+      "path": "crates/hl-engine/src/evm_contract_finalization.rs",
+      "sha256": "2ee9c1f4e62ab6163f05b99c4b28b0fd506c24d4bd7108d34741ece84d2fc76a"
+    },
+    {
+      "path": "crates/hl-engine/src/evm_contract_finalization/tests.rs",
+      "sha256": "1754503d1f5d7eb746986180ac9abc148d1a92a41b010b874f4ad3eed22b1bac"
+    },
+    {
+      "path": "crates/hl-engine/src/evm_delegation_publication_tests.rs",
+      "sha256": "12c0a116c26834dd0216473cda924dcadebb3e7d67b853e133a64d3079a4712f"
+    },
+    {
+      "path": "crates/hl-engine/src/evm_mempool.rs",
+      "sha256": "4595d1e86a545b27811ff9e9a638fb5ad82a82229bf95bee4c2ff0708bd3fb5d"
+    },
+    {
+      "path": "crates/hl-engine/src/evm_read_assets.rs",
+      "sha256": "22d85c1a9e55de01780301ee493b625c4f39d61e806dab48ef9643c0c76fc273"
+    },
+    {
+      "path": "crates/hl-engine/src/evm_read_staking.rs",
+      "sha256": "1e348b815bdc63af460062c4ab542938343ca40a5983ed5a14fc454ddb99563d"
+    },
+    {
+      "path": "crates/hl-engine/src/evm_seal.rs",
+      "sha256": "1233d35cb5a0521dd254406f76972dd4b78f3d0d2f28e90503f002601e823982"
+    },
+    {
+      "path": "crates/hl-engine/src/evm_to_l1.rs",
+      "sha256": "3195c040b51cdef043ded76ec3a1a357ec7e126ad8c5fba4882be805e1df247b"
+    },
+    {
+      "path": "crates/hl-engine/src/evm_transfer_escrow_bootstrap_tests.rs",
+      "sha256": "85b8530285d0147b41f4e72056a07204843599ba024cc2a7535edb482eb5178d"
+    },
+    {
+      "path": "crates/hl-engine/src/evm_transfer_wire.rs",
+      "sha256": "b1d58af58c6abc83d78238a042f6a05c0fcd07de56a6007e7b59f9d0497b0661"
+    },
+    {
+      "path": "crates/hl-engine/src/evm_vault_equity.rs",
+      "sha256": "88d1f8cbb33bf7bbb033cc18e2e18904da2287a2fc962484f2ecfce16b9ceafe"
+    },
+    {
+      "path": "crates/hl-engine/src/exchange.rs",
+      "sha256": "da9fedb4bfa5a2df676eedea8bf11837929b634705d95f257ba33d194a2182d1"
+    },
+    {
+      "path": "crates/hl-engine/src/fee_info_refresh.rs",
+      "sha256": "6ded8e599691f920294aa646b7e4b5737b20b34980995a797eaed3c863f5fb9d"
+    },
+    {
+      "path": "crates/hl-engine/src/fee_tracker.rs",
+      "sha256": "d7c73b3eaf6d101846c22adc0215eda241997891aa90000f5cf54078e06f299e"
+    },
+    {
+      "path": "crates/hl-engine/src/fees.rs",
+      "sha256": "ec3b8cf49e519146c95997dd9aaeed1ebb03355c540eb39eb9f9ed042c7639eb"
+    },
+    {
+      "path": "crates/hl-engine/src/frozen_state_hardfork.rs",
+      "sha256": "3a5796ce274a7b13b84a6cd0941be77257f0224e04f470b8ef9f95fcbe04d318"
+    },
+    {
+      "path": "crates/hl-engine/src/funding.rs",
+      "sha256": "9cdbf6cb12566ba834624470bc29a3d1340ed561d5c6a79033f70a0fd390be3d"
+    },
+    {
+      "path": "crates/hl-engine/src/funding_distribution.rs",
+      "sha256": "51025e98efe1566ec25907c5a2504cf91c1320a7fd0ec85639cff63f16ec64b9"
+    },
+    {
+      "path": "crates/hl-engine/src/hash_votes.rs",
+      "sha256": "002c331a2e24ff41c07da46cc66207a8c3dddd4ca39b14119e67813ad64379b7"
+    },
+    {
+      "path": "crates/hl-engine/src/hip3_close.rs",
+      "sha256": "9e16c9ee2dd52e26f63d1ce8b7fdb85b6c75cab7a32464d4b3684b85a8d10838"
+    },
+    {
+      "path": "crates/hl-engine/src/hip3_deploy_ops.rs",
+      "sha256": "2895dd1861661603aa59d806072d563dd9a708f6270e1c508234c52b58931b60"
+    },
+    {
+      "path": "crates/hl-engine/src/hip3_liquidator.rs",
+      "sha256": "5d045befa7ab6c91749055b42b9de416df1ec681a871a42aac40f3060eac879f"
+    },
+    {
+      "path": "crates/hl-engine/src/hip3_liquidator/tests.rs",
+      "sha256": "5a6f8ef89ee3e11eadcf0743700e0afce4701cf0ad7d48c2a8caab336bbfe78d"
+    },
+    {
+      "path": "crates/hl-engine/src/hip3_register_asset.rs",
+      "sha256": "d878f638f7281cb7508d541c88338a35cf4a727021f645fb2520e4bc89de149b"
+    },
+    {
+      "path": "crates/hl-engine/src/hip3_set_oracle.rs",
+      "sha256": "f35a09f82d71c07911071ba07be961bedd90d327503007564d1291d11b0ffd88"
+    },
+    {
+      "path": "crates/hl-engine/src/hip3_star_oracle.rs",
+      "sha256": "17d371e5a6196f348cdb2a0316a1851efb5a7bdedb311ed7777819ad4722c7ab"
+    },
+    {
+      "path": "crates/hl-engine/src/hip3_star_proxy.rs",
+      "sha256": "5085f71ea41326057f0ff04dd72fce32c88606d5bcd4d5893c8d4fd1465690a0"
+    },
+    {
+      "path": "crates/hl-engine/src/historical.rs",
+      "sha256": "15b0624af9f1fa4ef93030c6e56748875a03a37a976ac989afe25cf86c99e8d0"
+    },
+    {
+      "path": "crates/hl-engine/src/hlp_day_value.rs",
+      "sha256": "ec5f66856ecb337c0b748f2f243c45c4d323c068a45f05a5e286167a093aea1f"
+    },
+    {
+      "path": "crates/hl-engine/src/hyperliquidity_orders.rs",
+      "sha256": "78d8d465cdaedc8e4c81b6806891d3fff61a0fe65a2d83bbf2f5c198d7559c0f"
+    },
+    {
+      "path": "crates/hl-engine/src/hyperliquidity_registration.rs",
+      "sha256": "4aac0e3c5bdf18244f75d63eec830be6dae7af12ebecbd788a54661f32609edd"
+    },
+    {
+      "path": "crates/hl-engine/src/hyperps.rs",
+      "sha256": "9c7d6d86d2f8a903d8d08fab98960e4f498d83f65d782ab5710fb8dab4dca8ab"
+    },
+    {
+      "path": "crates/hl-engine/src/ids.rs",
+      "sha256": "0c5f518b57ae98c08e2f7da9914f02eebb83bb924a4a4b8691ad4a158545badc"
+    },
+    {
+      "path": "crates/hl-engine/src/isolated_margin_first_touch_tests.rs",
+      "sha256": "4f6b4a6f96b7e9826f070248c54eeae31bc2936993532d4f2329fa6e7d5c0313"
+    },
+    {
+      "path": "crates/hl-engine/src/l1_checkpoint_hash.rs",
+      "sha256": "c0dbdd1a06724c9cfae0e0ff1f45e76be00db6ad4657aec064a2d0e4d84cc2c1"
+    },
+    {
+      "path": "crates/hl-engine/src/l1_slots.rs",
+      "sha256": "6e941861c12a23387478eb4c6e721b9834b1fa5674db76ac97042d9d93826840"
+    },
+    {
+      "path": "crates/hl-engine/src/ledger_delta.rs",
+      "sha256": "4550f7896175ad7e53aeaae02a5421c2237641367f5031b6ae3b8004a6172677"
+    },
+    {
+      "path": "crates/hl-engine/src/leverage_update.rs",
+      "sha256": "95213579ddfcf5fcf2b63ba4f392bd3457dfe54c5dbf59675b162aad06175f19"
+    },
+    {
+      "path": "crates/hl-engine/src/lib.rs",
+      "sha256": "79c4515c391aadd0b013089dcb31886a23d85baba46c568b30da046ce1113c29"
+    },
+    {
+      "path": "crates/hl-engine/src/liquidation.rs",
+      "sha256": "e46f80449929f825568a78fbb66d2c415d6431f32380298f5679d6642a6a5867"
+    },
+    {
+      "path": "crates/hl-engine/src/liquidations.rs",
+      "sha256": "53bb5068055f0bb68ed0f38f1845ad6dc3ee1201b1808f9070c6a8e6dae899f9"
+    },
+    {
+      "path": "crates/hl-engine/src/locus_index.rs",
+      "sha256": "a294c18c048cce3df4c62310bdec02b715abc5aad1d14a896095bcfa29778679"
+    },
+    {
+      "path": "crates/hl-engine/src/lthash.rs",
+      "sha256": "e486a4f353656a5349e357440b6202767d79df5c9f3f5d6f1cafa31fc9543674"
+    },
+    {
+      "path": "crates/hl-engine/src/main_perp_pxs2.rs",
+      "sha256": "8f8fa116ac28fb21233da39ad894831072b1cb21a965423732eb398a2a94835b"
+    },
+    {
+      "path": "crates/hl-engine/src/mainnet_wire.rs",
+      "sha256": "7521108a694a506adfaf8a881385475a2410018242e8f67b7c211e1b79ffa1a1"
+    },
+    {
+      "path": "crates/hl-engine/src/margin.rs",
+      "sha256": "ae7808d4fc627ec13c2fcc7c6c0965944da5c1ba2862a379ba63f69414412ec3"
+    },
+    {
+      "path": "crates/hl-engine/src/margin_tiers.rs",
+      "sha256": "a93ecd05ff3aa641260c98ea56c21bae9fe74c50e5a58ad391fe214a2b4bd938"
+    },
+    {
+      "path": "crates/hl-engine/src/mark_price.rs",
+      "sha256": "3721637affd8a0d5baa478b7eda3a49bac27030d35ce9cbafceb4e8825861c34"
+    },
+    {
+      "path": "crates/hl-engine/src/mark_price_clamp.rs",
+      "sha256": "1aaa0ec2d34ac46235960f0d40afa80af14bb6715da939f3d0090ec55984d0bc"
+    },
+    {
+      "path": "crates/hl-engine/src/matching.rs",
+      "sha256": "041298f19df92e4ef70a8c807133535bf55e47f51f11dfc452ca300373b1cf37"
+    },
+    {
+      "path": "crates/hl-engine/src/mempool.rs",
+      "sha256": "641b91044060b5ded6b255a665d92a33ed2a95f89091b8aec7898e0d8a747960"
+    },
+    {
+      "path": "crates/hl-engine/src/multi_sig_conversion.rs",
+      "sha256": "b3269199c3347e40cb87e9b218d4cbb681713913cd0c6b95cb717c2f72df7578"
+    },
+    {
+      "path": "crates/hl-engine/src/native_kernels.rs",
+      "sha256": "2b26384ec6d2d62539d069a3ecceecdc8a852bc6dcb142496a8f06d662bd95df"
+    },
+    {
+      "path": "crates/hl-engine/src/oi_cap.rs",
+      "sha256": "2ccdf3c31e3961390d28b4e36d4e8ea3b9b59c2099bcdeaf83ae846a982355d8"
+    },
+    {
+      "path": "crates/hl-engine/src/oid_arity.rs",
+      "sha256": "d9036bbcdaad85482fe355f4c5d9c8c631499bf2567030900b8d3da710ee8569"
+    },
+    {
+      "path": "crates/hl-engine/src/oracle.rs",
+      "sha256": "9ba34c8e13d99c2f8f4d2bc4e2f0303b09b2e92fea1c86e226ed724d0924047f"
+    },
+    {
+      "path": "crates/hl-engine/src/oracle_distance.rs",
+      "sha256": "e04e7bc33fd56d0ee46660f40d4cc6963ad032cd51d5faa075505e4d620b92fc"
+    },
+    {
+      "path": "crates/hl-engine/src/oracle_governance.rs",
+      "sha256": "166bd48ba120d64464c4c36150ec6b3180a3426cd8221c2cbae1e7bef38df89d"
+    },
+    {
+      "path": "crates/hl-engine/src/order_batch_family_tests.rs",
+      "sha256": "2c6c3a7ac8bd1f4373f21d5868cb2460190538b24c5a93cc5ce614fcc39b9a00"
+    },
+    {
+      "path": "crates/hl-engine/src/order_class_prepass.rs",
+      "sha256": "d14b7dc5d7fea5ae9529a266f7e923fd6851a65c9c2472276c0c39ebf3c7c727"
+    },
+    {
+      "path": "crates/hl-engine/src/order_notional_limit.rs",
+      "sha256": "910c6631d06072c0d6a0e864cae5faebceda4a6ec3ed1345754e9a6d7d1679e7"
+    },
+    {
+      "path": "crates/hl-engine/src/order_status.rs",
+      "sha256": "134330288f8fdd9dbf29e9bd0034e7c9a264fdd37206579071d4578ec851281e"
+    },
+    {
+      "path": "crates/hl-engine/src/outcome_action.rs",
+      "sha256": "b607375856d273f1a9d667a4f49d84a66adb02b9fbb60990d760d1a518bb9d3a"
+    },
+    {
+      "path": "crates/hl-engine/src/outcome_conversion.rs",
+      "sha256": "11e7c63412a4f196b7ad45f4be8e5d94b6ad7878d1f168e6ddcc06cf7738ea56"
+    },
+    {
+      "path": "crates/hl-engine/src/outcome_conversion/tests.rs",
+      "sha256": "9361c0371199fe1cc6cef5b359a6df9d829da375db88bb8d7d32932582eb62b5"
+    },
+    {
+      "path": "crates/hl-engine/src/outcome_cross.rs",
+      "sha256": "b2cd842c2d90f5a2678ec9e1d6c61b07402159b5685896870d586b6cae80a760"
+    },
+    {
+      "path": "crates/hl-engine/src/outcome_deploy.rs",
+      "sha256": "1941606e1220a622fa3c01d38259fc315b1d0ccdf7272d8a4510ea4066ac0c77"
+    },
+    {
+      "path": "crates/hl-engine/src/outcome_deployer_activation.rs",
+      "sha256": "5ab272fd612cd995cb4d2e6a702bf9628584088a1e45402db7ba020d2d3eca6a"
+    },
+    {
+      "path": "crates/hl-engine/src/outcome_fills.rs",
+      "sha256": "c33aa9e431d638062603b4eec384e18e51d1d4fb0344fcd7557dd83b488f064f"
+    },
+    {
+      "path": "crates/hl-engine/src/outcome_governance.rs",
+      "sha256": "c79f52450868aebc0ad106f3f297c888030f2f788963ad0931616d790186a1ed"
+    },
+    {
+      "path": "crates/hl-engine/src/outcome_zero_fee_tests.rs",
+      "sha256": "b405b00b3b28ac2f09eb2c6731c50610f381dc640aaa04c4e3a27a4ee08d3332"
+    },
+    {
+      "path": "crates/hl-engine/src/owner_index_map.rs",
+      "sha256": "8f18a9c5286f06639e04dc2f6c2ecb770250c5856df9f3a4cb2ebab0d6e2c3f5"
+    },
+    {
+      "path": "crates/hl-engine/src/parity_regression_tests.rs",
+      "sha256": "670dba8931b3df699fa7923577cf32e199bd0f81d0fe34484f8eeab22470ed7e"
+    },
+    {
+      "path": "crates/hl-engine/src/perp_dex_creation.rs",
+      "sha256": "21c860cb6b2034662ae4049f14e80cb261949c3cee42d88ca836a65b58096542"
+    },
+    {
+      "path": "crates/hl-engine/src/portfolio_funding_policy_tests.rs",
+      "sha256": "eb3f8ba9b79f3deaf4b0df0aa79cd01b7cb02345ecfb1e5b72bb6695092a18d9"
+    },
+    {
+      "path": "crates/hl-engine/src/portfolio_margin.rs",
+      "sha256": "0398f3a90317657b0eadd79478e37568bab8d05736a2dbced4c1339bb7e1752f"
+    },
+    {
+      "path": "crates/hl-engine/src/portfolio_margin_route.rs",
+      "sha256": "bcaf1b8cc38e32473bcc0b83d635eea3c57ec78f582de9faeb21a7fa4b6cd64a"
+    },
+    {
+      "path": "crates/hl-engine/src/portfolio_spot_route.rs",
+      "sha256": "1febe2be96b65c2d6451d4323d6015c27aadfa7e7bb340d4740af987b2dd9ce3"
+    },
+    {
+      "path": "crates/hl-engine/src/position_pruning.rs",
+      "sha256": "bcd31bb0a1df76e151e147f5f0d13a0695480d5462e8af55a146e39d6fe516f8"
+    },
+    {
+      "path": "crates/hl-engine/src/post_only_window.rs",
+      "sha256": "f00bc0e404d151f4f69ddce52315d29538d0a5dcd981629ccf95198f1ae5b934"
+    },
+    {
+      "path": "crates/hl-engine/src/priority_auction.rs",
+      "sha256": "523ed89cdfb422ce3bfc1a8938cc95dfbcf8024d48db572cb1e416d073deec4a"
+    },
+    {
+      "path": "crates/hl-engine/src/priority_order.rs",
+      "sha256": "a5bbbec24624e90035387cb57d9cbda26886105b7e91016e255b24d5467a117d"
+    },
+    {
+      "path": "crates/hl-engine/src/priority_order/tests.rs",
+      "sha256": "660196c3d26686151ba7662b4a5ec39c752a483122063df1f82c539c10364fd5"
+    },
+    {
+      "path": "crates/hl-engine/src/qtys.rs",
+      "sha256": "c24a50f55ffa61d37e36e46ecd202019861646dce3f2c5cf969a589634ead013"
+    },
+    {
+      "path": "crates/hl-engine/src/qtys_rd.rs",
+      "sha256": "345f92f15ca58f9066f7446b42cf6e49d7173268db9c09dd9506a71080c2111a"
+    },
+    {
+      "path": "crates/hl-engine/src/quarantine.rs",
+      "sha256": "02c61e86703aaddb4578027d2321a579f7afe051c3c2abf047dde3cba2da3193"
+    },
+    {
+      "path": "crates/hl-engine/src/quote_interest.rs",
+      "sha256": "68d2dec0030fcd580c7d7f96f1d947a5d3a710edbe717a4062e5fe0b7210407e"
+    },
+    {
+      "path": "crates/hl-engine/src/quote_rebalance.rs",
+      "sha256": "74ecff704a44eff36b0dd669f3f4750d3fd0e489cd8c2ceb771f33fd93564f77"
+    },
+    {
+      "path": "crates/hl-engine/src/reference_oracle_guard.rs",
+      "sha256": "2a7c4b143590f99c78465c00bdcc4134c814bc56405d2a53fabdfe142e5b6d41"
+    },
+    {
+      "path": "crates/hl-engine/src/reference_oracle_key.rs",
+      "sha256": "0221f2e7b242db884e363ecbdb6b9cc7467dc220f286cf6dbd1c70fb791b8802"
+    },
+    {
+      "path": "crates/hl-engine/src/reference_oracle_maintenance.rs",
+      "sha256": "6becc0cae9ceb753a9baf5cc7872a5ae090adf8315a6a3ddda80ce2c3d69e926"
+    },
+    {
+      "path": "crates/hl-engine/src/reference_oracle_report.rs",
+      "sha256": "d061f6ee21efc7e9060fb58803441240df23f84e0d6c62a156b4a9b36da8be11"
+    },
+    {
+      "path": "crates/hl-engine/src/reference_oracle_store.rs",
+      "sha256": "305c432363b5816294b46d248bbc52ed92c2100a8bf122ae7f53a06ac425c2a6"
+    },
+    {
+      "path": "crates/hl-engine/src/referral_registration.rs",
+      "sha256": "b2405b187aef5086a31c8c3bfed1d379e0299d93b17afe8ad8693509d47bb608"
+    },
+    {
+      "path": "crates/hl-engine/src/reserve_quotes.rs",
+      "sha256": "b4afa20502906f375849943499b66b67f8b81d35d9f07a70be846b5fed172972"
+    },
+    {
+      "path": "crates/hl-engine/src/reward_claim.rs",
+      "sha256": "1d75cb0a241bc2864f88cbb5636b12f0692f13743a0e601af95c100059e180ef"
+    },
+    {
+      "path": "crates/hl-engine/src/rmpv_map.rs",
+      "sha256": "647f2c60dd6e74a1325b5c6721fb1f8585d6e84acd97950aa5f1fcc18168efdc"
+    },
+    {
+      "path": "crates/hl-engine/src/routing.rs",
+      "sha256": "f21e6c20c9b89cb727553e178d6cab07344b05bc751c52a4c27214849276af3a"
+    },
+    {
+      "path": "crates/hl-engine/src/send_to_evm_with_data.rs",
+      "sha256": "1ea0b84006d536a0a104e5a40a4496ca4618ecc9c0c86be343c4b8ceb50a71ae"
+    },
+    {
+      "path": "crates/hl-engine/src/services.rs",
+      "sha256": "b132c69895a31e506a80b71cf7ba4cf30f2981f4722f648e096c9ffac1ec1fbc"
+    },
+    {
+      "path": "crates/hl-engine/src/set_bole.rs",
+      "sha256": "54ddbd9e155a8828cb51c0630db7ea539dea4a4b1b4d7f1f91a5359e05780d76"
+    },
+    {
+      "path": "crates/hl-engine/src/set_global_oracle_tests.rs",
+      "sha256": "60327ab09e418fc3fdf3678673c94735a1ed824314de65c09d1efbbaf0832ce5"
+    },
+    {
+      "path": "crates/hl-engine/src/settled_fills.rs",
+      "sha256": "0745f5985523a79dbbaf9e90160076bd62d56ceb8278a0f23817a386e609598a"
+    },
+    {
+      "path": "crates/hl-engine/src/snapshot_capture.rs",
+      "sha256": "ebc3b3a16fc638b5e87c6e0813ce8c6e004bea5f10579a0dec5c6b65947c41fb"
+    },
+    {
+      "path": "crates/hl-engine/src/snapshot_save.rs",
+      "sha256": "d788c7739c4b8b1a1875c4b8772ec50186a4eb8e6e3047ee7ec5f580a0a052a7"
+    },
+    {
+      "path": "crates/hl-engine/src/spot_abstraction_window_tests.rs",
+      "sha256": "58e7de7012c5fac093d9a16cc24f5fc2fb54f8a964755f5ca33e4d625d975a8a"
+    },
+    {
+      "path": "crates/hl-engine/src/spot_balance_leaf.rs",
+      "sha256": "fc4a09e552901e9f01062ebc5d94f5bc377e58672d6e160e06c52817615b6ac3"
+    },
+    {
+      "path": "crates/hl-engine/src/spot_balance_value.rs",
+      "sha256": "78c94e84b6a16b6f2f6fc1e1d9c647e479f6eb5515793fb5e436c78e33aaeb4d"
+    },
+    {
+      "path": "crates/hl-engine/src/spot_deploy_registration.rs",
+      "sha256": "c78537236999a66301d8cfbd3c2db1c07d4273cf191bb6f679fccb56142fdd10"
+    },
+    {
+      "path": "crates/hl-engine/src/spot_dust.rs",
+      "sha256": "b11a37c9c39fa439de17accce14ae40fc10c83f64fd86d81e56ee2ea0d02e4d3"
+    },
+    {
+      "path": "crates/hl-engine/src/spot_evm_transfer.rs",
+      "sha256": "2587da34a9e867e1756ce91a29e6b46004efbd2bcdf1335ad4ca15a256917e30"
+    },
+    {
+      "path": "crates/hl-engine/src/spot_evm_transfer/tests.rs",
+      "sha256": "a987499998a796e732db1552c4887aa182f97dce2f98b4270c0304903da9ed60"
+    },
+    {
+      "path": "crates/hl-engine/src/spot_failed_walk_exchange_tests.rs",
+      "sha256": "bde04770b5b4057183de998611ae3e5f16a36b37f6062bda7cfd35f701513274"
+    },
+    {
+      "path": "crates/hl-engine/src/spot_failed_walk_tests.rs",
+      "sha256": "08268f439d742e3c79606bf5aa7eed55a9d495e8c2c850f60d5c73b6594d80fb"
+    },
+    {
+      "path": "crates/hl-engine/src/spot_fee_charge.rs",
+      "sha256": "6c0a63279f662f9c48cf48e637eb6f2e76cba32d1a77ec78734578f9296b1b6a"
+    },
+    {
+      "path": "crates/hl-engine/src/spot_fee_charge/tests.rs",
+      "sha256": "cf9253e7e0fc9d0779962342e3c8aec7a4c45fdee4b83aedf6c1e72acde9b4ac"
+    },
+    {
+      "path": "crates/hl-engine/src/spot_fills.rs",
+      "sha256": "3fd4e1e050e0254cc7f7d175f25492944e5141b6253893b14d6ef3134a86dc35"
+    },
+    {
+      "path": "crates/hl-engine/src/spot_meta_views.rs",
+      "sha256": "75aa2758a4a56c6bfa1d14b8c1116da21ebff154500943f5290911be410389b2"
+    },
+    {
+      "path": "crates/hl-engine/src/spot_quote_token.rs",
+      "sha256": "16d7bca1996bdf256da17ffacd20ceef505a50d034c1eb70a6623388eacfeb09"
+    },
+    {
+      "path": "crates/hl-engine/src/spot_token_abstraction.rs",
+      "sha256": "134a2fc9df107bbb275be89215ef27c2788f131a66beaa89a8b742704755e969"
+    },
+    {
+      "path": "crates/hl-engine/src/spot_token_genesis.rs",
+      "sha256": "0bd5f337128533093ccc024d032f14d302e42e496a2cac30677409951de340ef"
+    },
+    {
+      "path": "crates/hl-engine/src/staked_role_gate.rs",
+      "sha256": "2e878f4e2f42c986e8f35b6c5700b1356e106709183652d304b80501bba64e39"
+    },
+    {
+      "path": "crates/hl-engine/src/staking_epoch.rs",
+      "sha256": "25109709d6aa2a87558e89b60ddfdd4fcf457e1684e9e8e26b47590b2fb1e487"
+    },
+    {
+      "path": "crates/hl-engine/src/staking_link.rs",
+      "sha256": "001cae9e075681a4fb8b0dd6161e21982957e2107e02bfd698c3b74eaf0e868f"
+    },
+    {
+      "path": "crates/hl-engine/src/star_restriction.rs",
+      "sha256": "d19783ad747c22955a59c518cdfc3e448261f2bd0e22000702e00b189891adf0"
+    },
+    {
+      "path": "crates/hl-engine/src/state_hash.rs",
+      "sha256": "ad6d4828c06de721b02acfca7839b04910149aaceaf4080584e78883c469e114"
+    },
+    {
+      "path": "crates/hl-engine/src/sub_account_creation.rs",
+      "sha256": "6bc6e06526bdbc4a72feaf76e26968a260d4cdc1c02692d8b5a0295ec418491c"
+    },
+    {
+      "path": "crates/hl-engine/src/system_multi_sig.rs",
+      "sha256": "33009be7fea08ec7c72088b2147b42dbbce47070c8660a67b805d181950b62b9"
+    },
+    {
+      "path": "crates/hl-engine/src/test_support.rs",
+      "sha256": "e6475b731eea2372e06085102db10b2d0c86400fd0870cde2487c3cfebe97155"
+    },
+    {
+      "path": "crates/hl-engine/src/tracked.rs",
+      "sha256": "2b4a40551417c0bed214f2676f32a142639c333059ea2bd794211c342770e1f5"
+    },
+    {
+      "path": "crates/hl-engine/src/trailing_stop.rs",
+      "sha256": "fcb1c8ee3f77cbd11e2ff2f6f4a46d8934a480e1b94dcd38b81cc77bb9913fcc"
+    },
+    {
+      "path": "crates/hl-engine/src/trigger_fire_account_class.rs",
+      "sha256": "4b15ebd6bbc595e05e19385554df88683d1b5afdfbbadd92f74f0ca985180bb4"
+    },
+    {
+      "path": "crates/hl-engine/src/trigger_native_record.rs",
+      "sha256": "61d234517cf9bc146fc93d3610eff58dfa49a665f729a976481390e83eb525ba"
+    },
+    {
+      "path": "crates/hl-engine/src/trigger_price_distance_tests.rs",
+      "sha256": "869bed95d463b06c7ea6f22dccae2ac54fc875a729dddb3317ac678841b6a32e"
+    },
+    {
+      "path": "crates/hl-engine/src/trigger_terminal_index_tests.rs",
+      "sha256": "6c21d54d04cad9ab3eb1b007d8de24b2bd5e296bc5a1fa2cd294c7bdf0454a53"
+    },
+    {
+      "path": "crates/hl-engine/src/twap.rs",
+      "sha256": "889340490d143954f70ca06e6af85970b87a9a48e8032fe0e0aa7ee0b2ca4d63"
+    },
+    {
+      "path": "crates/hl-engine/src/twap_exec.rs",
+      "sha256": "bfb22ac0ecaf9fa32349c6997f11134ef54df1fa51d4b55ff3284eb6f84aa904"
+    },
+    {
+      "path": "crates/hl-engine/src/twap_first_touch_tests.rs",
+      "sha256": "1b54de0dd4a58e9ce3dab8cc3aad9d6f59845c4e7912efb0b08f73ed1ae4311e"
+    },
+    {
+      "path": "crates/hl-engine/src/twap_notional_limit_tests.rs",
+      "sha256": "c0fb4a2bdf6e93171a1853cd0fe9bee5e9b98497f7d9b4b06c70c1e9481bd0b4"
+    },
+    {
+      "path": "crates/hl-engine/src/types.rs",
+      "sha256": "95005f75a18f48cb60beec566ddf772cb4d022c5ef2281153806eaef365c1c49"
+    },
+    {
+      "path": "crates/hl-engine/src/unified_liquidation.rs",
+      "sha256": "28fb15f1910f80434f94a7008e17595c6570c26d566ddb576bcbcbdcfe286599"
+    },
+    {
+      "path": "crates/hl-engine/src/update_leverage_tests.rs",
+      "sha256": "cbcd2fc8a9d9bb2fdc1150b3c171b9e55b4902c35ace9a699ad616245ff3a613"
+    },
+    {
+      "path": "crates/hl-engine/src/usd_transfer.rs",
+      "sha256": "6f507654a00c9587713a714097a89dbf7163abee9546a109d463ef47baea9f25"
+    },
+    {
+      "path": "crates/hl-engine/src/usd_transfer/preflight.rs",
+      "sha256": "1b2c3ed26e6423fa8c0584d70a84dd42c68dcd9c4031f02f5460f595cb06bb48"
+    },
+    {
+      "path": "crates/hl-engine/src/usd_transfer/tests.rs",
+      "sha256": "baf75d0e45f60b1cab2ebc5011d973777cee5ab2bf3f1563cee174e2572cb531"
+    },
+    {
+      "path": "crates/hl-engine/src/validator_l1_status.rs",
+      "sha256": "cccb2cece37cc56a112d21835e7f27338bfe6247a003003ae3a6a799f485f0c1"
+    },
+    {
+      "path": "crates/hl-engine/src/validator_l1_stream.rs",
+      "sha256": "e24f4af0ad8c9f98410f09bf283979102d14d4710518caf9ce4ed940f4e0acb6"
+    },
+    {
+      "path": "crates/hl-engine/src/validator_stake_weights.rs",
+      "sha256": "a7e8382a5feb6c24943af99c0f4a663d04833b56b5a4a16ce1dbb7cc9accfe2e"
+    },
+    {
+      "path": "crates/hl-engine/src/validator_vote_action.rs",
+      "sha256": "ae69fe8be17fe41ab809942d4fedc5476729bdab283680bb22119db2813ec499"
+    },
+    {
+      "path": "crates/hl-engine/src/validator_vote_tracker.rs",
+      "sha256": "0e81a0cd9ea4ac9711e47bd3685fb6c0d23f98722ec5048699d3046993422647"
+    },
+    {
+      "path": "crates/hl-engine/src/vault_deposit_admission.rs",
+      "sha256": "e444a05587fdef3396b3cd11b7f9f7881a01f3514ccca73a6bdb0b36c9a2c282"
+    },
+    {
+      "path": "crates/hl-engine/src/vault_distribution.rs",
+      "sha256": "dbc41a68b74da28a279d9440330d13f5e5a3549be445f82c3f207ae4bf3208bf"
+    },
+    {
+      "path": "crates/hl-engine/src/vault_modify.rs",
+      "sha256": "fea1f15111b4e27635b91c6148f1f48e18d80a0cbc7a79f37ff1cbe08b3607a6"
+    },
+    {
+      "path": "crates/hl-engine/src/vault_transfer_limits.rs",
+      "sha256": "e17d74a982fec54e3bbd792aaccd1809301b566e0098ced9710f5827e5fb9787"
+    },
+    {
+      "path": "crates/hl-engine/src/vault_transfer_wrapper_tests.rs",
+      "sha256": "ac7380c547b89b3c2f3e23d1d0dc153d3e7dd372707a4a10091cddbdbb804886"
+    },
+    {
+      "path": "crates/hl-engine/src/vault_withdrawal.rs",
+      "sha256": "9ede29cbe50cfa739810f1b0111c9c5b6f12969dc26b4e0a8f0ed7b2f875bcc9"
+    },
+    {
+      "path": "crates/hl-engine/src/wire_roundtrip_tests.rs",
+      "sha256": "89e6f82cdf734088d85eae0221fb1dbd83f146bea73bd7448728d76ffe7e686d"
+    },
+    {
+      "path": "crates/hl-engine/tests/account_admission.rs",
+      "sha256": "443ba2d4ecd18c3a1aa5a868c0cb3fa6d96d9b2a4794387fad5c8b5476d888a5"
+    },
+    {
+      "path": "crates/hl-engine/tests/action_dispatch_1219_coverage.rs",
+      "sha256": "b16ebebc222663914ad985e1c06e3bbde11541f84d32c4be5c55ea1ff9a34a49"
+    },
+    {
+      "path": "crates/hl-engine/tests/app_hash_guard_source.rs",
+      "sha256": "0eeef4fb2616c09163a35965ca34f143e31557a990742cddd900405ec35b2dde"
+    },
+    {
+      "path": "crates/hl-engine/tests/app_hash_keccak256_ground_truth.rs",
+      "sha256": "b1c0bd72ab503f2129228d6273d1c2340cca9015aa98f58b8651cb30ebdc7b62"
+    },
+    {
+      "path": "crates/hl-engine/tests/app_hash_slot_parity.rs",
+      "sha256": "523f5d7f82b918cd6be15e3eefec5c9ccc73a73425b2230acd37a22ceca289e6"
+    },
+    {
+      "path": "crates/hl-engine/tests/collateral_cleanup.rs",
+      "sha256": "2cdcd284a4101018edf965465b115f2f637bd3ad7a503caedbba8f794f9694df"
+    },
+    {
+      "path": "crates/hl-engine/tests/collateral_inputs.rs",
+      "sha256": "fe79f6fb3a49d74cdfeed8cb94279e1a2f09d41237e9269cdcbf452a9cf84253"
+    },
+    {
+      "path": "crates/hl-engine/tests/collateral_math.rs",
+      "sha256": "b2ef9767549312ced142b3cc456c628fe475ad067e7b3bba2afe050d786947a3"
+    },
+    {
+      "path": "crates/hl-engine/tests/csigner_dispatch_coverage.rs",
+      "sha256": "cf04a51594ead0a24fb453e459fe58062539160ca1e1951d829ec797e8e63ba5"
+    },
+    {
+      "path": "crates/hl-engine/tests/current1219_agent_tracker_order.rs",
+      "sha256": "52a40bca723a9ec406e6579ec04caf916a737fe9dc88965d929b84efba805d48"
+    },
+    {
+      "path": "crates/hl-engine/tests/current1219_b_accepted_book.rs",
+      "sha256": "6cf956a474ec8bccd88e39e23323bae2d54a14995832a01304d8ac367525ca39"
+    },
+    {
+      "path": "crates/hl-engine/tests/current1219_bole_cadence.rs",
+      "sha256": "2ad8a696bd476100706fdbfd3cf8e724cefd14afd69d70fd768457e53d860e1f"
+    },
+    {
+      "path": "crates/hl-engine/tests/current1219_bole_pending_wire.rs",
+      "sha256": "8a5aa050165a56d57f55b138f2ae9b9121d72a6f24dfe7fc24b10eb7b796c9c2"
+    },
+    {
+      "path": "crates/hl-engine/tests/current1219_cancel_admission.rs",
+      "sha256": "5fe6619955bdb9cfb051b194f029da815a302df37fcc242db1bbf3fde5315f42"
+    },
+    {
+      "path": "crates/hl-engine/tests/current1219_cancel_counters.rs",
+      "sha256": "bc2b05cad0518b9cd936fd4b114cb2622ee1246746e33dd92e2e42464063d344"
+    },
+    {
+      "path": "crates/hl-engine/tests/current1219_cancel_tracker.rs",
+      "sha256": "847456d227b4885a6c623077c7a709ea5ed63e224e487cb73b7af2f805398a0b"
+    },
+    {
+      "path": "crates/hl-engine/tests/current1219_flag_counter_layout.rs",
+      "sha256": "36ef6fee3e7ab084bd0eaaac750f257907584b8fc433dd8c52fa5d7107475298"
+    },
+    {
+      "path": "crates/hl-engine/tests/current1219_nonce_response_hash.rs",
+      "sha256": "f3fa5223bf974af14d7050f639d87033d006b720f5b227b4b80db857892abff7"
+    },
+    {
+      "path": "crates/hl-engine/tests/current1219_position_pruning.rs",
+      "sha256": "a9946406601a92f762d5caff794ab6d760a16d8e2d1802cf5ec49762ede17217"
+    },
+    {
+      "path": "crates/hl-engine/tests/current1219_reservation_inputs.rs",
+      "sha256": "0c9d9e12afa013fcf4755e6e34b0a4545bb78fec831a81df8a9116f2d5579c67"
+    },
+    {
+      "path": "crates/hl-engine/tests/current1219_reservation_kernel.rs",
+      "sha256": "eb48993bb2444fc84b64c665e002757d77ffd6fa0af4c4f65999d67c09c0d6c1"
+    },
+    {
+      "path": "crates/hl-engine/tests/current1219_reservation_mutations.rs",
+      "sha256": "4bc001c2ae3488c807b0d997807b94b4fcb961bba1403ccb4791b28adf6ef2b0"
+    },
+    {
+      "path": "crates/hl-engine/tests/current1219_spot_bootstrap.rs",
+      "sha256": "7f35cefdf938de18b2ae6adac22d523d787a302b233e63550c8e06a396282ee5"
+    },
+    {
+      "path": "crates/hl-engine/tests/current1219_tracker_reserve_bootstrap.rs",
+      "sha256": "ba3ef25e10fd9f84e6232b7b6ef93a0e76f78dab1afa50b58ffbfc80ec395acc"
+    },
+    {
+      "path": "crates/hl-engine/tests/current1219_uac_order.rs",
+      "sha256": "d3639d3f9a7c9418128cff72375d734907138278c5f06bba098a3a0386902813"
+    },
+    {
+      "path": "crates/hl-engine/tests/current1219_uac_windows.rs",
+      "sha256": "556e654222114ef639c6073f8cc8f5c6201b3431740f00b9911a794572a8190d"
+    },
+    {
+      "path": "crates/hl-engine/tests/divergence_monitor.rs",
+      "sha256": "94b29dce3b9c6ca7f52721c826c58f77f95bd8a5d7c4e37e5615d6bb7ab1ab70"
+    },
+    {
+      "path": "crates/hl-engine/tests/hf1407_g1_composition.rs",
+      "sha256": "fbfdd52107491d6ec34d24235101758caa7fc5992c22d5aced99cbd836aaa296"
+    },
+    {
+      "path": "crates/hl-engine/tests/hlp_cancel_time.rs",
+      "sha256": "7919d42ffdf1da4c543c9bc79890165cfa3d5327ea52ba650950aeccddfb41df"
+    },
+    {
+      "path": "crates/hl-engine/tests/modify_collateral.rs",
+      "sha256": "d848845901f1e0607297df2c6daa5f2a799df7effd902f0a9c9ea9ab252b5e64"
+    },
+    {
+      "path": "crates/hl-engine/tests/order_placement_clock.rs",
+      "sha256": "28056bc202828fc7a65b3543b5473f017d9d5d67dd52406e72fa6c18b952ca94"
+    },
+    {
+      "path": "crates/hl-engine/tests/per_action_replay_parity.rs",
+      "sha256": "52541e695ba910828dc9faeeed2c06b8f66c4a658bd46d16f98075fa71791be6"
+    },
+    {
+      "path": "crates/hl-engine/tests/per_block_isolation_regression.rs",
+      "sha256": "9eee6a64380ab318b42b6808f4d33b4aa4fef44feeaa17e999990ceca9d1baec"
+    },
+    {
+      "path": "crates/hl-engine/tests/rmp_serde_field_order.rs",
+      "sha256": "0ced31a80f5b61eac764cf340cbd44def8753ee6ce0968702e5fd725f82052f4"
+    },
+    {
+      "path": "crates/hl-engine/tests/slot6_transition_correct.rs",
+      "sha256": "9f75c0e52bc90addc2c4692a9659ab38dc7f968975089a13d41f9771f60bab01"
+    },
+    {
+      "path": "crates/hl-engine/tests/snapshot_round_trip.rs",
+      "sha256": "518dbff95022bcd95303ed33f4338ee34046cf769bc4c0c803d7d9803272e9ca"
+    },
+    {
+      "path": "crates/hl-evm/examples/evm_half_reexec_validate.rs",
+      "sha256": "40f19cfc24071c64fdfb3a5191b74737751435567518649f3f704105017a5626"
+    },
+    {
+      "path": "crates/hl-evm/examples/evm_half_validate.rs",
+      "sha256": "904f5ad29aae2f1ba5b639f5652073841e84d68475fc1dd2626b150fd6c26b52"
+    },
+    {
+      "path": "crates/hl-evm/examples/inspect_rocks.rs",
+      "sha256": "56c556b7ed1018aa5835734e32c1e45d0d39f1d133740570c012e89e964b98a3"
+    },
+    {
+      "path": "crates/hl-evm/examples/revm19_window_diffs.rs",
+      "sha256": "6a0e44845859d0b8de8ebba66505af33d6f188d465ac538287ca27c5ad3322d6"
+    },
+    {
+      "path": "crates/hl-evm/src/bridge.rs",
+      "sha256": "48b4fba04604d2cb97f55fd6fcf20bf5031b8acdca56a71c337cc3217d6fd2b6"
+    },
+    {
+      "path": "crates/hl-evm/src/checkpoint_import.rs",
+      "sha256": "8010244b38069e2864800fe02ec5eeadf1d6a3e42ed5c818336a6e1df6d44994"
+    },
+    {
+      "path": "crates/hl-evm/src/contract_code.rs",
+      "sha256": "ff67ddbb6dc1b5534c3f4394490d3393587ab8bab315411ed504696b1e9b9fe8"
+    },
+    {
+      "path": "crates/hl-evm/src/core_writer.rs",
+      "sha256": "d302bcfc81f0e0118c176048f9ee7c6748f201852e19f61cf181ac979db4f2b9"
+    },
+    {
+      "path": "crates/hl-evm/src/debug.rs",
+      "sha256": "1c2c387c9eeed21906e53312f8a2e81eafb80e9be3923638231cd62076e53b9f"
+    },
+    {
+      "path": "crates/hl-evm/src/error.rs",
+      "sha256": "1d938b62d045ee0382c4cd37e02ed02bea762761de80967ff878a7d39eeb4a85"
+    },
+    {
+      "path": "crates/hl-evm/src/evm_delegation_tests.rs",
+      "sha256": "3b89c3314d9dadc9749554231d9aaea4383ef8dd42e13d8ff5d3ebf8c7bbde8a"
+    },
+    {
+      "path": "crates/hl-evm/src/evm_metadata_tests.rs",
+      "sha256": "a32dbd8bb133fafd13a62cde322dc4e0a650a37437a7c3b55ffbe228b072983a"
+    },
+    {
+      "path": "crates/hl-evm/src/executor.rs",
+      "sha256": "f3c7c583d45b0099df65ee2b4f403da90121ba6adbd305b931cd8397ddf61939"
+    },
+    {
+      "path": "crates/hl-evm/src/fork_db.rs",
+      "sha256": "0d8d8618fabff88a5eca9fc6fa0b47a13dfd38c014b3a734601d4608a2ef1f35"
+    },
+    {
+      "path": "crates/hl-evm/src/lib.rs",
+      "sha256": "993c0424425f7298d493b40b9a91dc8ccf914adf16acc572a66245d992b165d4"
+    },
+    {
+      "path": "crates/hl-evm/src/official_checkpoint_db.rs",
+      "sha256": "e5c9c3850309cda1d08e88c3415cfa766e6d5c954990551719280e051b1ee4a2"
+    },
+    {
+      "path": "crates/hl-evm/src/precompiles.rs",
+      "sha256": "d5edfdad85433a2cfb57b5b9716116f6a816ad52e05884c7263e78b6f75d3323"
+    },
+    {
+      "path": "crates/hl-evm/src/rocks_db.rs",
+      "sha256": "8e6919ca27c274c056921501d078feb54a5a0eb76aa54d805bbb5915fe47488f"
+    },
+    {
+      "path": "crates/hl-evm/src/rpc.rs",
+      "sha256": "9a12759c0c8aeedefd069b640a480ffe2b6583bc09da8aba730adee27d45d700"
+    },
+    {
+      "path": "crates/hl-evm/src/transaction_wire.rs",
+      "sha256": "2e064048dda8da12250235715e3d5acb6202c2644e01a75541d15f8f48a7b315"
+    },
+    {
+      "path": "crates/hl-evm/src/vault_equity_tests.rs",
+      "sha256": "e933b19b928f922491ab6ba05309d2de179e5403b41ca9e117040b2368e8660d"
+    },
+    {
+      "path": "crates/hl-evm/tests/official_checkpoint_smoke.rs",
+      "sha256": "b1818cadf4e6de96a3ab1564f77354ad157c371bddc8b7f3b7509fe066d2e0bb"
+    },
+    {
+      "path": "crates/hl-evm/tests/rpc_server.rs",
+      "sha256": "6d4686c93657fe3af62e41e0a5dbea9d657e172e5f29a870b2ec50535ebe44fd"
+    },
+    {
+      "path": "crates/hl-node/build.rs",
+      "sha256": "89017a545baef98dcd262f2434da62bdff1bfcefc29506433e5ff54e913c0525"
+    },
+    {
+      "path": "crates/hl-node/examples/abci_tree_gate.rs",
+      "sha256": "e9334145e17f311ff0c4704c086657ecc26c0c72cb678c5506d4192c0932e204"
+    },
+    {
+      "path": "crates/hl-node/examples/action_coverage_scan.rs",
+      "sha256": "7c89e151f07d3386ffe0b892662d5f882c4bce71e14987d73ffdffa9d8a7aa29"
+    },
+    {
+      "path": "crates/hl-node/examples/agg_clock_guard_probe.rs",
+      "sha256": "0358c60e26e6c6876bdbab6ba1339ed5529df70662ffc12e11b8d772a6411986"
+    },
+    {
+      "path": "crates/hl-node/examples/agg_clock_processed_probe.rs",
+      "sha256": "55e3bc7fb50964ab3724743cd1e32d772bc63d7f576c2a7bed859aff10149b4f"
+    },
+    {
+      "path": "crates/hl-node/examples/alo_bbo_probe.rs",
+      "sha256": "40e914d0d4799a26fc13432d30a2a59fa02fcb78fa93f1c5fcf29d4edacd158b"
+    },
+    {
+      "path": "crates/hl-node/examples/app_hash_truth_compare.rs",
+      "sha256": "a746f501d774a5c142f8f755abd887731dd2263aaf0af65d12c6abb0f5f0fe09"
+    },
+    {
+      "path": "crates/hl-node/examples/apphash_at_load_print.rs",
+      "sha256": "ffd48d28a1b38075bf8a13109a8d34da1fa88e94dfa93dbf48da42aa83a116da"
+    },
+    {
+      "path": "crates/hl-node/examples/apphash_atrest_diff.rs",
+      "sha256": "599748bfcd35c05a6d267b8818b430713e1ecfc2c51bb6dcfc7b5a507edf73e2"
+    },
+    {
+      "path": "crates/hl-node/examples/apphash_slot_digests.rs",
+      "sha256": "8a94853695264decb1c8f40a3b365016962b24792a7d3a9dd2f5d7a304f542e4"
+    },
+    {
+      "path": "crates/hl-node/examples/apphash_slot_verify.rs",
+      "sha256": "c4e615893f0a5b406a0ad1fdc7c9d4fc864ff95cfbf333544817d6eefe50a199"
+    },
+    {
+      "path": "crates/hl-node/examples/avslot_data_probe.rs",
+      "sha256": "285292f33a49caa17bd63001d62a3b6e6a6a7f8e14cc201533e577466d31f2f4"
+    },
+    {
+      "path": "crates/hl-node/examples/baf_margin_probe.rs",
+      "sha256": "5417ca1bf314a51a27a9d148465327d1bf12b1679d16f1b4c97ca25ed3715f67"
+    },
+    {
+      "path": "crates/hl-node/examples/bera_book_trace.rs",
+      "sha256": "48c589a42e7cbd5785413960f435c6e02ce8c73a666cb99dbbdb6eec9f345a8c"
+    },
+    {
+      "path": "crates/hl-node/examples/bfb_e_across_snaps.rs",
+      "sha256": "d5d857f00cbcf10ee97cf6a4d5ffeb5eec65af57aa7e45fa759a5a1829bafc77"
+    },
+    {
+      "path": "crates/hl-node/examples/bfb_position_probe.rs",
+      "sha256": "db7c5d9250c9a2f887982618969bbd740ebbdc742d30ba8a417e0fcc21ccb502"
+    },
+    {
+      "path": "crates/hl-node/examples/bfb_reserve_drift_probe.rs",
+      "sha256": "b486c867ab7acebfa04cc88fe4c09d75c9d7ec3ea951a472b690cc9dfb4007c7"
+    },
+    {
+      "path": "crates/hl-node/examples/book_diff_parity.rs",
+      "sha256": "04438edbb022137d9e00080a0b1dedd1373fc932e4991384621ea4b2be7a368d"
+    },
+    {
+      "path": "crates/hl-node/examples/book_resting_diff.rs",
+      "sha256": "c344970661dad83ddb7024ad75240bf2ff79ea4402241b77052a349d6fd7ae21"
+    },
+    {
+      "path": "crates/hl-node/examples/book_state_diff.rs",
+      "sha256": "e2b3f234dbf6a0c8d12494c87491ef6df75b6c27cf9e1ca04e506b606009c092"
+    },
+    {
+      "path": "crates/hl-node/examples/builder_fee_dump.rs",
+      "sha256": "77be207405f8676fe505a51ac2f176964103f72b59921dc8c562efd4bd8fceae"
+    },
+    {
+      "path": "crates/hl-node/examples/byte_parity_firehose.rs",
+      "sha256": "aabed69c797c4ee15cc4cd0a529cd47b0381966323961907621e762a170db82f"
+    },
+    {
+      "path": "crates/hl-node/examples/c2_cascade_field_probe.rs",
+      "sha256": "a0561d9ea69f07baa4e00cde2c4fcf261dfccb3812f4bcd79a2ee0b0e531c9d1"
+    },
+    {
+      "path": "crates/hl-node/examples/c2_funding_structure_probe.rs",
+      "sha256": "a248c3c95ce42a94aba7732a8134fb4f5af9c80b2782a2d926ca731308d2ebad"
+    },
+    {
+      "path": "crates/hl-node/examples/c2_slot3_halted_probe.rs",
+      "sha256": "8d0a0dca8ddaf6fdde2b2892f3212b604aea170fcd8f343f007c9e857cff86d9"
+    },
+    {
+      "path": "crates/hl-node/examples/c2_slot3_uwp_probe.rs",
+      "sha256": "b060fc541fa95abd2020741af93003c3dd2d0cf8f61193ea22b547271c8529cb"
+    },
+    {
+      "path": "crates/hl-node/examples/c2_slot_dump_probe.rs",
+      "sha256": "28ed041d53f14e5397aaedd6c279ca570a737cbc7eea2025d23d90d9502a9348"
+    },
+    {
+      "path": "crates/hl-node/examples/cancel_miss_asset_probe.rs",
+      "sha256": "9147827d7d4bfc762eb1b697883e8497d41b24e681c7c91bffd153af26ace485"
+    },
+    {
+      "path": "crates/hl-node/examples/catch_up.rs",
+      "sha256": "1c969da0abb8886421afb92ee537ad64f725e31d02989986ffb2d6b72e35503a"
+    },
+    {
+      "path": "crates/hl-node/examples/chain_sampler_region_probe.rs",
+      "sha256": "24ff681e63ddcc069e989dd89b09196fe02841b7d974edb37565e3549b1dc814"
+    },
+    {
+      "path": "crates/hl-node/examples/checkpoint_to_checkpoint_apphash.rs",
+      "sha256": "33e0e1ff7100587693de9719345d982efdaa5f1df8918e522f099530c817263f"
+    },
+    {
+      "path": "crates/hl-node/examples/ci_increase_scope_probe.rs",
+      "sha256": "9e29de5916a444b65f273372697a9a936357c22c988e3c03e65bf949208f8a43"
+    },
+    {
+      "path": "crates/hl-node/examples/collateral_inputs.rs",
+      "sha256": "c5a736751fb0b9d790a81990bf2545ff333098d4aba6a73925bfad8f9095aa9b"
+    },
+    {
+      "path": "crates/hl-node/examples/consensus_capture_check.rs",
+      "sha256": "ab99e63b6906242fc7d501f102395ee4a9cc622d251285f79e03b86a7f5debd7"
+    },
+    {
+      "path": "crates/hl-node/examples/consensus_vote_signer_probe.rs",
+      "sha256": "710fe4bfd4fc8b48c01bcecbf7970706c079987d1344eb77aebaa14f13dc774f"
+    },
+    {
+      "path": "crates/hl-node/examples/crack_block_preimage.rs",
+      "sha256": "8900db316138c4d67f060ff6ffa3d88c67cce9b8bfcc353ca32770fea2198e91"
+    },
+    {
+      "path": "crates/hl-node/examples/cross_incr_population.rs",
+      "sha256": "197cb4bb4b8747efc8d3e115e9a4a55d352ceb19da79473b0f752803cf8153b2"
+    },
+    {
+      "path": "crates/hl-node/examples/cstaking_deep_diff.rs",
+      "sha256": "3d4c2d4a192de7ac1512515846dc9e3cf0191eda6a3d97eb1f89f34f4159355e"
+    },
+    {
+      "path": "crates/hl-node/examples/cstaking_field_diff.rs",
+      "sha256": "f32a5efc159f0b0d4ce68d929d717e73f90fc1818d1d4960d71fc19ce750274d"
+    },
+    {
+      "path": "crates/hl-node/examples/current1219_slot_field_report.rs",
+      "sha256": "228d468f1e125785a9d3f5603cb342540a2de9d2dda4f0e54e3dbd8e24035ceb"
+    },
+    {
+      "path": "crates/hl-node/examples/d11_spotuser_probe.rs",
+      "sha256": "e1a11a329f4ca3c287575f40c7110da060922ee77f8c5df75e8fabf65dc7a425"
+    },
+    {
+      "path": "crates/hl-node/examples/de7a_margin_probe.rs",
+      "sha256": "9d70526fb2dbe0c47281cc09a36925db73a0c42c172f624b1df83cfc58a012a0"
+    },
+    {
+      "path": "crates/hl-node/examples/decode_4001_frames.rs",
+      "sha256": "f32052043ef3735bd5f434c4477fd594203130b1d0c2dd2af76008966ea67b1a"
+    },
+    {
+      "path": "crates/hl-node/examples/decode_rpc_frame.rs",
+      "sha256": "0fff13b4ecc48f9d5404be14aa7894d557b311c71f7f3711cc164fb05e268b56"
+    },
+    {
+      "path": "crates/hl-node/examples/den84_probe.rs",
+      "sha256": "1ea9673db2c255f43deea3f6101a8deac75f0de745d8abde3b39b5f83fbf5ac3"
+    },
+    {
+      "path": "crates/hl-node/examples/disk_catchup_probe.rs",
+      "sha256": "d09e988d2da196b3e2033b14e94223a0ec84189d0af73f45c6b23b1bf5fb15d4"
+    },
+    {
+      "path": "crates/hl-node/examples/divergence_hotspots.rs",
+      "sha256": "2bc117d7030f679b6ab3dc7a3bc4437ae5fcae8c7a1f4dfa0524b74e794c751c"
+    },
+    {
+      "path": "crates/hl-node/examples/dump_uac_ctr.rs",
+      "sha256": "8cc62797e479ce63e57e55ee414c58f4008676a01feeef93a12a7e08ee52b60d"
+    },
+    {
+      "path": "crates/hl-node/examples/dump_validator_set.rs",
+      "sha256": "aa695d6ff911b211d1486affb16fc91628820f2afe7250705785cf172bbd2a7f"
+    },
+    {
+      "path": "crates/hl-node/examples/enc_qc_groundtruth.rs",
+      "sha256": "1c1b411d1ad88998a4fd62a71b53dd43e2dd5ef3515f8806d4a3f7495d87f2bd"
+    },
+    {
+      "path": "crates/hl-node/examples/entry_ntl_snapshot_scan.rs",
+      "sha256": "e9cd186ab26c692e61921bc85e0b9cf26a8b17f349f3b1b0bedcf01713aed553"
+    },
+    {
+      "path": "crates/hl-node/examples/equity_seed_xcheck.rs",
+      "sha256": "dbb523b178d8a553779c7e571b819907c9a055f1d16b23c8a836fff766582ba0"
+    },
+    {
+      "path": "crates/hl-node/examples/evm_checkpoint_context_probe.rs",
+      "sha256": "b91c500f7489b3fc56746001a2d9822565611c8ab90ceb3f48fa9e56ce8f3f94"
+    },
+    {
+      "path": "crates/hl-node/examples/evm_drift_scope_probe.rs",
+      "sha256": "ec4ed558ecaa108b0dd63e59b69ecc6f2b37cffcb51d7375a930ce8151095381"
+    },
+    {
+      "path": "crates/hl-node/examples/evm_lthash_rebuild_probe.rs",
+      "sha256": "7f2c5cad380263812b2c7bc41df8199eba6bfb3d804e77ac4a4206d02f067eb6"
+    },
+    {
+      "path": "crates/hl-node/examples/first_divergence_root.rs",
+      "sha256": "b50df4111148edfedeff227a0f3a6e04c7814c76d2322073b92c144dcf335bf5"
+    },
+    {
+      "path": "crates/hl-node/examples/forward_slot_verify.rs",
+      "sha256": "9e4aff3ca393d27d16ede46be15b3201edfe94aeb4ea991434cafcae277c6ea5"
+    },
+    {
+      "path": "crates/hl-node/examples/full_apphash_probe.rs",
+      "sha256": "2eba47bd70c8f957b7c5d86fb83cf68227276d3c59240257282980e4d1d78fd2"
+    },
+    {
+      "path": "crates/hl-node/examples/funding_boundary_probe.rs",
+      "sha256": "d464f3b48670a420b67d18628f8cb347492e07f1b06ef66698665cc9e6158a19"
+    },
+    {
+      "path": "crates/hl-node/examples/funding_cadence_replay.rs",
+      "sha256": "04e8c48b11f5c38b2d816d998ded95c7f9d021b32d275bb3d0a8397830fb5aa6"
+    },
+    {
+      "path": "crates/hl-node/examples/funding_ring_probe.rs",
+      "sha256": "653da1bde851b42847ba3467c3346ce5f8611c50a3b1cea18d3f7f8450fa3e45"
+    },
+    {
+      "path": "crates/hl-node/examples/funding_settle_disk_probe.rs",
+      "sha256": "f147d3871a1305eed23aa895d79af5977ea65978a91791926a42e42da863eae7"
+    },
+    {
+      "path": "crates/hl-node/examples/generate_synthetic_isolation_fixture.rs",
+      "sha256": "95cd97df5ea1b31a43bc2b8179946fe96e1dc1c0b7ee8cb77ffada51f7b9e16e"
+    },
+    {
+      "path": "crates/hl-node/examples/gossip_archive_index.rs",
+      "sha256": "6efd54cf3a3968c104cb614664b7470bcbd7dd7224f6b52eec58b69974e2c898"
+    },
+    {
+      "path": "crates/hl-node/examples/halt_probe.rs",
+      "sha256": "948b8c5b8d91d4769cea467f81b0c0d3b1525f615a50106f6918494be1bc397b"
+    },
+    {
+      "path": "crates/hl-node/examples/hash_cache_profile.rs",
+      "sha256": "a0d104d11153e83ed947e80fbf7493a5af5f02c5acf6a0287c7feb2d51caea05"
+    },
+    {
+      "path": "crates/hl-node/examples/hf1407_pure_slot_diff.rs",
+      "sha256": "390d07a97baa59de7572d431a1136c08a1563129aec955b99f8236c64afd7e6a"
+    },
+    {
+      "path": "crates/hl-node/examples/hf1407_state_boundary_audit.rs",
+      "sha256": "debd31bbfa707516c9f4b3c2c138da9f1430f7c4c086a7c275e7705fb3e7fce3"
+    },
+    {
+      "path": "crates/hl-node/examples/hf1414_subst_search.rs",
+      "sha256": "a6a579d099ce60aefab56043227408d0735a965f4a7c7d0f93cea66f6d56ca81"
+    },
+    {
+      "path": "crates/hl-node/examples/hip3_actor_probe.rs",
+      "sha256": "8b5d4900f71c5efe8d5d63f0ec76211ac8cf34bfaed8d735375bc75cdf8ea9d3"
+    },
+    {
+      "path": "crates/hl-node/examples/hip3_firing_set_probe.rs",
+      "sha256": "9abace570107a66f0f951924b808f28ba6c166a5d45f5681b101aa2603cdb119"
+    },
+    {
+      "path": "crates/hl-node/examples/hlp_cancel_probe.rs",
+      "sha256": "e1fb8c1b4e4dde51af095a56d730aeabfefc07de96322514d7dc227fcc1e8a28"
+    },
+    {
+      "path": "crates/hl-node/examples/idx0_margin_probe.rs",
+      "sha256": "011685ed1029810216d537525940a255af17f1206ec05b6491913661663f5dca"
+    },
+    {
+      "path": "crates/hl-node/examples/ioc_lev_discriminator_probe.rs",
+      "sha256": "b842e830fadd12ae7883f26d728595f85ab7af264a685e0f6cadeb370683aa56"
+    },
+    {
+      "path": "crates/hl-node/examples/ioc_oid_probe.rs",
+      "sha256": "8c3dfefdac36a32c35e6c51e479b7f79a580a037c3b1b423547816a9aec0cd15"
+    },
+    {
+      "path": "crates/hl-node/examples/iso_capfit_probe.rs",
+      "sha256": "7edc3a70b4a45a9fbdd26a506415fd0a47a335a4038d4220fedce7ecd2097a37"
+    },
+    {
+      "path": "crates/hl-node/examples/iso_dump_replay.rs",
+      "sha256": "7bfd02c3a1b9439017743e14313d0ff88944e880f3f26bc5fd7dd8566c149c82"
+    },
+    {
+      "path": "crates/hl-node/examples/keepup_cache_probe.rs",
+      "sha256": "eb9220b5caaccc40404e92a46b7bcf5dc011a9c061008b5b9b845b6994103fdf"
+    },
+    {
+      "path": "crates/hl-node/examples/leader_selector_oracle.rs",
+      "sha256": "72dabcec01888f3ab9ab7571328c193ad667b67099135be5e15ede424136dee1"
+    },
+    {
+      "path": "crates/hl-node/examples/live_propose.rs",
+      "sha256": "899ba33c22bc81f5308877f2bb5d2ce12491ec19534f0ab1ba6e59e666c461ad"
+    },
+    {
+      "path": "crates/hl-node/examples/locus_layout_diff.rs",
+      "sha256": "643e96b2c580488d4144a019dcc8cc2d3e9a05a0d438d51f04f7ba4319de589e"
+    },
+    {
+      "path": "crates/hl-node/examples/meas_apphash_gate.rs",
+      "sha256": "1b95efcdfa44a769df14160e5e8acb760203b58b58d8c74917433bdad1a16665"
+    },
+    {
+      "path": "crates/hl-node/examples/meas_exec_divergence.rs",
+      "sha256": "5a98047c440d5a063dde84341ba1982eddb44c91fb549987309d4e9a026e4563"
+    },
+    {
+      "path": "crates/hl-node/examples/mm_bot.rs",
+      "sha256": "28b2084ceeb5542f8f4b912efcab9a497d146e57b3bc3c9fc828490daefa8428"
+    },
+    {
+      "path": "crates/hl-node/examples/nv_exec_state_live_capture.rs",
+      "sha256": "275ed99b9e882d949eba12fadfa5bdf4011ce769e551239d2d235d6773681434"
+    },
+    {
+      "path": "crates/hl-node/examples/nv_execution_state_probe.rs",
+      "sha256": "b76d087b210ddb40eee7d7f0fe4a6e3c769caed62a688f18b6bebdbad89cdc77"
+    },
+    {
+      "path": "crates/hl-node/examples/oid_bind_probe.rs",
+      "sha256": "590640cd460d02aa4662d182692557a9c255daf21bf70b68b2e5cacde419b69c"
+    },
+    {
+      "path": "crates/hl-node/examples/oid_drift_oracle.rs",
+      "sha256": "c749297745ac03ff8a70c33deea1e2cd7bf6a10483646168409efee8bb7d4f3c"
+    },
+    {
+      "path": "crates/hl-node/examples/oid_frontier_trace.rs",
+      "sha256": "0743f797a473509f986e77417fd0e529994c5ed56c18a3bb68fe197e43596f5a"
+    },
+    {
+      "path": "crates/hl-node/examples/oid_identity_offset.rs",
+      "sha256": "e935cfed38a06e1d31f16d822ea324d164f2a5d77359b0a78194dddcfba0facd"
+    },
+    {
+      "path": "crates/hl-node/examples/oid_true_frontier.rs",
+      "sha256": "4e9fa9ceda1acf5336569a88cf2e8c3ad18c7541914212c3d0c843105861b81b"
+    },
+    {
+      "path": "crates/hl-node/examples/oracle_band_probe.rs",
+      "sha256": "2b821d974122a222c7e5bc4add36dc20d917e147a6a61a6099450f61ba822ef7"
+    },
+    {
+      "path": "crates/hl-node/examples/oracle_history_inner_probe.rs",
+      "sha256": "bea5c6993ada1790eadd6d883cb61b18d6a678de5bcee3d780c60e641ded452b"
+    },
+    {
+      "path": "crates/hl-node/examples/oracle_history_window_probe.rs",
+      "sha256": "861331870955770cd730cce55a66f6a97711aeceb46cf7cf254930d33c71575c"
+    },
+    {
+      "path": "crates/hl-node/examples/order_parity_diff.rs",
+      "sha256": "cc00189277f0f953f83f1e7a9bc74d59f80c9ebd6fbf2028d51cc8927cea7895"
+    },
+    {
+      "path": "crates/hl-node/examples/outcome_coverage_scan.rs",
+      "sha256": "3317da9af84d4d0d6579dd068ebce9eb04ec9b57aa9f1f4adb12337c165d1161"
+    },
+    {
+      "path": "crates/hl-node/examples/participate_evm_half_probe.rs",
+      "sha256": "82de64b12f00c935572866370cecbae6a52dbc6793158af719ecd1006f5c9a2d"
+    },
+    {
+      "path": "crates/hl-node/examples/perblock_timing.rs",
+      "sha256": "428824ceca2341b08ce2f47e215c9f830b6b9904a9e355f4786b3694ba03340e"
+    },
+    {
+      "path": "crates/hl-node/examples/perf_l1_cache_bench.rs",
+      "sha256": "079be7d1138ff10872c4f9b442dbf69d79362eee56c71f8cc789fe6726548e02"
+    },
+    {
+      "path": "crates/hl-node/examples/probe_bridge2_serde.rs",
+      "sha256": "2b9ca01127cde2bf72d421cc18faca460866941791202f78cd745737d4ee7d3d"
+    },
+    {
+      "path": "crates/hl-node/examples/re_gated_slots_probe.rs",
+      "sha256": "f905eeed46fa1c1e2cab855f0e450055ba50db4e80319371633ab952a0d3415e"
+    },
+    {
+      "path": "crates/hl-node/examples/reconstruct_slot32.rs",
+      "sha256": "b024166b87ca043428006632a25ee455ee78a4125ac1b839a3944fe9508add79"
+    },
+    {
+      "path": "crates/hl-node/examples/reduce_gate_probe.rs",
+      "sha256": "59ba173f34f8ede7e7ab057b45588a37064cc7084191c62fe01aea9d991d378d"
+    },
+    {
+      "path": "crates/hl-node/examples/replay_selected_slots.rs",
+      "sha256": "387d8f1f055b51fc4009b41368a9396cace44b7c0c45c411c019f9403e1b4b8d"
+    },
+    {
+      "path": "crates/hl-node/examples/reserve_boundary_probe.rs",
+      "sha256": "a1668d045cf39ae960b26151e786812b8c204e800acc69ccd40efa4a0323bce3"
+    },
+    {
+      "path": "crates/hl-node/examples/reserve_drift_probe.rs",
+      "sha256": "c93f98b966082e3cc69a2c9e52d7eab966d67061008b740c2e02875c319b7783"
+    },
+    {
+      "path": "crates/hl-node/examples/reserve_equity_dump.rs",
+      "sha256": "8d781f505ee791dce5909aa5f0eee1ed7994b3ba4526a47946501579be24e0e9"
+    },
+    {
+      "path": "crates/hl-node/examples/reserve_formula_audit.rs",
+      "sha256": "0fdf783f34ffde0f55b2bf1f7b7556a6b2f1afbe9805db41c2c4c8539f05815e"
+    },
+    {
+      "path": "crates/hl-node/examples/roundtrip_4001_block.rs",
+      "sha256": "e10157fe4d2d55b73d7dd016aa750b3baad7560fd1dbef0814d61418553787b7"
+    },
+    {
+      "path": "crates/hl-node/examples/sd_accrual_validate.rs",
+      "sha256": "7c4bb1aefe73dec827a44c28d08d07cd32f92bd0329c67ada4f61b41b0bc67b3"
+    },
+    {
+      "path": "crates/hl-node/examples/self_verify_propose.rs",
+      "sha256": "b91138fed4b8c05f45bb295337179670effefd5c386b2334600edbc36d4a1aef"
+    },
+    {
+      "path": "crates/hl-node/examples/sf1_sf2_gate_probe.rs",
+      "sha256": "072295a5d191d41ef1ec7a36bfb450fd7eb0e3de2960bc0dbd6f31d023941c86"
+    },
+    {
+      "path": "crates/hl-node/examples/slot0_system_nonce_validate.rs",
+      "sha256": "31782a219fb2d1b92548ee52ac96e59063f12d1a22591dbeb7bb408145896d74"
+    },
+    {
+      "path": "crates/hl-node/examples/slot24_multisig_delta_probe.rs",
+      "sha256": "acd7dd380025287704085534ab3c85ae9e01a9311761fef71239ca6622ab1706"
+    },
+    {
+      "path": "crates/hl-node/examples/slot29_reserve_tick_probe.rs",
+      "sha256": "7dfb3fe82b8043616fa4524f4ac1ef220a94e7b9e1f5eada2b4110b03b522ba0"
+    },
+    {
+      "path": "crates/hl-node/examples/slot32_replay_count_probe.rs",
+      "sha256": "b93f7cddcf6f652cb609ab4dfc922bc1740631d05f3e0694c8aac8509418b51b"
+    },
+    {
+      "path": "crates/hl-node/examples/slot32_solver.rs",
+      "sha256": "7adbefdf0e0288acb48462f8a7199d62a4a2bf9c6e0b4a68b7f0be318f1345b4"
+    },
+    {
+      "path": "crates/hl-node/examples/slot32_uac_delta_probe.rs",
+      "sha256": "0fcf4894fac79b3070c617bd5c5f973e81923ad1138b079366632d38e29928d2"
+    },
+    {
+      "path": "crates/hl-node/examples/slot3_exact_rep_roundtrip.rs",
+      "sha256": "8f6ed7fb19a9c6197bfe834c1025b7575cb7b788597992abbcd8c6db5743221f"
+    },
+    {
+      "path": "crates/hl-node/examples/slot3_sd_forward_apply.rs",
+      "sha256": "93d5c7f1ff24b1d5c5e95014c4f7aa2a52e1806bce9925716fd8aeb31081fe8e"
+    },
+    {
+      "path": "crates/hl-node/examples/slot3_state_envelope_census.rs",
+      "sha256": "53fa032bff467158917b578bb97d576a1b85ce1fec6d85fab70c697412d776ce"
+    },
+    {
+      "path": "crates/hl-node/examples/slot4_envelope_probe.rs",
+      "sha256": "7c7a29b74c0e3702ab27609f3028601e833b86e9cbfcc68282681f8ef54d75f3"
+    },
+    {
+      "path": "crates/hl-node/examples/slot4_exact_rep_roundtrip.rs",
+      "sha256": "8db6d94160733946cb50cd84ed5292d9d9e474107eb9765ea3005b68c40d319e"
+    },
+    {
+      "path": "crates/hl-node/examples/slot4_forward_drift.rs",
+      "sha256": "22a696638bb4e359ab0842a6f6c641d24e0a7df4019f4f089fed294fb5d8047a"
+    },
+    {
+      "path": "crates/hl-node/examples/slot4_sd_forward_apply.rs",
+      "sha256": "7ae6a9ed2e725b6d1d358dbd67cb0788226e956afd018af309795a4ae25347e4"
+    },
+    {
+      "path": "crates/hl-node/examples/slot4_sd_semantics.rs",
+      "sha256": "1ab6b76837465a7a3ab13a1896ed79a58bf4a23a03ed1852f99370694ad23236"
+    },
+    {
+      "path": "crates/hl-node/examples/slot6_mark_disk_confirm.rs",
+      "sha256": "dd145a2c0354dfdf98a02bc8a6ea68bf5853a5b93a3fcd26c20e73ec726362a4"
+    },
+    {
+      "path": "crates/hl-node/examples/slot6_realreplay_diff.rs",
+      "sha256": "afb023a5bbffe15fab8ae432cc0aa429d0850bbd0c90efa59c7cf29f233c6f61"
+    },
+    {
+      "path": "crates/hl-node/examples/slot9_bridge2_delta_probe.rs",
+      "sha256": "378eac9bd60ee65ec25d564e35b76f72093afec77b78e40269c8c2bb8e0b6686"
+    },
+    {
+      "path": "crates/hl-node/examples/slot9_dvp_probe.rs",
+      "sha256": "c31f8bd8968a832d96d5e6dfa9f3bf92be72b64484d4571bdaa570f4f1e90aa9"
+    },
+    {
+      "path": "crates/hl-node/examples/slot9_finalize_threshold_probe.rs",
+      "sha256": "c35629b9bf2f58f9121314bf6bef47a46a6e39c26edcb1090a63ee6cbec96c63"
+    },
+    {
+      "path": "crates/hl-node/examples/slot_delta_probe.rs",
+      "sha256": "912d0d8db59967705678c276c2e64dc4658e0d2c413820df3b2f4aabd5a5e045"
+    },
+    {
+      "path": "crates/hl-node/examples/snapshot_field_diff.rs",
+      "sha256": "06b0a5cf6520fcdeb71910a35fb7c98df29ec112190e510242d52dc60e1a3268"
+    },
+    {
+      "path": "crates/hl-node/examples/sol_stale_ask_trace.rs",
+      "sha256": "12cc5e6be8475e2a49154b45d18b4ec58122e652a6d174324fe5d129eb31e55c"
+    },
+    {
+      "path": "crates/hl-node/examples/status_row_matcher.rs",
+      "sha256": "7651e71a7e47b4a6cb2f9021330acfafe3e5a67bcec4ace8a745181811314b69"
+    },
+    {
+      "path": "crates/hl-node/examples/stp_dym_probe.rs",
+      "sha256": "250a39e4256e27a33d8406a380f4bf4be33791ab446c8695074f59d2d2946da9"
+    },
+    {
+      "path": "crates/hl-node/examples/system_actor_scan.rs",
+      "sha256": "a1a969f17118666cee6ab3fbf9cccf152100341244491afae90399143f305421"
+    },
+    {
+      "path": "crates/hl-node/examples/sz0_trigger_probe.rs",
+      "sha256": "3c9a9dbb2b516daf081f0c109fe9da4641519b08a9b4635e6185cdfd0504b277"
+    },
+    {
+      "path": "crates/hl-node/examples/szdec_verify.rs",
+      "sha256": "3d1659c66d55618070ae3b22f0f538504a5993bcc2ead23884f76c0b2110217d"
+    },
+    {
+      "path": "crates/hl-node/examples/ton_alo_probe.rs",
+      "sha256": "9d81f4cc83bfa502ad61cf188525b684f4020dbc6d1d09a0794e5c6e039f9e82"
+    },
+    {
+      "path": "crates/hl-node/examples/tracker_leverage_source_audit.rs",
+      "sha256": "777cf491af851091836d522d4b96e22f2a6eb744a03873650692112cd2ba9e43"
+    },
+    {
+      "path": "crates/hl-node/examples/typed_slot_delta_probe.rs",
+      "sha256": "b4d3a7cc33947261f91d8a2f0b0583864e6d5507d37c73eaef54f0129559ee79"
+    },
+    {
+      "path": "crates/hl-node/examples/validate_abci_wire_codec.rs",
+      "sha256": "9750aa497ea0a31306f7eb0034d372c2789d5c4171ac8bf1828171ad9f3f08ea"
+    },
+    {
+      "path": "crates/hl-node/examples/verify_4001_qc.rs",
+      "sha256": "d33d75d7378e64cd6170e2cdcdd359fd66216c39fef9e959e75c34826aa53983"
+    },
+    {
+      "path": "crates/hl-node/examples/verify_blockhash_tag00.rs",
+      "sha256": "2d3fabf3b86467feef61b0ec0735cbf7b304b65898fd22948d87e1691c596a06"
+    },
+    {
+      "path": "crates/hl-node/examples/verify_hf1377_propose_formats.rs",
+      "sha256": "60b18b086a9592a86e1d70da39ae7e62472466952bd25ffa596e0b8a469789b8"
+    },
+    {
+      "path": "crates/hl-node/examples/vote_data_shape_probe.rs",
+      "sha256": "60918f9ceda812d833220793ce7fcaa788752b9c3fe92d89aa61f3acc1d32653"
+    },
+    {
+      "path": "crates/hl-node/examples/vote_l1_hash_probe.rs",
+      "sha256": "eb4b73e47bf762d996e0321b1440f4a27433346595d4fd7ce50ee79d3a9a096c"
+    },
+    {
+      "path": "crates/hl-node/examples/w1_bfb_event_trace.rs",
+      "sha256": "699a5455696e65da5275b33eb3cf10912743ea20be1161deed7a0f3af35924bd"
+    },
+    {
+      "path": "crates/hl-node/examples/w1_bfb_reserve_trace.rs",
+      "sha256": "67d679c044ba026008e2e9912b579751cda547cafb448adfcd5323fa62c87491"
+    },
+    {
+      "path": "crates/hl-node/examples/wa_410_probe.rs",
+      "sha256": "8703be67e5984de4e0b9785583c4650b3a46cb51fbc435eafc5c56021e3c2eea"
+    },
+    {
+      "path": "crates/hl-node/examples/wa_band_decisive_probe.rs",
+      "sha256": "d9561e4c5a660ded246c1931d4c295f1ddbff9ce5af469b90862a800f4108c6d"
+    },
+    {
+      "path": "crates/hl-node/examples/wa_band_hyp_probe.rs",
+      "sha256": "988e2ee53c32e2428fd21f29651a462d31c12ad735e83e5a4776108501fe3173"
+    },
+    {
+      "path": "crates/hl-node/examples/wa_reduce_probe.rs",
+      "sha256": "a1b5cf5dc96c893dc6b6e5254ff22ff4e877365c105205343b49c281e35eefbc"
+    },
+    {
+      "path": "crates/hl-node/examples/wire_application_gate.rs",
+      "sha256": "3c94f0b42c2f3ea2ed4b9d7fcf2fac9e1d8a82ef9a6be4426e4706ab44d8e8d4"
+    },
+    {
+      "path": "crates/hl-node/examples/wire_bundle_parity.rs",
+      "sha256": "d7d98ebc94f0ab0380f38403d1c5cda459f25712ae5bdbecf7a2e9b49329ab99"
+    },
+    {
+      "path": "crates/hl-node/examples/wld_first_div_probe.rs",
+      "sha256": "5a27e04744cb4ef518da1991cfce34891af0bfa2d048f5f3b536f0c09901d41b"
+    },
+    {
+      "path": "crates/hl-node/examples/xmargin_round_probe.rs",
+      "sha256": "a8c59a55939c525ff7898195011f437cb5bbda2f171d0626ad2f3dfb06efadd5"
+    },
+    {
+      "path": "crates/hl-node/examples/zz_probe_margin_user.rs",
+      "sha256": "a636f187dbd8c2769a0d896d98f338900b43bca64d03be7e0b483e70f4d8b242"
+    },
+    {
+      "path": "crates/hl-node/examples/zz_slot9_deposit_votes_dump.rs",
+      "sha256": "ed311f00b903ce44bee2b400a4d921a1b297629c30a0cde000a5f56dbc122098"
+    },
+    {
+      "path": "crates/hl-node/src/action_signing.rs",
+      "sha256": "b00058084fbe49cd99d7e76061a284ec63aa452042f0657c4ed74e885b6f9a6e"
+    },
+    {
+      "path": "crates/hl-node/src/auto_unjail.rs",
+      "sha256": "646f9e3dad3b26109b063cda3fc545e5dd7eefc9fa69ac4ce6308580027233ef"
+    },
+    {
+      "path": "crates/hl-node/src/block_log.rs",
+      "sha256": "d4d9d60ba222bfe3842cba6240415400c02ef0c080560fd4adfd4a380f59169d"
+    },
+    {
+      "path": "crates/hl-node/src/build_info.rs",
+      "sha256": "47cf079c67891b3eb692f3709a9496cc06c36856bf70ef50e6f8945783ac7fc0"
+    },
+    {
+      "path": "crates/hl-node/src/builder.rs",
+      "sha256": "1cbc7582b6fe5fdff638cf916d878920c1ccfd6608b3c8d84f5ff431bbe9f8f6"
+    },
+    {
+      "path": "crates/hl-node/src/capture_lt_hashes.rs",
+      "sha256": "81c09cc476306406350da9b9ecb6e7392dabfeaaa04191bbdb276a44e7fabcdb"
+    },
+    {
+      "path": "crates/hl-node/src/cli.rs",
+      "sha256": "4b86c96a3003d2995923f8a2957b5c9fea24aadd0c9648b73770c0851634f0bd"
+    },
+    {
+      "path": "crates/hl-node/src/client_block_auth.rs",
+      "sha256": "af271a718530ab7c4de10d686c07f89a2d86e5538e7f22ade3d4eb18fc65d2ad"
+    },
+    {
+      "path": "crates/hl-node/src/committed_applier.rs",
+      "sha256": "265ba47883f75792364ec35290deb6d5898f7875f9ee8aea37c439ce2fce78d9"
+    },
+    {
+      "path": "crates/hl-node/src/consensus_greeting.rs",
+      "sha256": "a4a0e5584d684a107fd884a0fdc8dd0637c4a4f4f42aff2e7cd9d17e615d8981"
+    },
+    {
+      "path": "crates/hl-node/src/consensus_recovery.rs",
+      "sha256": "6e5dab7a2177f9680b0504816b5ed09998bb5424516a371734153492e74ba222"
+    },
+    {
+      "path": "crates/hl-node/src/disk_catchup.rs",
+      "sha256": "9209d1e0d16c24b5ab47f4a5fb2251ea5ab795179b714030fc892ecb02535f5b"
+    },
+    {
+      "path": "crates/hl-node/src/doctor.rs",
+      "sha256": "bb5224c8804a247327dfbae30f21a28f3708ad3a605cb5072ac312854a4e34aa"
+    },
+    {
+      "path": "crates/hl-node/src/evm_checkpoint.rs",
+      "sha256": "f36146ecbda7442815331332f220819a9f413f2a6f810f3691be2d9447198948"
+    },
+    {
+      "path": "crates/hl-node/src/exchange_http.rs",
+      "sha256": "bdf901e76bbf7cc440bf6551341d3c8d9447ee66e7aad004b0be33b273d412f6"
+    },
+    {
+      "path": "crates/hl-node/src/follow_consensus.rs",
+      "sha256": "9055134bafeae5309f837725767278f2d8f5e6669fbb04102f6e3b125b89303c"
+    },
+    {
+      "path": "crates/hl-node/src/gap_census.rs",
+      "sha256": "8b3d462dbb1210de759e995802edd6642651813f5a79850f0e84831df5e7cc7a"
+    },
+    {
+      "path": "crates/hl-node/src/gossip_receiver.rs",
+      "sha256": "6b6ad60707e1c8d6da2a5164f6560f78ddd98f4f9ba2114eebdffaa6cd8c5ee1"
+    },
+    {
+      "path": "crates/hl-node/src/gossip_sync.rs",
+      "sha256": "dff626de69e577bdaf930e6264fc9fb102a79768ea29c0fca6f57fd2dfdd5bee"
+    },
+    {
+      "path": "crates/hl-node/src/gossip_verify.rs",
+      "sha256": "a0ba1db337200d108336d1c7bf37e3b0e7a2ceaf7bf1be77264fc7031cc6f0c3"
+    },
+    {
+      "path": "crates/hl-node/src/lib.rs",
+      "sha256": "b1e697f98c7d89064c03bae52e394c7ba78f6d8bfa1b6c49aa6a87f13c5075c4"
+    },
+    {
+      "path": "crates/hl-node/src/live_follow.rs",
+      "sha256": "274baf4410b8c12d53a70bdb50751d30947c8f4eaee67b9e1fadf31bc604e6a8"
+    },
+    {
+      "path": "crates/hl-node/src/local_abci_state.rs",
+      "sha256": "b72ec9833dc78540f9164fcda3185a3fd0082514711e8306f9e77049d44f60a5"
+    },
+    {
+      "path": "crates/hl-node/src/main.rs",
+      "sha256": "4621858669c2a9ac2c5c1fae216849165c2034c18e0591f8f9a46c59066a5c20"
+    },
+    {
+      "path": "crates/hl-node/src/native_fill_diff.rs",
+      "sha256": "d62c23392f8d0ae85dd8eaaaf215f7a7916686fc055fa7974629676f1951d652"
+    },
+    {
+      "path": "crates/hl-node/src/node.rs",
+      "sha256": "46df959f15abd905bff62d838fade32f7cf2d9fe8c641d1773593615fe280abd"
+    },
+    {
+      "path": "crates/hl-node/src/parity_monitor.rs",
+      "sha256": "3213b9724d08bce23f993980ac15758c44bcc09f4381b5eafdf1504779c2d240"
+    },
+    {
+      "path": "crates/hl-node/src/per_block_isolation.rs",
+      "sha256": "b167a726d17005ac5ec7c0b6f6e7a74c411c4145bb6313bb70cbc35f304d02be"
+    },
+    {
+      "path": "crates/hl-node/src/replay.rs",
+      "sha256": "fdf74fc65411a444184d383576ad2f2c1d96b9fc3f9ba0f28cb78e332ea15d06"
+    },
+    {
+      "path": "crates/hl-node/src/self_boot.rs",
+      "sha256": "c699c7d2b3f36c877e24008d27cc7c00f4d471b47cc9fd035728bd90bf8aa8e6"
+    },
+    {
+      "path": "crates/hl-node/src/shadow.rs",
+      "sha256": "98745ad6fa630a3a8efa9357c05dfcdf887454d946a3a70ea14beba42f0d01be"
+    },
+    {
+      "path": "crates/hl-node/src/state.rs",
+      "sha256": "c501fd1c7cf7b4b5fa5e04ea5cf814002fee0e1028a393a7803a2658e97f007f"
+    },
+    {
+      "path": "crates/hl-node/src/status.rs",
+      "sha256": "61c7e7258da430b5d858093fe78ce540bd3c6281514a0a5c9ccb78e4a47ee8cb"
+    },
+    {
+      "path": "crates/hl-node/src/sync.rs",
+      "sha256": "4af2dbb97a0bb96e5e76fcc0897e04431153f9b805f0eac28bfb2d876273bb36"
+    },
+    {
+      "path": "crates/hl-node/src/tip_follow.rs",
+      "sha256": "78dbcc98e2e8694c0eb2a6a34853b8448c6796c0152a073e3f088a012e6bf3db"
+    },
+    {
+      "path": "crates/hl-node/src/validator_set_info.rs",
+      "sha256": "c97b2b867255cd690380b807c736c4f13b30362c5f6dfb93fd3f4d4b53099262"
+    },
+    {
+      "path": "crates/hl-node/src/visor.rs",
+      "sha256": "c184f12d341ea3338278737a04a03520648a5500b008d6790b6d6ad72b1a5c8b"
+    },
+    {
+      "path": "crates/hl-node/src/vote_l1_hash.rs",
+      "sha256": "e602d81b30fc12b00baddf3ceea2f5a2afa5e46c008b0a11a043736e0e213bd3"
+    },
+    {
+      "path": "crates/hl-node/src/wal_handoff.rs",
+      "sha256": "a93d4becb5a88e1086d1626a0c7301fe5a1b5212d692490a3bc8f900bd23ad02"
+    },
+    {
+      "path": "crates/hl-node/src/watch_jail.rs",
+      "sha256": "47fdc76d2eb937a0e86a60c96c2f00b738e1e922d93ffe2fb8eadccfdc1889b3"
+    },
+    {
+      "path": "crates/hl-node/src/wire_application.rs",
+      "sha256": "9fe99bc0f2e7a21ff0e18a74b9cd3118738f1184654497482bd08daef1f55648"
+    },
+    {
+      "path": "crates/hl-node/tests/action_signing_cli.rs",
+      "sha256": "8ccfec3546db02208af37c4dfe9f35a0564c38981822fa887ffcec1632d9c7e3"
+    },
+    {
+      "path": "crates/hl-node/tests/cli_ergonomics.rs",
+      "sha256": "ea727407fd12a137a2f12c4540dd00dba1d9e44338e783c850da219d4c0d11ff"
+    },
+    {
+      "path": "crates/hl-node/tests/client_block_authentication.rs",
+      "sha256": "45d7b8420587b6b6bc2aa33b4692c9e27ba0533e71b7426eca42cc538c6506cd"
+    },
+    {
+      "path": "crates/hl-node/tests/consensus_support/mod.rs",
+      "sha256": "300b7ba5cb7639d4dcca5bdfc3ee12af76e4409e5eb9be69e77102c3d05b70e8"
+    },
+    {
+      "path": "crates/hl-node/tests/gossip_block_apply_pipeline.rs",
+      "sha256": "0af1f915fa67724b68417b3f0f3138bc4d11e5898ccdeb41ce2d6f4349cc6aa2"
+    },
+    {
+      "path": "crates/hl-node/tests/gossip_participate_smoke.rs",
+      "sha256": "77a72808cbf8c764dc243867865578dd140c6bcac80b1eef77ba05745cf6f35e"
+    },
+    {
+      "path": "crates/hl-node/tests/observation_mode_guardrail.rs",
+      "sha256": "4f083c291990a121bb72686bf2f7efc4d7f7440d826a2fdbcbf016a502a34bb2"
+    },
+    {
+      "path": "crates/hl-node/tests/observer_e2e.rs",
+      "sha256": "d94de4cd3adfcd40bd99b54abe5dd2af0d8f1309a3802cf803d7bb8acdd2fd4c"
+    },
+    {
+      "path": "crates/hl-node/tests/produce_stub.rs",
+      "sha256": "bf809c4bac6655d69e669e23d9b4b7dd7d791098255004c99b0163e2ee026019"
+    },
+    {
+      "path": "crates/hl-node/tests/unjail_self_cli_smoke.rs",
+      "sha256": "d541a7f21100a2e7d49f154c695189ae8b4498781ab909b22b2d60919c4ccf8e"
+    },
+    {
+      "path": "crates/hl-node/tests/wal_handoff_dryrun.rs",
+      "sha256": "959047a1a1c0ee810d7c3a7d0f23106f43ed994e74dcf1ef0dcf3c5825c81ccd"
+    },
+    {
+      "path": "crates/hl-node/tests/wal_handoff_floor.rs",
+      "sha256": "c065e137d710338d36b652f3ab768dbe0ce50aba75807dd6d2854ccb05446188"
+    },
+    {
+      "path": "crates/hl-devnet/src/api.rs",
+      "sha256": "c86dccd358b34c07e51748cd07a2903fb40c07347980c16cf24e50d4fecd271a"
+    },
+    {
+      "path": "crates/hl-devnet/src/block_producer.rs",
+      "sha256": "4f2079479d6c90303a980c315a23cd7085b54384590474509a5fd9c5fa7c7d00"
+    },
+    {
+      "path": "crates/hl-devnet/src/bridge.rs",
+      "sha256": "b2b6fb48a29ff35e50b2117706f363d1a55ec82923799e1d00375cf4aaf01ba4"
+    },
+    {
+      "path": "crates/hl-devnet/src/broadcaster.rs",
+      "sha256": "6cdfe147269e77af6ef196417b8ae8080d6c880b4e29c6ed4fe2d6e220878ced"
+    },
+    {
+      "path": "crates/hl-devnet/src/devnet.rs",
+      "sha256": "5a9254a9a043139b265b0592ea6694092f0b823c9e4976aa3ef6ed2631d0624d"
+    },
+    {
+      "path": "crates/hl-devnet/src/evm_server.rs",
+      "sha256": "65fa3353294cdced38ddbbcd0a74090189959b66f96a9c4f720444decee5645c"
+    },
+    {
+      "path": "crates/hl-devnet/src/follower.rs",
+      "sha256": "4b6c53aa6ac64528d60820675839746626ba313f6187cb0da8bcfa210962b9db"
+    },
+    {
+      "path": "crates/hl-devnet/src/force_events.rs",
+      "sha256": "806d86ec4728547289f9a9af4d7acb7ffd439a7a0b9f8fd5ae8e14325f12bb35"
+    },
+    {
+      "path": "crates/hl-devnet/src/info.rs",
+      "sha256": "0c1f7dae24c16dac890601b40977f0814e77275f01ed5508d824dce83485d659"
+    },
+    {
+      "path": "crates/hl-devnet/src/lib.rs",
+      "sha256": "20591cb3dd11988b736ccdd0c8d656efb2c04e121536c66969fdb1792549b674"
+    },
+    {
+      "path": "crates/hl-devnet/src/multi_node.rs",
+      "sha256": "5cdca975391dec7476328bed13086bbd17b7b1532f91253aae43029a013d8976"
+    },
+    {
+      "path": "crates/hl-devnet/src/oracle.rs",
+      "sha256": "05274519edfa203ed026e5a270fd8dc77f8dccb3b4fc65894c727001c68c1eb4"
+    },
+    {
+      "path": "crates/hl-devnet/src/response_envelope.rs",
+      "sha256": "da927507ac2d684fb18212183111f45ab31fcead886d13d302578bb9c1e44fc0"
+    },
+    {
+      "path": "crates/hl-devnet/src/supervisor.rs",
+      "sha256": "eb1d483b04f8aaf35f66a66bf1696489674f5a0cc055c8ee97eb34e53e1f74c3"
+    },
+    {
+      "path": "crates/hl-devnet/src/time_control.rs",
+      "sha256": "3a22bc66f4644e8df901a3fdc14ca36ed69ca553db5e9585cee5153b2eb41254"
+    },
+    {
+      "path": "crates/hl-devnet/src/ws_server.rs",
+      "sha256": "80ad036e006ce0c337cc5623e60cc4e6de93fbd27771990ca31979807de242df"
+    },
+    {
+      "path": "crates/hl-devnet/tests/evm_block_production.rs",
+      "sha256": "3141333168267a81ef95c97751e9a1fbeff093720856c9aad2ad6cc8c0c67d5e"
+    },
+    {
+      "path": "crates/hl-devnet/tests/exex_bridge.rs",
+      "sha256": "35acf8be1b71b92bbb8c59b3523915424099a4042d718f4e9b4534d484a95f99"
+    },
+    {
+      "path": "crates/hl-devnet/tests/force_events.rs",
+      "sha256": "46e03ecf88d0c81853587ecc7f2eb026513a41ff2514811b34c86aacaedfa852"
+    },
+    {
+      "path": "crates/hl-devnet/tests/hypercore_cheats.rs",
+      "sha256": "8c12f432971720792e9d3e23559399ec4fdbf99a8b9b2428905bbe2ab3140d37"
+    },
+    {
+      "path": "crates/hl-devnet/tests/hypercore_evm_integration.rs",
+      "sha256": "5389692e2739e4aaf2c1e0a636f8b084b0402b53f9e68d9d04d0b14a2905cfe8"
+    },
+    {
+      "path": "crates/hl-devnet/tests/info_endpoints.rs",
+      "sha256": "1da30d2400cf250c586a61c21837780578077c8065f21ea53403767cb04eeadf"
+    },
+    {
+      "path": "crates/hl-devnet/tests/integration.rs",
+      "sha256": "9ecf3d2d23263520bf2c5d60982ac75f2afc9a70ac732c0914d3542e4197393f"
+    },
+    {
+      "path": "crates/hl-devnet/tests/mock_realism.rs",
+      "sha256": "03372aadcbb5de40d7bb9c5104fda86d373179df6ab6cddcbc5a86871fd6ed4f"
+    },
+    {
+      "path": "crates/hl-devnet/tests/ws_server.rs",
+      "sha256": "07c2a463a88d8fed216ecd7d2e74cf96b7c3f54cea6caf573f0506b039cc40ff"
+    },
+    {
+      "path": "crates/hl-shepherd/src/main.rs",
+      "sha256": "3d3a71fe81f270572d2bee3ff7667a372d3b99f4a8ef30766bcb0ae13e1b01ee"
+    },
+    {
+      "path": "crates/hl-shepherd/tests/shepherd.rs",
+      "sha256": "c223f9dc9e814404a648696ce34b50d6b945396587ed29c5bb0f258ed2cf6e2f"
+    },
+    {
+      "path": "crates/hl-bft-runtime/src/classic.rs",
+      "sha256": "9c2096590aa9902aa9ace1572cf71c3c432c42693e3b49d1e40b57e1a2ea020f"
+    },
+    {
+      "path": "crates/hl-bft-runtime/src/lib.rs",
+      "sha256": "59f964255e2466f3375e2f461f264f8ee3bedc6b62e0ecc014c262169ae387d9"
+    },
+    {
+      "path": "crates/hl-testbed-peer/src/actions.rs",
+      "sha256": "a1d3cac8ae18932f33bdad0ec857b532e68a8816e84964e0663331dbe1e1b35e"
+    },
+    {
+      "path": "crates/hl-testbed-peer/src/bin/gen_current_snapshot_wire.rs",
+      "sha256": "c765867403c5dc9733dad9b1db4f46a03737dd7406d33d80c2fa20fe3b582cf6"
+    },
+    {
+      "path": "crates/hl-testbed-peer/src/bin/hlx_testbed.rs",
+      "sha256": "5aff6b55967376034e3369698459a66d8007669aa6f3bc3a112cb48181448083"
+    },
+    {
+      "path": "crates/hl-testbed-peer/src/bin/mock_abci.rs",
+      "sha256": "c65759114743a87357fa4269983a99a98a44ea8a5b142e0359a0ab1bbb5b5dc2"
+    },
+    {
+      "path": "crates/hl-testbed-peer/src/bin/mock_rpc.rs",
+      "sha256": "8a0fc83eaeace9a184b93fd46181d0ee3076f709906911793423198afd380532"
+    },
+    {
+      "path": "crates/hl-testbed-peer/src/lib.rs",
+      "sha256": "b01c04e08e3175aa0a56c77b8e7efbe4d323f31c0b5a8f5729b4061323d4c8e6"
+    },
+    {
+      "path": "crates/hl-testbed-peer/src/peer.rs",
+      "sha256": "36f83a2c447e62ed748ceec35e29014aea26144ccb85b4eb83d9edba60e55cf5"
+    },
+    {
+      "path": "crates/hl-testbed-peer/src/scenarios.rs",
+      "sha256": "8025c311bdc4c6b03dc5533ce750b49ad95c8b3f3f47853b622917cf1a0f1bf5"
+    }
+  ]
+}

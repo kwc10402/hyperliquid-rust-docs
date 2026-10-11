@@ -1,221 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hypurrliquid Docs Hub</title>
-<style>
-:root {
-  --bg: #f4f0e8;
-  --panel: #fffaf2;
-  --ink: #1d1b18;
-  --muted: #6a6258;
-  --line: #d6cbb9;
-  --accent: #9f3d23;
-  --accent-soft: #f0d7cb;
-  --shadow: rgba(38, 24, 12, 0.08);
-  --mono: "SF Mono", "JetBrains Mono", "Menlo", monospace;
-  --sans: "Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif;
-  --serif: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: var(--serif);
-  background:
-    radial-gradient(circle at top left, #fff8ef 0%, transparent 36%),
-    linear-gradient(180deg, #efe7da 0%, var(--bg) 45%, #efe7da 100%);
-  color: var(--ink);
-}
-main {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 56px 24px 80px;
-}
-.hero {
-  padding: 32px 0 24px;
-  border-bottom: 1px solid var(--line);
-}
-.eyebrow {
-  font: 600 12px/1.4 var(--mono);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-h1 {
-  margin: 10px 0 12px;
-  font: 700 52px/1.02 var(--sans);
-  letter-spacing: -0.03em;
-}
-.hero p {
-  max-width: 760px;
-  margin: 0;
-  color: var(--muted);
-  font-size: 18px;
-  line-height: 1.65;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
-  margin-top: 28px;
-}
-.card {
-  display: block;
-  padding: 20px;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: var(--panel);
-  box-shadow: 0 12px 30px var(--shadow);
-  text-decoration: none;
-  color: inherit;
-}
-.card:hover {
-  border-color: var(--accent);
-  transform: translateY(-1px);
-}
-.card h2 {
-  margin: 0 0 8px;
-  font: 700 22px/1.15 var(--sans);
-}
-.card p {
-  margin: 0 0 14px;
-  color: var(--muted);
-  line-height: 1.55;
-}
-.card code {
-  font: 12px/1.4 var(--mono);
-  color: var(--accent);
-}
-.section {
-  margin-top: 42px;
-}
-.section h3 {
-  margin: 0 0 10px;
-  font: 700 28px/1.1 var(--sans);
-}
-.section p {
-  max-width: 820px;
-  color: var(--muted);
-}
-ul {
-  padding-left: 20px;
-}
-li {
-  margin: 6px 0;
-}
-a.inline {
-  color: var(--accent);
-}
-@media (max-width: 700px) {
-  h1 { font-size: 38px; }
-  .hero p { font-size: 16px; }
-}
-</style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#041812"><meta name="description" content="Explore HLX in three dimensions: an interactive map of HyperCore, HyperEVM, the Rust workspace and native evidence.">
+<title>HLX · The Machine Atlas</title><link rel="icon" href="./mark.svg"><link rel="stylesheet" href="./style.css?v=873ecec02697">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
 </head>
 <body>
-<main>
-  <section class="hero">
-    <div class="eyebrow">Docs Hub</div>
-    <h1>Hypurrliquid Research, Protocol, and Build Docs</h1>
-    <p>
-      This is the compiled entrypoint for the repo's knowledge system: public paper,
-      protocol notes, generated findings, and status tracking. The long-term model is
-      <code>sources -> claims -> docs -> code -> verification</code>.
-    </p>
-    <div class="grid">
-      <a class="card" href="./paper/index.html">
-        <h2>Paper</h2>
-        <p>Public-facing reverse-engineering reference with diagrams, formulas, and subsystem overviews.</p>
-        <code>docs/paper/index.html</code>
-      </a>
-      <a class="card" href="./liquidation/index.html">
-        <h2>Liquidation &amp; ADL</h2>
-        <p>Dedicated execution reference for perp liquidation, portfolio margin, BOLE, and auto-deleveraging.</p>
-        <code>docs/liquidation/index.html</code>
-      </a>
-      <a class="card" href="./block-lifecycle/index.html">
-        <h2>Block Lifecycle</h2>
-        <p>Whole-block execution reference covering topology, leader rotation, hook points, hashing, and VoteAppHash.</p>
-        <code>docs/block-lifecycle/index.html</code>
-      </a>
-      <a class="card" href="./hashing/index.html">
-        <h2>Hashing</h2>
-        <p>Dedicated reference for RespHash, LtHash, backend splits, concise hashes, and VoteAppHash surfaces.</p>
-        <code>docs/hashing/index.html</code>
-      </a>
-      <a class="card" href="./staking/index.html">
-        <h2>Staking &amp; Validators</h2>
-        <p>Validator lifecycle, epochs, jailing, signer gates, delegation, and control-plane boundaries.</p>
-        <code>docs/staking/index.html</code>
-      </a>
-      <a class="card" href="./bridge/index.html">
-        <h2>Bridge2</h2>
-        <p>Bridge withdrawal, finalization, validator-set update flow, signer reuse, and dispute-period trust model.</p>
-        <code>docs/bridge/index.html</code>
-      </a>
-      <a class="card" href="./outcomes/index.html">
-        <h2>Outcomes</h2>
-        <p>HIP-4 baseline market model, settlement lifecycle, question metadata, and the open solvency lane.</p>
-        <code>docs/outcomes/index.html</code>
-      </a>
-      <a class="card" href="./call-graphs.html">
-        <h2>Call Graphs</h2>
-        <p>Rendered subsystem call graphs and architecture relationships.</p>
-        <code>docs/call-graphs.html</code>
-      </a>
-      <a class="card" href="./whitepaper/index.html">
-        <h2>White Paper</h2>
-        <p>Narrative system-design paper covering architecture, product families, universes, risk modes, and solvency goals, with downloadable PDF and TeX.</p>
-        <code>docs/whitepaper/index.html + docs/latex/whitepaper.pdf</code>
-      </a>
-      <a class="card" href="./yellowpaper/index.html">
-        <h2>Yellow Paper</h2>
-        <p>Protocol-truth paper covering action surfaces, state layout, block lifecycle, routing, liquidation, and hashing boundaries, with downloadable PDF and TeX.</p>
-        <code>docs/yellowpaper/index.html + docs/latex/yellowpaper.pdf + docs/latex/yellowpaper.tex</code>
-      </a>
-      <a class="card" href="./findings/truth-register.html">
-        <h2>Findings</h2>
-        <p>Curated fact ledger and compiled claim surfaces for the strongest current reverse-engineering takeaways.</p>
-        <code>docs/findings/truth-register.html</code>
-      </a>
-      <a class="card" href="./status/open-claims.html">
-        <h2>Status</h2>
-        <p>Open claims and active truth-maintenance lanes for implementation, replay, and protocol closure.</p>
-        <code>docs/status/open-claims.html</code>
-      </a>
-    </div>
-  </section>
-
-  <section class="section">
-    <h3>Paper Set</h3>
-    <p>
-      The site now has three complementary paper surfaces instead of one monolith.
-      Read them in layers depending on what you need.
-    </p>
-    <ul>
-      <li><a class="inline" href="./whitepaper/index.html">White Paper</a> for architecture, design intent, risk model, and system decomposition.</li>
-      <li><a class="inline" href="./yellowpaper/index.html">Yellow Paper</a> for protocol truth, execution order, state layout, and implementation boundaries.</li>
-      <li><a class="inline" href="./yellowpaper/action-inventory.html">Action Inventory</a> for action families, signing surfaces, and binary-discovered sub-variants.</li>
-      <li><a class="inline" href="./paper/index.html">Hypurrliquid Paper</a> for the large reverse-engineering reference with diagrams, tables, and subsystem deep dives.</li>
-      <li><a class="inline" href="./hashing/index.html">Hashing</a>, <a class="inline" href="./staking/index.html">Staking</a>, <a class="inline" href="./bridge/index.html">Bridge2</a>, and <a class="inline" href="./outcomes/index.html">Outcomes</a> for the denser subsystem references split out of the monolith.</li>
-    </ul>
-  </section>
-
-  <section class="section">
-    <h3>Knowledge Layout</h3>
-    <p>
-      The repo is moving toward a structured knowledge compiler. Humans consume the docs,
-      while agents maintain the structured source layer under <code>knowledge/</code>.
-    </p>
-    <ul>
-      <li><a class="inline" href="./knowledge/README.md">Knowledge overview</a></li>
-      <li><a class="inline" href="./knowledge/claims/README.md">Claims layer</a></li>
-      <li><a class="inline" href="./knowledge/sources/README.md">Sources layer</a></li>
-      <li><a class="inline" href="./findings/claims-index.md">Compiled claims index</a></li>
-      <li><a class="inline" href="./status/open-claims.md">Compiled open claims</a></li>
-    </ul>
-  </section>
-</main>
+<div id="universe" aria-label="Interactive three-dimensional protocol map"></div>
+<div class="vignette" aria-hidden="true"></div>
+<header class="identity"><img src="./mark.svg" width="34" height="34" alt=""><div><strong>HLX <i>Atlas</i></strong><span>THE EXCHANGE MACHINE</span></div></header>
+<div class="top-meta"><span class="live-dot"></span>MAINNET 113<span class="divider">/</span><span id="snapshot-date">RESEARCH SNAPSHOT</span><button id="about-toggle" aria-label="About this map">i</button></div>
+<nav class="layer-rail" aria-label="Map layers"><button data-layer="architecture" class="active"><span>01</span>System</button><button data-layer="flow"><span>02</span>Execution</button><button data-layer="state"><span>03</span>Commitments</button><button data-layer="crates"><span>04</span>Rust workspace</button><button data-layer="actions"><span>05</span>Action surface</button></nav>
+<section class="scene-title" aria-live="polite"><span id="scene-kicker">THE WHOLE MACHINE</span><h1 id="scene-title">HyperCore <i>×</i> HyperEVM</h1><p id="scene-description">Select a subsystem. Follow the connections.</p></section>
+<button id="back-map" class="back-map" hidden>↑ Whole machine</button>
+<div class="search-shell"><label class="sr-only" for="map-search">Find a component</label><span>⌕</span><input id="map-search" placeholder="Find a component…" autocomplete="off"><kbd>/</kbd><div id="search-results" hidden></div></div>
+<div class="scope-filters" id="scope-filters" hidden></div>
+<aside class="inspector" id="inspector" hidden aria-live="polite"></aside>
+<div class="hover-label" id="hover-label" hidden></div>
+<div class="journey" id="journey" hidden><button id="flow-play" aria-label="Play execution journey">▶</button><label class="sr-only" for="flow-step">Execution stage</label><input id="flow-step" type="range" min="0" max="7" value="0"><output id="flow-output">01 / 08</output><button id="flow-close" aria-label="Pause execution journey">Ⅱ</button></div>
+<div class="view-controls"><button id="map-reset" aria-label="Reset camera">⌖</button><button id="map-zoom-in" aria-label="Zoom in">+</button><button id="map-zoom-out" aria-label="Zoom out">−</button><button id="motion-toggle" aria-label="Pause animation">Ⅱ</button><button id="tour-toggle" aria-label="Take a guided tour">↗<span>Tour</span></button></div>
+<footer class="map-footer"><div><span class="status-dot"></span><span id="map-count">17 CRATES · 92 ACTIONS · 42 STATE SLOTS</span></div><span id="interaction-hint">DRAG TO ORBIT <b>·</b> SCROLL TO ZOOM <b>·</b> SELECT TO EXPLORE</span><button id="proof-toggle">EVIDENCE & SCOPE ↗</button></footer>
+<dialog id="evidence-dialog"><button class="dialog-close" aria-label="Close evidence">×</button><div id="evidence-content"></div></dialog>
+<div class="loading" id="loading"><div class="loading-ring"></div><span>ASSEMBLING THE MACHINE</span></div>
+<script type="module" src="./app.js?v=34e83dfbbbfd"></script>
+<noscript><div class="no-js">This spatial atlas requires JavaScript. <a href="./reference.html">Read the static reference</a>.</div></noscript>
 </body>
 </html>
